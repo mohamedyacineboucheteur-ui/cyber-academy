@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مرجع 100 تعريف — إعدادات الشبكات وأمنها (Cisco) | DZ Cyber Academy</title>
+  <style>
+    :root {
+      --bg: #080e1a;
+      --surface: #0f172a;
+      --card: #162238;
+      --border: #263654;
+      --primary: #00bceb;
+      --primary-dark: #0284c7;
+      --accent: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --en-bg: #0a1120;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #082f49 0%, #0a1120 60%, #064e3b 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(0, 188, 235, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 760px;
+      margin: 0 auto 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .stats-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #041c2c;
+      border-color: var(--primary);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: transform 0.15s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+    }
+
+    .card.mastered {
+      border-right: 5px solid var(--accent);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .term-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      direction: ltr;
+    }
+
+    .term-num {
+      background: var(--primary);
+      color: #041c2c;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .term-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .domain-tag {
+      font-size: 0.78rem;
+      background: rgba(0, 188, 235, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(0, 188, 235, 0.3);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .master-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .master-btn.done {
+      background: var(--accent);
+      color: #052e16;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .en-box {
+      direction: ltr;
+      text-align: left;
+      background: var(--en-bg);
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .ar-box {
+      color: #f1f5f9;
+      font-size: 0.97rem;
+      padding-right: 4px;
+    }
+
+    .ar-box strong {
+      color: var(--accent);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Cisco Network & Security Configuration — 100 Definitions</div>
+  <h1>بنك الـ 100 تعريف لإعدادات الشبكات وأمنها (Cisco)</h1>
+  <p>مصطلحات وإعدادات عملية في التوجيه، التبديل، قوائم التحكم ACLs، NAT/PAT، أمن الطبقة الثانية، VPN، وAAA مع التفسير المنطقي بالعربية.</p>
+  <a href="index.html" class="back-link">↩ العودة إلى الصفحة الرئيسية للأكاديمية</a>
+</header>
+
+<div class="container">
+  <section class="controls-panel">
+    <div class="search-row">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ابحث عن مصطلح أو أمر أو بروتوكول (مثال: ACL, Trunk, OSPF, DHCP Snooping, PAT, RADIUS)..."
+      />
+      <div class="stats-box">
+        <span id="visibleCount">المعروض: 100</span>
+        <span>|</span>
+        <span id="masteredCount">المُتقَن: 0 / 100</span>
+      </div>
+    </div>
+
+    <div class="filters" id="filterButtons">
+      <button class="filter-btn active" data-domain="all">الكل (100)</button>
+      <button class="filter-btn" data-domain="SW">التبديل وVLAN وSTP</button>
+      <button class="filter-btn" data-domain="RT">التوجيه وIP وNAT</button>
+      <button class="filter-btn" data-domain="ACL">قوائم التحكم ACLs</button>
+      <button class="filter-btn" data-domain="L2SEC">أمن المنافذ والطبقة 2</button>
+      <button class="filter-btn" data-domain="SEC">VPN وAAA والمراقبة</button>
+    </div>
+  </section>
+
+  <main class="cards-grid" id="cardsContainer"></main>
+  <div class="empty-state" id="emptyState">لا توجد نتائج مطابقة لبحثك. جرّب مصطلحاً آخر.</div>
+
+  <footer>
+    DZ Cyber Academy — مرجع إعدادات الشبكات وأمنها بأسلوب Cisco
+  </footer>
+</div>
+
+<script>
+  const ciscoTerms = [
+    // 1 - 20: التبديل وVLAN وSTP (SW)
+    { id: 1, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "VLAN (Virtual Local Area Network)", en: "A logical segmentation of a switched network that isolates broadcast domains independently of physical port location.", ar: "تقسيم منطقي للشبكة المحلية داخل المبدل (Switch) يعزل نطاقات البث (Broadcast Domains)؛ الأجهزة في VLAN مختلفة لا تتواصل مباشرة إلا عبر Router أو Layer 3 Switch." },
+    { id: 2, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Access Port", en: "A switch port assigned to a single VLAN that carries untagged frames toward end devices such as PCs, printers, or IP phones.", ar: "منفذ مبدل مخصص لـ VLAN واحدة فقط ويستقبل/يرسل إطارات غير موسومة (Untagged) للأجهزة الطرفية مثل الحواسيب." },
+    { id: 3, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Trunk Port (802.1Q)", en: "A link between switches or a switch and router that carries traffic for multiple VLANs using IEEE 802.1Q tag headers.", ar: "منفذ ربط بين المبدلات (أو مع راوتر) ينقل حركة عدة VLANs معاً بإضافة وسم 802.1Q لتحديد انتماء كل إطار." },
+    { id: 4, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Native VLAN", en: "The VLAN whose traffic is sent untagged across an 802.1Q trunk link; by default it is VLAN 1 on Cisco switches.", ar: "الشبكة الافتراضية التي تمر عبر منفذ Trunk دون وسم (Untagged)؛ يُستحسن تغييرها عن VLAN 1 وتوحيدها على طرفي الربط لتجنب مشاكل الاتصال وثغرات VLAN Hopping." },
+    { id: 5, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "DTP (Dynamic Trunking Protocol)", en: "A Cisco-proprietary protocol used to negotiate trunking status between neighboring switch ports; best disabled or set to switchport mode access/trunk explicitly.", ar: "بروتوكول خاص بـ Cisco لتفاوض حالة Trunk بين منفذين؛ في الإعدادات الآمنة يُفضّل إيقافه (nonegotiate) وتحديد وضع المنفذ يدوياً." },
+    { id: 6, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "STP (Spanning Tree Protocol — 802.1D)", en: "A Layer 2 loop-prevention protocol that blocks redundant paths so frames do not loop endlessly and cause broadcast storms or MAC table instability.", ar: "بروتوكول يمنع الحلقات التكرارية (Loops) في الطبقة الثانية عبر إغلاق منافذ إضافية منطقياً حتى لا تتضاعف الإطارات وتُغرق الشبكة." },
+    { id: 7, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "RSTP (Rapid Spanning Tree Protocol — 802.1w)", en: "An enhanced version of STP that achieves much faster topology convergence after link failures using port roles and states such as discarding, learning, and forwarding.", ar: "نسخة مطورة من STP توفر تقارباً وتبديلاً أسرع للمسارات عند تعطل رابط مقارنة بـ 802.1D التقليدي." },
+    { id: 8, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Rapid PVST+", en: "Cisco's default per-VLAN rapid spanning tree implementation that runs an independent RSTP instance for each VLAN.", ar: "تنفيذ Cisco الافتراضي الذي يشغّل نسخة مستقلة من RSTP لكل VLAN، مما يتيح موازنة الحمل (Load Balancing) حسب كل VLAN." },
+    { id: 9, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Root Bridge", en: "The reference switch in a spanning tree topology elected based on the lowest Bridge ID (priority + system ID extension + MAC address).", ar: "المبدل الجذري المرجعي في شجرة STP؛ يُختار بأقل Bridge ID، ويُفضّل ضبط أولويته (Priority) يدوياً ليكون مبدلاً مركزياً قوياً." },
+    { id: 10, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Root Port vs. Designated Port", en: "A Root Port is the non-root switch port with the lowest cost path to the Root Bridge; a Designated Port forwards traffic for its segment.", ar: "منفذ الجذر (Root Port) هو أقرب منفذ للمبدل الجذري بأقل تكلفة؛ والمنفذ المعيّن (Designated Port) هو المنفذ النشط الذي يمرر حركة القطاع نحو الجذر." },
+    { id: 11, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "PortFast", en: "A Cisco switch feature configured on access ports connected to end hosts so they transition immediately to forwarding state without waiting for STP delays.", ar: "ميزة تُفعّل على منافذ الوصول المتصلة بالأجهزة النهائية لتدخل حالة إرسال البيانات فوراً دون انتظار مؤقتات STP (لا تُفعّل على منافذ تربط بمبدلات أخرى)." },
+    { id: 12, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "BPDU Guard", en: "A STP security feature that puts a PortFast-enabled port into err-disable state if a Bridge Protocol Data Unit (BPDU) is received on it.", ar: "حماية توقف المنفذ فوراً (err-disable) إذا استقبل حزم BPDU على منفذ مضبوط بـ PortFast؛ يمنع إدخال مبدل غير مصرح به أو هجمات STP." },
+    { id: 13, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Root Guard", en: "A STP feature configured on switch ports that prevents a connected neighbor device from becoming the Root Bridge by placing the port in root-inconsistent state if superior BPDUs arrive.", ar: "حماية تمنع أي جهاز متصل على المنفذ من انتزاع دور Root Bridge؛ إذا أرسل BPDU أقوى يُجمّد المنفذ دون إسقاط الشبكة بالكامل." },
+    { id: 14, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "EtherChannel (LACP / PAgP)", en: "Bundling multiple physical Ethernet links into a single logical link to increase bandwidth, provide redundancy, and load-balance traffic.", ar: "دمج عدة كابلات فعلية في رابط منطقي واحد لزيادة السرعة وتوفير بديل تلقائي؛ LACP معيار مفتوح بينما PAgP خاص بـ Cisco." },
+    { id: 15, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "SVI (Switched Virtual Interface)", en: "A logical Layer 3 interface on a multilayer switch associated with a VLAN to provide inter-VLAN routing and a default gateway.", ar: "واجهة افتراضية للطبقة الثالثة على مبدل متعدد الطبقات تمثل بوابة افتراضية (Default Gateway) لـ VLAN وتسمح بالتوجيه بين الشبكات المحلية." },
+    { id: 16, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Router-on-a-Stick", en: "Inter-VLAN routing architecture using subinterfaces configured with 802.1Q encapsulation on a single router physical interface connected to a switch trunk.", ar: "توجيه بين VLANs عبر واجهات فرعية (Subinterfaces) على منفذ واحد في الراوتر متصل بمنفذ Trunk على المبدل." },
+    { id: 17, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "MAC Address Table (CAM Table)", en: "The switching table mapping learned source MAC addresses to incoming switch interfaces and VLANs for unicast frame forwarding.", ar: "جدول يربط عناوين MAC المتعلمة من الإطارات الواردة بالمنافذ والـ VLANs لإرسال إطارات Unicast للمنفذ الصحيح فقط." },
+    { id: 18, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Unknown Unicast Flooding", en: "When a switch receives a unicast frame whose destination MAC address is not yet in its MAC table, it forwards the frame out all ports in the same VLAN except the ingress port.", ar: "إرسال إطار موجه لجهاز واحد إلى جميع منافذ نفس الـ VLAN عندما لا يكون عنوان MAC الوجهة مسجلاً بعد في جدول المبدل." },
+    { id: 19, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "Err-Disable State", en: "An operational port state where a switch shuts down a port due to a detected error or security violation such as port security or BPDU guard.", ar: "حالة إغلاق تلقائي للمنفذ يضعها المبدل عند رصد مخالفة أو خطأ أمني (مثل تجاوز حد MAC أو BPDU Guard)؛ يمكن استعادتها يدوياً أو عبر errdisable recovery." },
+    { id: 20, domain: "SW", domainLabel: "التبديل وVLAN وSTP", term: "CDP vs. LLDP", en: "CDP (Cisco Discovery Protocol) is Cisco's Layer 2 neighbor discovery protocol; LLDP (Link Layer Discovery Protocol) is the vendor-neutral IEEE standard equivalent.", ar: "بروتوكولا اكتشاف الجيران في الطبقة الثانية؛ CDP خاص بـ Cisco بينما LLDP معيار عام متعدد الشركات (يُفضّل تعطيله على المنافذ الخارجية غير الموثوقة)." },
+
+    // 21 - 40: التوجيه وIP وNAT (RT)
+    { id: 21, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "Routing Table", en: "The memory structure on a router storing destination prefixes, next-hop IP addresses, outgoing interfaces, administrative distances, and metrics.", ar: "جدول التوجيه في الراوتر الذي يحدد لأي شبكة يرسل الحزمة، وعبر أي عنوان Next-Hop أو منفذ، بناءً على أطول تطابق للشبكة (Longest Prefix Match)." },
+    { id: 22, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "Longest Prefix Match", en: "The forwarding rule where a router selects the route entry with the most specific (longest) subnet mask matching the destination IP address.", ar: "قاعدة اختيار المسار الأكثر دقة؛ إذا تطابق عنوان الهدف مع مسارين في جدول التوجيه، يُختار المسار صاحب القناع الأطول (الأكثر تحديداً مثل /28 قبل /24)." },
+    { id: 23, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "Administrative Distance (AD)", en: "A trustworthiness rating (0–255) assigned to route sources; lower AD means higher preference when multiple routing sources learn the same destination.", ar: "مقياس موثوقية مصدر المسار (من 0 إلى 255)؛ كلما كان الرقم أقل كان المصدر مفضلاً أكثر (Connected=0، Static=1، OSPF=110، RIP=120)." },
+    { id: 24, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "Metric", en: "A numeric value used by a specific routing protocol to measure the cost or desirability of a path to a destination network.", ar: "تكلفة المسار داخل نفس بروتوكول التوجيه؛ يختار البروتوكول المسار ذا القيمة الأقل (مثل Cost المعتمد على عرض النطاق في OSPF)." },
+    { id: 25, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "Static Route & Default Route (0.0.0.0/0)", en: "A static route is manually configured by an administrator; a default route (0.0.0.0/0) matches any destination not explicitly listed in the routing table.", ar: "مسار ثابت يحدده المسؤول يدوياً؛ والمسار الافتراضي (0.0.0.0/0) يُستخدم كـ 'مخرج أخير' (Gateway of Last Resort) لأي وجهة غير معروفة في الجدول." },
+    { id: 26, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "OSPF (Open Shortest Path First)", en: "An open-standard link-state interior gateway routing protocol that uses Dijkstra's SPF algorithm and cost based on bandwidth to build loop-free topologies.", ar: "بروتوكول توجيه داخلي من نوع Link-State يعتمد على خوارزمية SPF ويحكم المسار بتكلفة عرض النطاق (Cost)، ويقسّم الشبكة إلى مناطق (Areas مثل Area 0)." },
+    { id: 27, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "OSPF Hello & Dead Timers", en: "Intervals used by OSPF routers to discover neighbors and detect adjacency failures; by default on broadcast networks, Hello is 10s and Dead is 40s.", ar: "مؤقتات التحقق من الجيران في OSPF؛ يُرسل Hello كل 10 ثوانٍ ومدة Dead الافتراضية 40 ثانية، ويجب تطابقهما بين الجارين لقيام العلاقة." },
+    { id: 28, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "BGP (Border Gateway Protocol)", en: "The exterior gateway routing protocol used to exchange routing information between Autonomous Systems (AS) across the internet.", ar: "بروتوكول التوجيه الخارجي بين الأنظمة المستقلة (AS) وهو العمود الفقري لتوجيه الإنترنت؛ يعتمد على سمات المسار (Path Attributes) والاتصال عبر TCP المنفذ 179." },
+    { id: 29, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "NAT (Network Address Translation)", en: "Translating private internal IP addresses to routable public IP addresses (or vice versa) at network boundaries.", ar: "ترجمة عناوين IP الخاصة بالشبكة الداخلية إلى عناوين عامة صالحة للتوجيه عبر الإنترنت والعكس عند حافة الشبكة." },
+    { id: 30, domain: "RT", domainLabel: "التبديل وVLAN وSTP", term: "PAT (Port Address Translation / NAT Overload)", en: "A form of NAT that maps multiple internal private IP addresses to a single (or small pool of) public IP address using unique source port numbers.", ar: "نوع من NAT يسمح لعدة أجهزة داخلية بمشاركة عنوان IP عام واحد عبر تمييز جلسات كل جهاز بأرقام منافذ مصدر (Source Ports) مختلفة." },
+    { id: 31, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "Inside Local vs. Inside Global IP", en: "Inside Local is the internal IP assigned to a host inside the network; Inside Global is the public IP representing that host to external networks.", ar: "Inside Local هو عنوان الجهاز الداخلي الخاص؛ وInside Global هو العنوان العام الذي يظهر به الجهاز خارج الشبكة بعد الترجمة." },
+    { id: 32, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "DHCP (Dynamic Host Configuration Protocol)", en: "A client-server protocol (UDP ports 67/68) that dynamically assigns IP addresses, subnet masks, default gateways, and DNS servers to hosts using DORA.", ar: "بروتوكول يوزع إعدادات الشبكة (IP، Subnet Mask، Gateway، DNS) تلقائياً عبر خطوات DORA (Discover, Offer, Request, Acknowledge)." },
+    { id: 33, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "DHCP Relay (ip helper-address)", en: "A router configuration that forwards broadcast DHCP client requests across subnets to a centralized DHCP server located in another network.", ar: "توجيه طلبات DHCP Broadcast من شبكة فرعية إلى خادم DHCP موجود في شبكة أخرى عبر أمر ip helper-address على واجهة الراوتر." },
+    { id: 34, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "ARP (Address Resolution Protocol)", en: "Resolves a known IPv4 address within the local subnet to a Layer 2 MAC address using an ARP request broadcast and ARP reply unicast.", ar: "يستعلم عن عنوان MAC المقابل لعنوان IP داخل نفس الشبكة المحلية عبر طلب بث (Broadcast) ورد مباشر (Unicast)." },
+    { id: 35, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "FHRP (HSRP / VRRP)", en: "First Hop Redundancy Protocols that allow multiple routers to share a virtual IP and virtual MAC address so hosts maintain default gateway availability.", ar: "بروتوكولات توفر بوابة افتراضية احتياطية (Virtual IP + Virtual MAC) لعدة راوترات؛ إذا تعطل الراوتر النشط يتولى الاحتياطي التوجيه دون تغيير إعدادات الأجهزة." },
+    { id: 36, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "Subnetting & CIDR", en: "Dividing an IP network into smaller logical subnetworks using a subnet mask or prefix length (/notation) to optimize addressing and broadcast scope.", ar: "تقسيم شبكة IP إلى شبكات فرعية عبر قناع الشبكة أو بادئة CIDR لتنظيم العناوين وتقليل حجم نطاق البث." },
+    { id: 37, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "IPv6 Link-Local Address (fe80::/10)", en: "An automatically configured IPv6 address valid only on the local link/segment, used by neighbor discovery and routing protocols.", ar: "عنوان IPv6 يبدأ بـ fe80 يولّد تلقائياً ويعمل فقط داخل الرابط المحلي؛ لا يُوجّه عبر الإنترنت وهو ضروري لعمل بروتوكولات IPv6." },
+    { id: 38, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "SLAAC (Stateless Address Autoconfiguration)", en: "An IPv6 mechanism allowing hosts to generate their own interface addresses using Router Advertisements (RA) and EUI-64 or random values without a DHCPv6 server.", ar: "آلية تتيح لأجهزة IPv6 تكوين عناوينها تلقائياً بالاعتماد على إعلانات الراوتر (RA) دون الحاجة لخادم DHCPv6." },
+    { id: 39, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "ICMP (Ping / Traceroute)", en: "Internet Control Message Protocol used for network diagnostics and error reporting, such as echo requests/replies (ping) and TTL-expired messages (traceroute).", ar: "بروتوكول تشخيص وإبلاغ الأخطاء في طبقة الشبكة؛ يُستخدم في Ping للتحقق من الوصول وفي Traceroute لتتبع القفزات عبر خفض قيمة TTL." },
+    { id: 40, domain: "RT", domainLabel: "التوجيه وIP وNAT", term: "GRE Tunnel (Generic Routing Encapsulation)", en: "A tunneling protocol that encapsulates network layer packets inside another IP packet to transport routed protocols or IPv6 over IPv4; unencrypted by itself.", ar: "بروتوكول تغليف حزم داخل حزمة IP أخرى لربط شبكات عبر مسار وسيط؛ لا يشفر البيانات بمفرده ولذلك يُدمج غالباً مع IPsec." },
+
+    // 41 - 60: قوائم التحكم ACLs (ACL)
+    { id: 41, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "ACL (Access Control List)", en: "An ordered set of permit or deny statements evaluated sequentially from top to bottom against packet headers to filter traffic or match interesting traffic.", ar: "قائمة قواعد مرتبة (Permit / Deny) تُفحص من الأعلى للأسفل؛ أول قاعدة تطابق الحزمة تُنفّذ ويتوقف الفحص عندها." },
+    { id: 42, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Implicit Deny Any", en: "A hidden rule at the end of every ACL that drops all traffic not explicitly permitted by preceding statements.", ar: "قاعدة رفض ضمنية مخفية في نهاية كل ACL تمنع أي حركة لم يُصرّح بالسماح لها صراحة في السطور السابقة." },
+    { id: 43, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Wildcard Mask", en: "A 32-bit mask used in ACLs and routing protocols where 0 means 'must match this bit' and 1 means 'ignore this bit' (inverse logic to subnet mask).", ar: "قناع يُستخدم في ACLs وOSPF بمنطق عكسي لقناع الشبكة: (0 = يجب أن يطابق البت، 1 = تجاهل/أي قيمة)." },
+    { id: 44, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Standard ACL (1–99 / 1300–1999)", en: "An ACL that filters traffic based solely on the source IPv4 address; best placed close to the destination to avoid unintended blocking.", ar: "قائمة تحكم تفحص عنوان IP المصدر فقط؛ يُفضّل وضعها قريبة من الوجهة حتى لا تمنع وصولاً مشروعاً من مسارات أخرى." },
+    { id: 45, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Extended ACL (100–199 / 2000–2699)", en: "An ACL that filters traffic based on source IP, destination IP, protocol (TCP/UDP/ICMP), and source/destination ports; best placed close to the source.", ar: "قائمة تحكم متقدمة تفحص المصدر والوجهة والبروتوكول وأرقام المنافذ؛ يُفضّل وضعها قريبة من المصدر لإيقاف الحركة غير المرغوبة مبكراً." },
+    { id: 46, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Inbound vs. Outbound ACL Direction", en: "Inbound filters packets entering a router interface before routing lookup; outbound filters packets leaving an interface after routing and NAT.", ar: "الاتجاه الداخل (Inbound) يفحص الحزمة فور دخولها للمنفذ قبل التوجيه؛ والاتجاه الخارج (Outbound) يفحصها عند خروجها من المنفذ بعد التوجيه وNAT." },
+    { id: 47, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Named ACL", en: "An ACL identified by an alphanumeric name rather than a number, allowing easier editing, sequence numbers, and insertion/deletion of individual lines.", ar: "قائمة تحكم تُسمّى باسم نصي واضح وتتيح تعديل أو حذف أسطر محددة بسهولة عبر أرقام التسلسل (Sequence Numbers)." },
+    { id: 48, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "ACL for VTY (Management Plane Protection)", en: "Applying an access-class ACL on VTY lines to restrict remote management access (such as SSH) only to trusted administrator IP addresses.", ar: "تطبيق ACL على خطوط VTY لحصر الإدارة عن بُعد (مثل SSH) على عناوين IP محددة للإدارة فقط ومنع أي محاولات عشوائية." },
+    { id: 49, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Established Keyword (TCP)", en: "A TCP ACL match option that permits packets with ACK, RST, or FIN flags set, allowing return traffic for sessions initiated from inside.", ar: "خيار في ACL لـ TCP يسمح بمرور حزم الرد المرتبطة بجلسة بدأت من الداخل دون فتح كل المنافذ العشوائية للعالم الخارجي." },
+    { id: 50, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Control Plane Policing (CoPP)", en: "A feature that protects the router or switch CPU from control-plane traffic floods or DoS attacks by rate-limiting and classifying management/routing packets.", ar: "حماية معالج (CPU) جهاز الشبكة من إغراق حزم التحكم والتوجيه والإدارة عبر تصنيفها وتحديد معدل مرورها." },
+    { id: 51, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Stateful Firewall vs. Stateless ACL", en: "A stateless ACL inspects each packet independently against rules, whereas a stateful firewall tracks connection state tables for active sessions.", ar: "ACL العادي يفحص كل حزمة بشكل مستقل دون تتبع حالة الجلسة، بينما الجدار الناري الحالاتي (Stateful) يراقب حالة الاتصال ويسمح بالردود التابعة له تلقائياً." },
+    { id: 52, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Zone-Based Policy Firewall (ZPF)", en: "A Cisco IOS firewall model that groups interfaces into security zones and applies explicit inspection policies to traffic moving between zones.", ar: "نموذج جدار ناري يجمع المنافذ في مناطق أمنية (Zones) ويطبّق سياسات فحص صريحة بين منطقة وأخرى (المرور داخل نفس المنطقة يُسمح به افتراضياً)." },
+    { id: 53, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "ACL Logging (log keyword)", en: "Appending the log keyword to an ACL entry so the device generates syslog messages when packets match that rule.", ar: "إضافة كلمة log لنهاية سطر في ACL لتسجيل إشعار في السجلات (Syslog) عند مطابقة الحزم للقاعدة، مما يفيد في المراقبة والتحقيق." },
+    { id: 54, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "NAT ACL Matching", en: "Using a standard ACL to define the 'interesting' internal IP addresses eligible for dynamic NAT or PAT translation.", ar: "استخدام ACL لتحديد نطاق عناوين IP الداخلية المسموح لها بالترجمة عبر NAT أو PAT نحو الإنترنت." },
+    { id: 55, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Route Map with ACL", en: "Combining route-maps and ACLs for policy-based routing (PBR) or selective route redistribution and NAT control.", ar: "ربط Route Map مع ACL للتحكم في مسار التوجيه بناءً على سياسة (PBR) أو تصفية المسارات أثناء التوزيع." },
+    { id: 56, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "uRPF (Unicast Reverse Path Forwarding)", en: "A packet-forwarding security check that verifies a packet's source IP is reachable via the interface used to receive it, helping mitigate IP spoofing.", ar: "فحص أمني يتحقق أن عنوان IP المصدر للحزمة الواردة يملك مساراً صحيحاً عبر نفس المنفذ للحد من انتحال عناوين IP (IP Spoofing)." },
+    { id: 57, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Bogon Filtering", en: "Blocking packets carrying reserved, unassigned, or private IP addresses on external/internet-facing interfaces where they should not legitimately appear.", ar: "حظر الحزم القادمة من عناوين محجوزة أو خاصة (Bogon/Martian) على المنافذ المتصلة بالإنترنت لأنها لا ينبغي أن تأتي من الخارج." },
+    { id: 58, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Remark Statements in ACLs", en: "Descriptive comment lines added inside an ACL configuration to document the purpose of rules without affecting packet filtering.", ar: "تعليقات توضيحية داخل ACL لشرح الغرض من القواعد وتسهيل صيانتها مستقبلاً دون التأثير على الفلترة." },
+    { id: 59, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "IPv6 Traffic Filter (ACL)", en: "Access lists applied to IPv6 interfaces using ipv6 access-list; unlike IPv4, IPv6 ACLs include implicit permit neighbor discovery rules by default on Cisco.", ar: "قوائم تحكم خاصة بحركة IPv6 تُطبّق على المنافذ لتقييد الوصول وحماية الأجهزة الطرفية." },
+    { id: 60, domain: "ACL", domainLabel: "قوائم التحكم ACLs", term: "Management Plane Isolation (OOB)", en: "Separating device management traffic (SSH, SNMP, Syslog) onto a dedicated management network or VRF away from user data traffic.", ar: "عزل حركة إدارة الأجهزة عن حركة بيانات المستخدمين لتقليل فرص الوصول لواجهات التحكم أثناء الهجمات." },
+
+    // 61 - 80: أمن المنافذ والطبقة 2 (L2SEC)
+    { id: 61, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "Port Security", en: "A switch feature that restricts the number of valid MAC addresses allowed on an interface and takes action when unauthorized MACs appear.", ar: "ميزة على منفذ المبدل تحدد عدد عناوين MAC المسموح بها وتنفذ إجراءً عند ظهور عنوان غير مسموح أو تجاوز العدد." },
+    { id: 62, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "Sticky MAC Address", en: "A Port Security option that dynamically learns MAC addresses on an interface and converts them into secure static addresses that can be saved in running-config.", ar: "خيار يتعلم عناوين MAC للأجهزة المتصلة تلقائياً ويحفظها كعناوين ثابتة داخل إعدادات المنفذ." },
+    { id: 63, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "Port Security Violation Modes (Protect / Restrict / Shutdown)", en: "Protect drops violating packets silently; Restrict drops violating packets and sends alerts/increments counter; Shutdown disables the port (err-disable) and alerts.", ar: "أوضاع المخالفة: Protect يرفض الحزم بصمت، Restrict يرفض ويسجل تنبيهاً، وShutdown (الافتراضي) يغلق المنفذ فوراً (err-disable)." },
+    { id: 64, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "DHCP Snooping", en: "A Layer 2 security feature that distinguishes trusted ports (connected to legitimate DHCP servers/uplinks) from untrusted ports (user ports) and builds a binding table.", ar: "ميزة أمنية تفصل المنافذ الموثوقة (المتصلة بخادم DHCP الحقيقي) عن غير الموثوقة لمنع خوادم DHCP المزيفة (Rogue DHCP) وتبني جدول ربط IP-MAC." },
+    { id: 65, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "DHCP Snooping Binding Table", en: "A database maintained by DHCP snooping mapping learned MAC addresses, IP addresses, lease times, VLANs, and switch interfaces.", ar: "جدول يربط كل عنوان MAC بعنوان IP والـ VLAN والمنفذ المخصص له عبر DHCP، وتعتمد عليه ميزات مثل DAI لحماية الشبكة." },
+    { id: 66, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "DAI (Dynamic ARP Inspection)", en: "A security feature that validates ARP packets in a network by checking IP-to-MAC bindings against the DHCP snooping binding table to prevent ARP spoofing/poisoning.", ar: "فحص ديناميكي لحزم ARP بمقارنتها بجدول DHCP Snooping لإسقاط حزم ARP المزيفة ومنع هجمات ARP Spoofing / MITM داخل الشبكة المحلية." },
+    { id: 67, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "IPSG (IP Source Guard)", en: "A port security feature using the DHCP snooping binding table to filter traffic so a host cannot send packets with a spoofed source IP address.", ar: "يمنع جهازاً على المنفذ من إرسال حزم بعنوان IP مزور لا يطابق ما منحه إياه DHCP أو سُجّل له في جدول الربط." },
+    { id: 68, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "MAC Spoofing & CAM Table Overflow", en: "Attacks where an attacker impersonates another MAC address or floods a switch with fake MAC addresses to exhaust CAM table space.", ar: "هجوم انتحال عنوان MAC أو إغراق جدول المبدل بعناوين وهمية لتعطيل عمله أو توجيه حركة المرور نحو جهاز المهاجم." },
+    { id: 69, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "VLAN Hopping", en: "An attack enabling traffic from one VLAN to reach another VLAN across trunks, mitigated by disabling DTP, setting ports explicitly to access/trunk, and avoiding VLAN 1 for user data.", ar: "محاولة تجاوز حدود الـ VLAN للوصول لشبكة أخرى؛ يُعالج بتعطيل التفاوض التلقائي (DTP) وتحديد المنافذ صراحة وعدم استخدام VLAN 1 للبيانات." },
+    { id: 70, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "Unused Ports Shutdown & Blackhole VLAN", en: "Shutting down unused switch ports and assigning them to an unused/blackhole VLAN reduces physical and logical attack surfaces.", ar: "تعطيل المنافذ غير المستخدمة ووضعها في VLAN معزولة غير مستخدمة يغلق منافذ جاهزة لأي توصيل غير مصرح به." },
+    { id: 71, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "802.1X Port-Based Network Access Control", en: "An authentication framework using Supplicant (client), Authenticator (switch/AP), and Authentication Server (RADIUS) to authorize network access per port/session.", ar: "إطار مصادقة للمنافذ الشبكية يتحقق من هوية الجهاز أو المستخدم عبر خادم RADIUS قبل السماح بمرور بياناته على الشبكة." },
+    { id: 72, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "MAB (MAC Authentication Bypass)", en: "A fallback mechanism used with 802.1X that authenticates devices (such as printers or cameras) by their MAC address when they do not support 802.1X supplicants.", ar: "آلية بديلة تعتمد على عنوان MAC للأجهزة التي لا تدعم 802.1X (مثل الطابعات أو الكاميرات) للتحقق منها عبر RADIUS." },
+    { id: 73, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "Storm Control", en: "Prevents traffic disruption caused by broadcast, multicast, or unknown unicast storms on an interface by dropping or shutting down traffic exceeding set thresholds.", ar: "يمنع تعطل الشبكة بسبب عواصف البث (Broadcast / Multicast) بتحديد سقف نسبة الحركة المسموحة على المنفذ." },
+    { id: 74, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "RA Guard (Router Advertisement Guard)", en: "An IPv6 Layer 2 mitigation that blocks rogue Router Advertisement (RA) packets from unauthorized hosts on untrusted switch ports.", ar: "حماية في IPv6 تمنع الأجهزة غير المصرح بها من إرسال إعلانات راوتر وهمية (Rogue RA) قد تضلل إعدادات عناوين الأجهزة الأخرى." },
+    { id: 75, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "Loop Guard", en: "A STP feature that prevents an alternate or root port from transitioning to forwarding state due to unidirectional link failure or lost BPDUs.", ar: "ميزة في STP تمنع منفذاً محجوباً من التحول إلى حالة الإرسال عند توقف وصول حزم BPDU بسبب عطل أحادي الاتجاه لتجنب Loop." },
+    { id: 76, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "UDLD (UniDirectional Link Detection)", en: "A Cisco protocol that monitors physical fiber/copper links to detect unidirectional traffic flow and disable affected ports to prevent loops or blackholes.", ar: "بروتوكول يكشف الأعطال التي ينتقل فيها الإرسال في اتجاه واحد فقط ويغلق المنفذ المتضرر لتفادي فقدان البيانات أو الحلقات." },
+    { id: 77, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "Private VLAN (PVLAN)", en: "Segregates traffic within a single VLAN into primary, isolated, and community ports to restrict communication between hosts sharing the same IP subnet.", ar: "عزل الأجهزة داخل نفس الـ VLAN الفرعية (مثل منع أجهزة الضيوف من التواصل مع بعضها مع بقائها ضمن نفس الشبكة)." },
+    { id: 78, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "MACsec (IEEE 802.1AE)", en: "A Layer 2 encryption standard providing hop-by-hop data confidentiality, integrity, and origin authentication on Ethernet links.", ar: "تشفير ومصادقة على مستوى الطبقة الثانية (Ethernet) لحماية البيانات بين نقطتين متجاورتين مباشرة." },
+    { id: 79, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "Port Mirroring (SPAN / RSPAN)", en: "Copying traffic from one or more switch ports or VLANs to a monitoring port connected to an analyzer (such as Wireshark or IDS) for inspection.", ar: "نسخ حركة المرور من منافذ أو VLANs إلى منفذ مراقبة لتحليلها عبر أدوات مثل Wireshark أو أنظمة كشف التسلل." },
+    { id: 80, domain: "L2SEC", domainLabel: "أمن المنافذ والطبقة 2", term: "Management VLAN Best Practice", en: "Placing switch/router management interfaces (SSH/HTTPS) on a dedicated management VLAN rather than VLAN 1, with restricted access.", ar: "تخصيص VLAN مستقلة لإدارة الأجهزة (SSH) بدلاً من VLAN 1 وتقييد الوصول إليها لزيادة الأمان." },
+
+    // 81 - 100: VPN وAAA والمراقبة (SEC)
+    { id: 81, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "AAA Framework (Authentication, Authorization, Accounting)", en: "A security framework controlling who can log in (Authentication), what they are allowed to do (Authorization), and what actions they performed (Accounting).", ar: "إطار أمني ثلاثي: التحقق من الهوية (من أنت؟)، تحديد الصلاحيات (ماذا يحق لك؟)، وتسجيل الأنشطة (ماذا فعلت؟)." },
+    { id: 82, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "RADIUS vs. TACACS+", en: "RADIUS uses UDP and encrypts only the password while combining auth/authz; TACACS+ uses TCP, encrypts the entire packet, and separates authentication, authorization, and accounting.", ar: "RADIUS يعمل على UDP ويشفر كلمة المرور فقط؛ بينما TACACS+ يعمل على TCP، يشفر كامل الحزمة، ويفصل المصادقة عن الصلاحيات والتسجيل (مفضل لإدارة أجهزة Cisco)." },
+    { id: 83, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "SSH vs. Telnet", en: "SSH encrypts management sessions and credentials over TCP port 22; Telnet transmits traffic in cleartext over TCP port 23 and must be disabled.", ar: "SSH يشفر جلسات الإدارة وكلمات المرور (المنفذ 22)، بينما Telnet يرسل البيانات نصاً واضحاً (المنفذ 23) ويجب إيقافه واستبداله بـ SSH." },
+    { id: 84, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "IPsec (Internet Protocol Security)", en: "A suite of protocols providing confidentiality, integrity, and authentication for IP packets using AH or ESP and key exchange via IKE.", ar: "مجموعة بروتوكولات لتأمين وتشفير حزم IP عبر الشبكات العامة، وتعتمد على ESP للتشفير/المصادقة وIKE لتبادل المفاتيح." },
+    { id: 85, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "Site-to-Site VPN vs. Remote Access VPN", en: "Site-to-Site VPN connects entire networks/sites continuously via gateways; Remote Access VPN connects individual endpoints/users securely to a private network.", ar: "Site-to-Site يربط شبكتين أو فرعين بشكل دائم عبر راوتر/جدار ناري؛ وRemote Access يربط مستخدماً أو جهازاً عن بُعد بشبكة الشركة." },
+    { id: 86, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "IKE (Internet Key Exchange) Phases 1 & 2", en: "Phase 1 establishes a secure management control channel (IKE SA); Phase 2 negotiates IPsec security associations (IPsec SA) to protect user data traffic.", ar: "المرحلة الأولى تنشئ قناة تحكم مشفرة وموثوقة لتبادل المفاتيح؛ والمرحلة الثانية تنشئ قناة البيانات (IPsec SA) لنقل حركة الشبكة المشفرة." },
+    { id: 87, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "ESP (Encapsulating Security Payload)", en: "An IPsec protocol (IP protocol 50) that provides encryption, data integrity, authentication, and anti-replay protection for IP payloads.", ar: "بروتوكول IPsec الرئيسي (رقم 50) الذي يوفر تشفير البيانات وسلامتها والتحقق من مصدرها ومنع إعادة إرسال الحزم القديمة (Anti-Replay)." },
+    { id: 88, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "TLS / SSL VPN", en: "Encrypted remote access using Transport Layer Security (TLS) often via a web browser or client without requiring full IPsec gateway configuration.", ar: "وصول عن بُعد مشفر يعتمد على بروتوكول TLS (المستخدم في HTTPS) لتأمين الاتصال بين المستخدم والخدمة أو الشبكة." },
+    { id: 89, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "Privilege Levels & Enable Secret", en: "Cisco IOS privilege levels (0–15) control command access; enable secret uses strong hashing/encryption (unlike weak enable password or type 7).", ar: "مستويات الصلاحيات في Cisco IOS تتحكم في الأوامر المتاحة، ويجب استخدام enable secret بدلاً من enable password الضعيف." },
+    { id: 90, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "Service Password-Encryption", en: "A global IOS command that obfuscates cleartext/type-0 passwords in configuration files using weak type-7 encryption; it is not strong cryptography.", ar: "أمر يخفي كلمات المرور النصية في ملف الإعدادات بتشفير ضعيف (Type 7)؛ يحمي من النظر العابر لكنه لا يعوض التشفير القوي أو Hashing." },
+    { id: 91, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "Syslog (Severity Levels 0–7)", en: "A logging protocol sending event messages from network devices to a centralized syslog server; 0 is Emergency and 7 is Debugging.", ar: "بروتوكول لإرسال سجلات الأحداث من أجهزة الشبكة إلى خادم مركزي؛ تبدأ مستويات الخطورة من 0 (Emergency) إلى 7 (Debugging)." },
+    { id: 92, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "NTP (Network Time Protocol)", en: "Synchronizes clocks across network devices to an authoritative time source so logs, certificates, and security events have accurate timestamps.", ar: "يضبط الوقت بدقة وموحدة على جميع أجهزة الشبكة لتكون أوقات السجلات والشهادات والتحقيقات متطابقة." },
+    { id: 93, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "SNMPv3 (Simple Network Management Protocol v3)", en: "A network monitoring protocol where v3 adds authentication and encryption (authPriv), unlike insecure v1 and v2c community strings.", ar: "بروتوكول مراقبة الأجهزة؛ النسخة الثالثة (SNMPv3) تضيف المصادقة والتشفير بخلاف v1 وv2c اللتين تعتمدان على كلمات مجتمع نصية ضعيفة." },
+    { id: 94, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "NetFlow / IPFIX", en: "A traffic telemetry technology that collects metadata about IP traffic flows (source/destination IP, ports, byte/packet counts) for monitoring and anomaly detection.", ar: "تقنية تجمع بيانات تدفق حركة الشبكة (المصدر، الوجهة، المنافذ، حجم البيانات) لمراقبة الأداء واكتشاف السلوك غير الطبيعي." },
+    { id: 95, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "Login Banner (Banner MOTD / Login)", en: "A warning message displayed before authentication advising authorized users only and stating that unauthorized access is monitored and prohibited.", ar: "رسالة تحذيرية تظهر قبل تسجيل الدخول توضح أن النظام مخصص للمصرح لهم وأن الدخول غير المصرح به مراقب ومحظور." },
+    { id: 96, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "Unused Services Hardening (HTTP/CDP/Finger)", en: "Disabling unnecessary network services and daemons (such as unencrypted HTTP server or unused services) reduces exploitable attack surface on devices.", ar: "تعطيل الخدمات غير الضرورية على الراوتر أو المبدل (مثل واجهة HTTP غير المشفرة) لتقليل الثغرات المحتملة." },
+    { id: 97, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "SD-WAN (Software-Defined Wide Area Network)", en: "An architecture that decouples control and management planes from data forwarding to dynamically route WAN traffic across multiple transport links based on application policies.", ar: "معمارية تفصل مستوى التحكم والإدارة عن توجيه البيانات لتوزيع حركة الشبكات الواسعة (WAN) بذكاء حسب أولوية التطبيقات وحالة الروابط." },
+    { id: 98, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "Control Plane vs. Data Plane vs. Management Plane", en: "Data plane forwards user packets; control plane builds routing/switching tables; management plane handles device administration (SSH, SNMP, console).", ar: "مستوى البيانات ينقل حزم المستخدمين، ومستوى التحكم يبني جداول التوجيه/التبديل، ومستوى الإدارة يُستخدم لضبط ومراقبة الجهاز." },
+    { id: 99, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "Zero Trust Network Access (ZTNA) / Microsegmentation", en: "Enforcing least privilege and continuous verification per session and workload rather than implicitly trusting everything inside the corporate perimeter.", ar: "تطبيق مبدأ انعدام الثقة وأقل صلاحية لكل جلسة وخدمة بدلاً من منح ثقة تلقائية لمجرد التواجد داخل شبكة الشركة." },
+    { id: 100, domain: "SEC", domainLabel: "VPN وAAA والمراقبة", term: "Baseline Configuration & Config Backup", en: "Maintaining a documented, hardened standard configuration and regular encrypted backups of running/startup configurations to recover quickly from misconfigurations.", ar: "الاحتفاظ بإعدادات قياسية آمنة ونسخ احتياطية منتظمة لملفات الإعداد للرجوع إليها سريعاً عند حدوث خطأ في الضبط." }
+  ];
+
+  const STORAGE_KEY = "cisco_netsec_100_mastered";
+  let masteredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  let currentDomain = "all";
+  let currentQuery = "";
+
+  const cardsContainer = document.getElementById("cardsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const visibleCountEl = document.getElementById("visibleCount");
+  const masteredCountEl = document.getElementById("masteredCount");
+  const emptyStateEl = document.getElementById("emptyState");
+
+  function saveMastered() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...masteredSet]));
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+  }
+
+  function toggleMastered(id) {
+    if (masteredSet.has(id)) {
+      masteredSet.delete(id);
+    } else {
+      masteredSet.add(id);
+    }
+    saveMastered();
+    renderCards();
+  }
+
+  function renderCards() {
+    const q = currentQuery.trim().toLowerCase();
+    const filtered = ciscoTerms.filter(item => {
+      const matchDomain = currentDomain === "all" || item.domain === currentDomain;
+      const matchSearch =
+        !q ||
+        item.term.toLowerCase().includes(q) ||
+        item.en.toLowerCase().includes(q) ||
+        item.ar.toLowerCase().includes(q) ||
+        String(item.id) === q;
+      return matchDomain && matchSearch;
+    });
+
+    visibleCountEl.textContent = `المعروض: ${filtered.length}`;
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+
+    if (filtered.length === 0) {
+      cardsContainer.innerHTML = "";
+      emptyStateEl.style.display = "block";
+      return;
+    }
+
+    emptyStateEl.style.display = "none";
+    cardsContainer.innerHTML = filtered
+      .map(item => {
+        const isDone = masteredSet.has(item.id);
+        return `
+          <article class="card ${isDone ? "mastered" : ""}">
+            <div class="card-header">
+              <div class="term-title">
+                <span class="term-num">#${item.id}</span>
+                <span class="term-name">${item.term}</span>
+              </div>
+              <div class="card-actions">
+                <span class="domain-tag">${item.domainLabel}</span>
+                <button class="master-btn ${isDone ? "done" : ""}" onclick="toggleMastered(${item.id})">
+                  ${isDone ? "✓ تم الحفظ" : "تحديد كـ مُتقَن"}
+                </button>
+              </div>
+            </div>
+            <div class="en-box">${item.en}</div>
+            <div class="ar-box"><strong>التفسير:</strong> ${item.ar}</div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  searchInput.addEventListener("input", e => {
+    currentQuery = e.target.value;
+    renderCards();
+  });
+
+  document.getElementById("filterButtons").addEventListener("click", e => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+    currentDomain = e.target.dataset.domain;
+    renderCards();
+  });
+
+  renderCards();
+</script>
+</body>
+</html>
