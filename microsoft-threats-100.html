@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مرجع 100 تعريف — التهديدات والهجمات (Microsoft) | DZ Cyber Academy</title>
+  <style>
+    :root {
+      --bg: #070d19;
+      --surface: #0f172a;
+      --card: #162033;
+      --border: #25334d;
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --accent: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --en-bg: #09101f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0c4a6e 0%, #09101f 60%, #064e3b 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 760px;
+      margin: 0 auto 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .stats-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #061826;
+      border-color: var(--primary);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: transform 0.15s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+    }
+
+    .card.mastered {
+      border-right: 5px solid var(--accent);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .term-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      direction: ltr;
+    }
+
+    .term-num {
+      background: var(--primary);
+      color: #061826;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .term-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .domain-tag {
+      font-size: 0.78rem;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .master-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .master-btn.done {
+      background: var(--accent);
+      color: #052e16;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .en-box {
+      direction: ltr;
+      text-align: left;
+      background: var(--en-bg);
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .ar-box {
+      color: #f1f5f9;
+      font-size: 0.97rem;
+      padding-right: 4px;
+    }
+
+    .ar-box strong {
+      color: var(--accent);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Microsoft Threats & Attacks Fundamentals — 100 Definitions</div>
+  <h1>بنك الـ 100 تعريف للتهديدات والهجمات السيبرانية (Microsoft)</h1>
+  <p>مصطلحات ومفاهيم أساسية حول التهديدات والهجمات، الهوية والسحابة، ثغرات التطبيقات، والاستجابة والدفاع بأسلوب Microsoft.</p>
+  <a href="index.html" class="back-link">↩ العودة إلى الصفحة الرئيسية للأكاديمية</a>
+</header>
+
+<div class="container">
+  <section class="controls-panel">
+    <div class="search-row">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ابحث عن تهديد أو هجوم أو مفهوم دفاعي (مثال: Phishing, Ransomware, Identity, Cloud, SOC)..."
+      />
+      <div class="stats-box">
+        <span id="visibleCount">المعروض: 100</span>
+        <span>|</span>
+        <span id="masteredCount">المُتقَن: 0 / 100</span>
+      </div>
+    </div>
+
+    <div class="filters" id="filterButtons">
+      <button class="filter-btn active" data-domain="all">الكل (100)</button>
+      <button class="filter-btn" data-domain="THR">التهديدات والهجمات</button>
+      <button class="filter-btn" data-domain="IDCLD">الهوية والسحابة</button>
+      <button class="filter-btn" data-domain="APPNET">التطبيقات والشبكات</button>
+      <button class="filter-btn" data-domain="DEF">الدفاع والاستجابة</button>
+    </div>
+  </section>
+
+  <main class="cards-grid" id="cardsContainer"></main>
+  <div class="empty-state" id="emptyState">لا توجد نتائج مطابقة لبحثك. جرّب كلمة مفتاحية أخرى.</div>
+
+  <footer>
+    DZ Cyber Academy — مرجع التهديدات والهجمات بأسلوب Microsoft
+  </footer>
+</div>
+
+<script>
+  const threatTerms = [
+    // 1 - 25: التهديدات والهجمات (THR)
+    { id: 1, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Threat Actor", en: "An individual, group, or organization responsible for conducting malicious cyber activities against systems or data.", ar: "الجهة المهاجمة (فرد أو مجموعة) التي تنفذ أنشطة ضارة؛ ويُصنّف الدفاع حسب السلوك والهدف لتحديد الأولوية." },
+    { id: 2, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Insider Threat", en: "Security risk originating from current or former employees, contractors, or trusted partners who misuse authorized access.", ar: "خطر ينبع من شخص يملك أو كان يملك وصولاً مشروعاً؛ يُعالَج بالصلاحيات الدنيا ومراقبة النشاط غير المعتاد." },
+    { id: 3, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Advanced Persistent Threat (APT)", en: "Prolonged, stealthy, and targeted campaign aiming to maintain long-term access and extract sensitive data or disrupt operations.", ar: "حملة هجومية مستمرة ومنظمة تركز على التخفي طويل الأمد؛ تُواجه بالكشف المبكر والعزل وتقليل سطح الهجوم." },
+    { id: 4, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Social Engineering", en: "Psychological manipulation tricking users into bypassing security controls, revealing secrets, or executing unsafe actions.", ar: "خداع العنصر البشري لدفعه لكشف معلومات أو تنفيذ إجراء ضار؛ يُخفّف بالتوعية والمصادقة القوية." },
+    { id: 5, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Phishing", en: "Deceptive electronic messages or spoofed sites impersonating trusted entities to harvest credentials or deliver payloads.", ar: "رسائل أو صفحات خادعة تنتحل صفة جهة موثوقة لسرقة بيانات الدخول؛ تُواجه بتصفية البريد وMFA." },
+    { id: 6, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Spear Phishing", en: "Tailored phishing crafted around specific roles, organizations, or personal context to increase credibility.", ar: "تصيد موجه ومخصص لشخص أو جهة بعينها؛ يتطلب تدقيق المرسل والروابط حتى لو بدا السياق مألوفاً." },
+    { id: 7, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Whaling", en: "Targeted phishing aimed at senior executives or high-authority leaders to abuse broad organizational privileges.", ar: "تصيد يستهدف القيادات العليا نظراً لصلاحياتهم الواسعة؛ يُعالج بضوابط موافقة صارمة وتحقق إضافي." },
+    { id: 8, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Business Email Compromise (BEC)", en: "Fraudulent use of compromised or spoofed business email accounts to authorize unauthorized transfers or data disclosure.", ar: "استغلال رسائل الأعمال المخترقة أو المنتحلة لخداع الموظفين وتحويل أموال أو بيانات؛ يُخفّف بسياسات الهوية وحماية البريد." },
+    { id: 9, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Vishing & Smishing", en: "Social engineering conducted via voice calls (vishing) or SMS/messaging apps (smishing) to extract codes or credentials.", ar: "هندسة اجتماعية عبر المكالمات الصوتية أو الرسائل النصية؛ تُواجه بعدم مشاركة رموز التحقق والتحقق المستقل." },
+    { id: 10, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Malware", en: "Software designed to harm, disrupt, steal data from, or gain unauthorized control over systems.", ar: "مسمى عام للبرمجيات الضارة؛ تعتمد الوقاية منها على التحديث المستمر، مكافحة الفيروسات، وتقليل الصلاحيات." },
+    { id: 11, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Ransomware", en: "Malware that encrypts or restricts access to files and systems, demanding payment for recovery.", ar: "برمجية تشفر البيانات وتعطل الوصول؛ أفضل حماية هي النسخ الاحتياطية المعزولة، العزل الشبكي، وتقليل الصلاحيات." },
+    { id: 12, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Double Extortion Ransomware", en: "Ransomware tactic combining data encryption with prior data exfiltration to threaten public leak or exposure.", ar: "تجمع بين تشفير الملفات وسرقة البيانات مسبقاً للضغط؛ يتطلب حماية البيانات ومنع التسريب بجانب النسخ الاحتياطي." },
+    { id: 13, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Trojan Horse", en: "Malicious code disguised inside seemingly legitimate software or files to trick users into running it.", ar: "برمجية ضارة تتخفى في شكل أداة مفيدة؛ يُمنع أثرها بتحميل البرامج من مصادر موثوقة وفحصها." },
+    { id: 14, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Worm", en: "Self-propagating malware that spreads across networks without requiring user execution of an infected file.", ar: "برمجية تنتشر ذاتياً عبر الشبكة؛ يُحدّ من خطرها إدارة التحديثات وتقسيم الشبكة وتقييد المنافذ." },
+    { id: 15, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Spyware & Keylogger", en: "Covert software that monitors activity, captures keystrokes, or collects sensitive information without consent.", ar: "برمجيات تراقب النشاط أو تسجل النقرات سراً؛ تُكشف بالمراقبة السلوكية وحماية النقاط الطرفية." },
+    { id: 16, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Rootkit", en: "Malware designed to hide its presence and maintain elevated or deep system access, often evading standard detection.", ar: "برمجية تسعى للاختفاء العميق والحفاظ على نفوذ خفي؛ يُقاومها الإقلاع الآمن وسلامة النواة." },
+    { id: 17, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Fileless Malware", en: "Threats operating primarily in memory or abusing legitimate built-in system tools rather than dropping traditional files on disk.", ar: "تعتمد على الذاكرة أو أدوات النظام المدمجة لتقليل البصمة على القرص؛ تتطلب مراقبة السلوك والسجلات." },
+    { id: 18, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Adversary-in-the-Middle (AiTM)", en: "Interception technique that sits between user and service—often proxying authentication—to capture sessions or tokens.", ar: "اعتراض الجلسة أو المصادقة بين الطرفين لانتزاع الجلسة؛ تُقاوم بـ TLS الصحيح ومقاومة التصيد في MFA." },
+    { id: 19, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Brute Force & Password Spraying", en: "Automated credential guessing; brute force tries many passwords on one account, while spraying tries common passwords across many accounts.", ar: "محاولات تخمين كلمات المرور؛ Spraying يوزع كلمات شائعة على حسابات متعددة لتجنب القفل؛ يُواجه بـ MFA وسياسات الحماية." },
+    { id: 20, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Credential Stuffing", en: "Automated replay of username-and-password pairs leaked from one breach across other services where users reuse passwords.", ar: "إعادة استخدام بيانات دخول مسربة من اختراق سابق؛ يُمنع بمنع تكرار كلمات المرور وتفعيل MFA." },
+    { id: 21, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Denial of Service (DoS / DDoS)", en: "Flooding or exhausting target bandwidth, compute, or application capacity to degrade or block legitimate availability.", ar: "إغراق الخدمة لتعطيل التوافر؛ يُواجه بتوزيع الحمل، حماية الحافة، وتوسيع الموارد." },
+    { id: 22, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Supply Chain Attack", en: "Compromising trusted vendors, software dependencies, build pipelines, or hardware to reach downstream victims.", ar: "استهداف الموردين أو التبعيات البرمجية للوصول للهدف؛ يتطلب تدقيق الموردين وسلامة سلسلة التوريد." },
+    { id: 23, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Zero-Day Vulnerability & Exploit", en: "A security flaw unknown to the vendor or lacking an available patch when actively exploited.", ar: "ثغرة غير معروفة أو بلا تحديث متاح وقت الاستغلال؛ تعتمد الوقاية فيها على الدفاع المتعمق والمراقبة السلوكية." },
+    { id: 24, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Lateral Movement", en: "Techniques used after initial foothold to pivot across internal systems and accounts toward high-value assets.", ar: "تنقل المهاجم أفقياً داخل الشبكة بعد الاختراق الأولي؛ يُحجم بتقسيم الشبكة وتقييد الصلاحيات." },
+    { id: 25, domain: "THR", domainLabel: "التهديدات والهجمات", term: "Data Exfiltration", en: "Unauthorized transfer or removal of sensitive data from an internal or cloud environment to an external location.", ar: "تهريب البيانات خارج البيئة الموثوقة؛ يُرصد ويُمنع بمراقبة الخروج وتصنيف البيانات وDLP." },
+
+    // 26 - 50: الهوية والسحابة (IDCLD)
+    { id: 26, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Identity as the Security Perimeter", en: "Modern security model treating user, device, and workload identity—rather than network location alone—as the primary control boundary.", ar: "اعتماد الهوية كخط حدود رئيسي لأن العمل يتجاوز حدود الشبكة التقليدية." },
+    { id: 27, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Conditional Access", en: "Policy evaluation that checks signals (user, device, location, risk, app) before granting or blocking access.", ar: "تقييم شروط الدخول (الهوية، الجهاز، الموقع، مستوى الخطورة) قبل السماح أو فرض تحقق إضافي." },
+    { id: 28, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Sign-In Risk vs. User Risk", en: "Sign-in risk reflects anomalous characteristics of a single login event; user risk indicates probability an identity is already compromised.", ar: "مخاطر تسجيل الدخول تخص جلسة بعينها، بينما مخاطر المستخدم تشير لاحتمال تعرض الحساب للاختراق." },
+    { id: 29, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Just-In-Time (JIT) Privileged Access", en: "Granting elevated administrative privileges only when needed and for a limited duration rather than standing permanent access.", ar: "منح الصلاحيات الإدارية العليا عند الحاجة ولفترة مؤقتة لتقليص نافذة الاستغلال." },
+    { id: 30, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Standing Privileges Risk", en: "Leaving users or service accounts with continuous high-level permissions even when idle, increasing blast radius if compromised.", ar: "بقاء صلاحيات عليا دائمة بلا حاجة مستمرة يزيد أثر اختراق الحساب." },
+    { id: 31, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Passwordless Authentication", en: "Replacing passwords with stronger cryptographic or biometric credentials (such as passkeys/FIDO2) resistant to phishing and reuse.", ar: "الاستغناء عن كلمات المرور بوسائل أقوى مقاومة للتصيد وإعادة الاستخدام." },
+    { id: 32, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Token Theft & Session Hijacking", en: "Stealing or abusing active session identifiers or access tokens to act as an authenticated user without re-entering credentials.", ar: "استغلال رمز الجلسة أو الوصول النشط لمتابعة الجلسة؛ يُخفّف بحماية الرموز وتقليل مدتها ومراقبة الشذوذ." },
+    { id: 33, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "OAuth Consent Phishing", en: "Tricking a user into granting a malicious third-party application broad permissions to cloud data or mailboxes via consent prompts.", ar: "خداع المستخدم لمنح تطبيق ضار صلاحيات وصول واسعة عبر نافذة الموافقة؛ يُواجه بتنظيم موافقات التطبيقات." },
+    { id: 34, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Service Principal & Managed Identity", en: "Non-human cloud identities used by applications or workloads to authenticate to resources securely without hardcoding secrets.", ar: "هويات غير بشرية للتطبيقات والخدمات لتجنب تخزين الأسرار أو كلمات المرور الثابتة في الكود." },
+    { id: 35, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Secrets Exposure / Hardcoded Credentials", en: "Accidental storage of API keys, connection strings, or passwords in code repositories, logs, or configs where attackers can harvest them.", ar: "تسرب المفاتيح أو كلمات المرور داخل الكود أو الإعدادات؛ يُعالج بإدارة الأسرار مركزياً وفحص المستودعات." },
+    { id: 36, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Cloud Misconfiguration", en: "Improperly set permissions, exposed storage, open management ports, or weak policies in cloud services leading to unauthorized access.", ar: "إعدادات سحابية غير صحيحة أو صلاحيات مفرطة تفتح باب الوصول غير المصرح به؛ تُضبط بالمراجعة المستمرة." },
+    { id: 37, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Over-Permissive RBAC", en: "Assigning broad administrative or wildcard roles to identities that only need narrow operational access.", ar: "إعطاء أدوار واسعة جداً تفوق حاجة العمل؛ يُعالج بتخصيص الأدوار وتطبيق أقل صلاحية." },
+    { id: 38, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Shadow IT", en: "Use of unauthorized software, cloud apps, or devices outside IT visibility and governance, creating blind spots and compliance risks.", ar: "استخدام تطبيقات أو خدمات خارج إشراف تقنية المعلومات مما يخلق نقاط عمياء يصعب تأمينها." },
+    { id: 39, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Data Spill / Oversharing", en: "Exposing sensitive files broadly (such as overly broad internal or external sharing links) beyond need-to-know boundaries.", ar: "مشاركة ملفات حساسة بنطاق أوسع من اللازم؛ يُعالج بتصنيف البيانات وضوابط المشاركة." },
+    { id: 40, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Data Sovereignty & Residency", en: "Legal or regulatory requirements governing where data is stored, processed, and subject to jurisdiction.", ar: "ضوابط مكان تخزين البيانات ومعالجتها وفق المتطلبات القانونية والتنظيمية." },
+    { id: 41, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "CSPM (Cloud Security Posture Management)", en: "Continuous assessment and remediation of cloud configuration drift, compliance gaps, and exposed resources.", ar: "مراقبة الوضع الأمني لإعدادات السحابة واكتشاف الانحرافات أو الثغرات الإعدادية مبكراً." },
+    { id: 42, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "CWPP (Cloud Workload Protection Platform)", en: "Protecting compute workloads across VMs, containers, and serverless functions against runtime threats and vulnerabilities.", ar: "حماية أحمال العمل السحابية (خوادم، حاويات، دوال) أثناء التشغيل من التهديدات والثغرات." },
+    { id: 43, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "CNAPP (Cloud-Native Application Protection)", en: "Unified approach combining posture management, workload protection, and risk context across cloud applications from build to runtime.", ar: "منهج موحد يربط فحص الإعدادات وحماية الأحمال وفهم المخاطر عبر دورة حياة التطبيق السحابي." },
+    { id: 44, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Container Escape", en: "Breaking out of container isolation boundaries to access the underlying host operating system or other containers.", ar: "تجاوز عزل الحاوية للوصول إلى النظام المضيف؛ يُحدّ بتحديث الصور وتقليل الصلاحيات والعزل." },
+    { id: 45, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Multi-Tenancy Isolation", en: "Logical separation ensuring one cloud customer's resources and data remain isolated from other tenants sharing underlying infrastructure.", ar: "عزل منطقي يضمن عدم تداخل بيانات وموارد المستأجرين المختلفين على البنية المشتركة." },
+    { id: 46, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Federated Identity & SSO", en: "Linking identity trust across domains or applications so users authenticate centrally and access authorized services seamlessly.", ar: "ربط الثقة بالهوية عبر الأنظمة لتسجيل دخول موحد ومضبوط الصلاحيات." },
+    { id: 47, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Impossible Travel / Anomalous Sign-In", en: "Sign-in signal where authentication occurs from distant locations or unusual contexts within an implausible timeframe.", ar: "إشارة شذوذ مثل تسجيل دخول من موقعين متباعدين بوقت غير منطقي؛ تستدعي التحقق والمراجعة." },
+    { id: 48, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Device Compliance / Endpoint Health", en: "Verifying that a device meets security baselines (encryption, OS updates, protection active) before allowing access to sensitive resources.", ar: "التحقق من سلامة الجهاز والتزامه بالمعايير الأمنية قبل السماح له بالوصول للبيانات." },
+    { id: 49, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "BYOD (Bring Your Own Device)", en: "Using personal devices for work access, requiring clear policies, app/device protection, and data separation.", ar: "استخدام الأجهزة الشخصية للعمل؛ يتطلب عزل بيانات العمل وتطبيق ضوابط حماية مناسبة." },
+    { id: 50, domain: "IDCLD", domainLabel: "الهوية والسحابة", term: "Data Loss Prevention (DLP)", en: "Policies and controls identifying and blocking unauthorized sharing or exfiltration of sensitive data across channels.", ar: "سياسات وأدوات تمنع تسرب أو إرسال البيانات الحساسة خارج القنوات المصرح بها." },
+
+    // 51 - 75: التطبيقات والشبكات (APPNET)
+    { id: 51, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Injection Attacks (SQLi / Command Injection)", en: "Untrusted input interpreted as executable query or system commands when input validation and safe parameterization are missing.", ar: "دمج مدخلات غير موثوقة كأوامر أو استعلامات؛ يُعالج بالتحقق من المدخلات وعزل البيانات عن الأوامر." },
+    { id: 52, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Cross-Site Scripting (XSS)", en: "Injecting malicious script content into web responses executed in a victim's browser session.", ar: "تنفيذ سكريبت ضار في متصفح المستخدم؛ يُعالج بترميز المخرجات وسياسات أمان المحتوى." },
+    { id: 53, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Cross-Site Request Forgery (CSRF)", en: "Tricking an authenticated user's browser into sending unintended state-changing requests to a trusted site.", ar: "إجبار متصفح مستخدم موثق على إرسال طلب دون علمه؛ يُعالج برموز تحقق للطلبات وإعدادات الكوكيز." },
+    { id: 54, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "SSRF (Server-Side Request Forgery)", en: "Tricking a server into making outbound requests to internal services or metadata endpoints on behalf of an attacker.", ar: "دفع الخادم لإرسال طلبات لجهات أو خدمات داخلية؛ يُعالج بتقييد الوجهات المسموحة وفحص المدخلات." },
+    { id: 55, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Broken Access Control / IDOR", en: "Failing to enforce authorization checks properly, allowing users to view or modify resources outside their permitted scope.", ar: "خلل في التحقق من الصلاحيات يسمح بالوصول لبيانات أو عمليات تخص غير المالك؛ يُعالج بفحص الصلاحيات لكل طلب." },
+    { id: 56, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Broken Authentication & Weak Session Management", en: "Flaws in login flows, session tokens, or logout/timeout handling that let attackers hijack accounts or sessions.", ar: "ضعف إدارة الجلسات أو المصادقة يسهل انتحال الحساب؛ يُعالج بتوليد رموز آمنة وانتهاء صلاحية الجلسات." },
+    { id: 57, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Insecure Deserialization", en: "Processing untrusted serialized data without strict type/integrity validation, potentially leading to logic abuse or code execution.", ar: "فك تسلسل بيانات غير موثوقة دون تحقق صارم؛ يُعالج بتجنب فك تسلسل بيانات خارجية غير محمية أو التحقق منها." },
+    { id: 58, domain: "APPNET", domainLabel: "التهديدات والهجمات", term: "Path Traversal / Directory Traversal", en: "Manipulating file paths (such as ../ sequences) to access files or directories outside the intended root folder.", ar: "التلاعب بمسار الملفات للوصول لملفات خارج المجلد المسموح؛ يُعالج بتطبيع المسارات وتقييد الوصول." },
+    { id: 59, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "API Security Risks (BOLA / Excessive Data)", en: "Weak object authorization, missing rate limits, or exposing excessive fields in API responses.", ar: "ثغرات شائعة في واجهات API كضعف التحقق من ملكية الكائن أو غياب تحديد معدل الطلبات." },
+    { id: 60, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Vulnerable & Outdated Components", en: "Running libraries, frameworks, or operating systems with known unpatched flaws.", ar: "استخدام مكونات أو مكتبات قديمة بها ثغرات معروفة؛ يُعالج بجرد التبعيات وتحديثها بانتظام." },
+    { id: 61, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Man-in-the-Middle (MitM) & Downgrade Attacks", en: "Intercepting traffic or forcing weaker protocol versions to eavesdrop or alter communications.", ar: "اعتراض الاتصال أو فرض بروتوكول أضعف؛ يُقاوم بفرض TLS الحديث والتحقق السليم من الشهادات." },
+    { id: 62, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "DNS Spoofing / Poisoning & Tunneling", en: "Falsifying DNS responses to redirect traffic or abusing DNS queries to covertly carry data channels.", ar: "تضليل استجابات DNS أو استغلاله لنقل بيانات خفية؛ يُعالج بتأمين DNS ومراقبة أنماط الاستعلام." },
+    { id: 63, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "ARP Spoofing / Poisoning", en: "Sending forged ARP messages on a local segment to associate an attacker's MAC with another host's IP.", ar: "تزييف رسائل ARP داخل الشبكة المحلية لاعتراض الحركة؛ يُواجه بضوابط الطبقة الثانية وفحص ARP." },
+    { id: 64, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Rogue Access Point & Evil Twin", en: "Unauthorized or impersonated wireless access points luring users to connect and intercept traffic.", ar: "نقطة وصول لاسلكية وهمية أو منتحلة لاصطياد المتصلين؛ يُواجه بالمصادقة اللاسلكية القوية والمراقبة." },
+    { id: 65, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Network Segmentation & Microsegmentation", en: "Dividing networks or workloads into isolated zones to restrict lateral spread if a breach occurs.", ar: "تقسيم الشبكة أو الأحمال إلى نطاقات معزولة لتقليل انتشار الهجوم داخلياً." },
+    { id: 66, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Firewall & Web Application Firewall (WAF)", en: "Network firewalls filter traffic by policy and ports/flows, while WAF inspects web traffic for application-layer attacks.", ar: "جدار الشبكة يفلتر حركة الشبكة، وWAF يفحص طلبات الويب لحمايتها من هجمات التطبيقات." },
+    { id: 67, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Remote Access & Exposed Management Ports", en: "Leaving administrative interfaces (such as RDP or SSH) directly exposed to untrusted networks without strong protection.", ar: "تعريض منافذ الإدارة مباشرة للإنترنت يزيد احتمالية الاستهداف؛ يُعالج بعزل الإدارة وتقييد الوصول وMFA." },
+    { id: 68, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "VPN & Zero Trust Network Access (ZTNA)", en: "Encrypted tunnels or identity- and context-aware application access replacing implicit broad network trust.", ar: "تأمين الوصول للتطبيقات أو الشبكات بالتحقق المستمر وتقليل الصلاحيات بدل الثقة المفتوحة." },
+    { id: 69, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "DDoS Mitigation & Rate Limiting", en: "Absorbing, filtering, or throttling excessive traffic bursts to keep services responsive.", ar: "امتصاص أو تقييد اندفاع الطلبات لحماية استمرارية الخدمة ومنع الإغراق." },
+    { id: 70, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "TLS / HTTPS Encryption", en: "Cryptographic protocol protecting data in transit with encryption, integrity, and server/client authentication.", ar: "تشفير البيانات أثناء النقل وضمان سلامتها وهوية الطرف المقابل." },
+    { id: 71, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Certificate Expiration & Misconfiguration", en: "Expired, weak, or improperly configured TLS certificates causing outages or security warnings and trust gaps.", ar: "انتهاء صلاحية الشهادات أو سوء ضبطها يسبب انقطاع الخدمة أو ضعف الحماية؛ يتطلب متابعة التجديد." },
+    { id: 72, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Email Authentication (SPF, DKIM, DMARC)", en: "Standards verifying sender authorization, message integrity, and domain alignment to curb spoofing and phishing.", ar: "آليات توثيق البريد للحد من انتحال النطاقات وتحسين رصد الرسائل المزيفة." },
+    { id: 73, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Attack Surface", en: "Sum of all assets, ports, APIs, identities, and exposures that could potentially be targeted or exploited.", ar: "مجموع نقاط الاتصال أو الثغرات المحتملة؛ تقليصها يقلل فرص الهجوم." },
+    { id: 74, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Vulnerability Scanning vs. Penetration Testing", en: "Scanning systematically checks for known weaknesses; penetration testing simulates adversarial techniques to evaluate real exploitability.", ar: "الفحص يكتشف نقاط الضعف المعروفة، واختبار الاختراق يقيّم قابلية الاستغلال الفعلي بأسلوب منضبط." },
+    { id: 75, domain: "APPNET", domainLabel: "التطبيقات والشبكات", term: "Threat Modeling (STRIDE)", en: "Structured method to identify potential threats and mitigations during design (Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation of Privilege).", ar: "تحليل التهديدات أثناء التصميم لتحديد المخاطر ووضع ضوابطها مبكراً." },
+
+    // 76 - 100: الدفاع والاستجابة (DEF)
+    { id: 76, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Zero Trust Principles", en: "Verify explicitly, use least privilege access, and assume breach across identity, endpoints, data, apps, infrastructure, and network.", ar: "التحقق الصريح، أقل صلاحية، وافتراض وقوع الاختراق لحصر الأثر وتقوية كل طبقة." },
+    { id: 77, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Defense in Depth", en: "Layered security controls across people, processes, and technology so no single control is a sole point of failure.", ar: "طبقات حماية متعددة ومتكاملة بحيث تعوض طبقة أخرى إذا تجاوزت تهديدات طبقة سابقة." },
+    { id: 78, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "SOC (Security Operations Center)", en: "Team and operational function continuously monitoring, investigating, triaging, and responding to security alerts and incidents.", ar: "مركز مراقبة واستجابة أمنية يرصد التنبيهات ويحقق فيها ويتعامل مع الحوادث." },
+    { id: 79, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "SIEM (Security Information and Event Management)", en: "Centralized platform collecting, correlating, and analyzing security logs and alerts across sources for detection and investigation.", ar: "منصة مركزية تجمع السجلات وتربط الأحداث لاكتشاف الأنشطة المشبوهة والتحقيق فيها." },
+    { id: 80, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "SOAR (Security Orchestration, Automation and Response)", en: "Automating repeatable playbooks, enrichment, and response workflows to speed up triage and consistent containment.", ar: "أتمتة إجراءات التحقق والاستجابة المتكررة لتسريع التعامل مع التنبيهات." },
+    { id: 81, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "XDR (Extended Detection and Response)", en: "Unified detection and response correlating telemetry across endpoints, identity, email, cloud, and network for broader visibility.", ar: "ربط إشارات الرصد عبر الهوية والأجهزة والبريد والسحابة والشبكة لفهم أوسع للهجوم." },
+    { id: 82, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "EDR (Endpoint Detection and Response)", en: "Continuous endpoint monitoring and behavioral detection with investigation and containment capabilities on devices.", ar: "مراقبة سلوك الأجهزة الطرفية واكتشاف التهديدات وعزل الجهاز المصاب بسرعة." },
+    { id: 83, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Alert Triage & False Positives", en: "Prioritizing and validating alerts to separate genuine malicious activity from benign noise (false positives) or missed real threats (false negatives).", ar: "فرز التنبيهات وتحديد الحقيقي منها لتقليل إهدار الوقت على الإيجابيات الكاذبة." },
+    { id: 84, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Attack Kill Chain / Lifecycle Stages", en: "Conceptual progression of an intrusion from initial access and execution to persistence, privilege escalation, lateral movement, and impact.", ar: "فهم تسلسل مراحل الهجوم يساعد في قطع مسار المهاجم في أي مرحلة مبكرة." },
+    { id: 85, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Threat Intelligence (CTI)", en: "Actionable context about threats, tactics, and indicators used to prioritize defenses, hunts, and detections.", ar: "معلومات سياقية عن التهديدات لدعم أولويات الحماية والبحث الاستباقي." },
+    { id: 86, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Incident Response: Preparation & Detection", en: "Building playbooks, telemetry, and access readiness beforehand, then identifying and analyzing suspicious anomalies.", ar: "الجاهزية المسبقة بالسجلات والخطط ثم اكتشاف المؤشرات وتحليلها بدقة." },
+    { id: 87, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Incident Response: Containment, Eradication & Recovery", en: "Limiting spread (containment), removing malicious root causes (eradication), and restoring clean systems safely (recovery).", ar: "عزل ومنع الانتشار، إزالة أثر التهديد، ثم استعادة الأنظمة السليمة والبيانات الموثوقة." },
+    { id: 88, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Post-Incident Review (Lessons Learned)", en: "Evaluating what occurred, what worked or failed in response, and improving controls and processes to prevent recurrence.", ar: "مراجعة ما بعد الحادث لتوثيق الدروس وتحسين الضوابط والخطط مستقبلاً." },
+    { id: 89, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Forensic Evidence & Preservation", en: "Collecting and safeguarding volatile and non-volatile system/log evidence carefully so integrity is preserved for investigation.", ar: "حفظ الأدلة والبيانات التحليلية دون إتلاف أو تغيير يضر بسلامة التحقيق." },
+    { id: 90, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Blast Radius", en: "The potential scope and severity of impact if a specific account, asset, or component is compromised.", ar: "حجم الضرر المحتمل عند اختراق عنصر معين؛ تقليصه هدف أساسي للعزل والصلاحيات الدنيا." },
+    { id: 91, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Attack Surface Reduction (ASR)", en: "Targeted rules blocking high-risk behaviors or risky script/application executions before compromise spreads.", ar: "قواعد تقلص نقاط الاستغلال عبر حظر سلوكيات عالية الخطورة مبكراً." },
+    { id: 92, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Patch & Vulnerability Management", en: "Prioritizing and applying security updates based on severity, exposure, and business criticality.", ar: "إدارة التحديثات وترتيب أولويتها حسب خطورة الثغرة ومدى تعرض النظام وحساسيته." },
+    { id: 93, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Immutable & Offline Backups", en: "Backup copies protected from alteration or deletion—or kept offline/isolated—to support recovery after ransomware or severe failure.", ar: "نسخ احتياطية محمية من التعديل أو الحذف الضار ومعزولة لضمان إمكانية الاستعادة." },
+    { id: 94, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "RTO & RPO in Incident Recovery", en: "Recovery Time Objective sets maximum tolerable downtime; Recovery Point Objective sets maximum tolerable data loss window.", ar: "RTO يحدد أقصى مدة توقف مقبولة، وRPO يحدد أقصى فترة بيانات مسموح بفقدانها." },
+    { id: 95, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Security Baselines & Hardening", en: "Configuring systems and services to secure default standards by removing unnecessary features and strengthening settings.", ar: "ضبط الأنظمة وفق معايير آمنة وإزالة الخدمات أو الإعدادات غير الضرورية." },
+    { id: 96, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Logging & Time Synchronization (NTP)", en: "Consistent event logging with synchronized clocks across systems to reconstruct timelines accurately during investigations.", ar: "توحيد التوقيت وتسجيل الأحداث بدقة لترتيب التسلسل الزمني لأي حادث." },
+    { id: 97, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Data Classification & Labeling", en: "Tagging data by sensitivity level so protection, access, and sharing policies follow the data wherever it moves.", ar: "تصنيف ووسم البيانات حسب حساسيتها لتطبيق الحماية المناسبة أينما انتقلت." },
+    { id: 98, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Encryption at Rest & in Transit", en: "Protecting stored data with strong encryption and protecting moving data over networks using secure transport protocols.", ar: "تشفير البيانات المخزنة والمنقولة لحماية السرية والنزاهة." },
+    { id: 99, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Security Awareness & Phishing Simulation", en: "Ongoing training and realistic exercises helping staff spot deceptive lures and report suspicious activity promptly.", ar: "تدريب مستمر وتمارين توعية لتعزيز اليقظة وسرعة الإبلاغ عن المحاولات المشبوهة." },
+    { id: 100, domain: "DEF", domainLabel: "الدفاع والاستجابة", term: "Risk Management (Accept, Mitigate, Transfer, Avoid)", en: "Structured decisions for handling identified risks based on cost, likelihood, and organizational impact.", ar: "خيارات التعامل مع المخاطر (القبول، التخفيف، النقل، التجنب) وفق الأثر والتكلفة والسياسة." }
+  ];
+
+  const STORAGE_KEY = "microsoft_threats_100_mastered";
+  let masteredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  let currentDomain = "all";
+  let currentQuery = "";
+
+  const cardsContainer = document.getElementById("cardsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const visibleCountEl = document.getElementById("visibleCount");
+  const masteredCountEl = document.getElementById("masteredCount");
+  const emptyStateEl = document.getElementById("emptyState");
+
+  function saveMastered() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...masteredSet]));
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+  }
+
+  function toggleMastered(id) {
+    if (masteredSet.has(id)) {
+      masteredSet.delete(id);
+    } else {
+      masteredSet.add(id);
+    }
+    saveMastered();
+    renderCards();
+  }
+
+  function renderCards() {
+    const q = currentQuery.trim().toLowerCase();
+    const filtered = threatTerms.filter(item => {
+      const matchDomain = currentDomain === "all" || item.domain === currentDomain;
+      const matchSearch =
+        !q ||
+        item.term.toLowerCase().includes(q) ||
+        item.en.toLowerCase().includes(q) ||
+        item.ar.toLowerCase().includes(q) ||
+        String(item.id) === q;
+      return matchDomain && matchSearch;
+    });
+
+    visibleCountEl.textContent = `المعروض: ${filtered.length}`;
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+
+    if (filtered.length === 0) {
+      cardsContainer.innerHTML = "";
+      emptyStateEl.style.display = "block";
+      return;
+    }
+
+    emptyStateEl.style.display = "none";
+    cardsContainer.innerHTML = filtered
+      .map(item => {
+        const isDone = masteredSet.has(item.id);
+        return `
+          <article class="card ${isDone ? "mastered" : ""}">
+            <div class="card-header">
+              <div class="term-title">
+                <span class="term-num">#${item.id}</span>
+                <span class="term-name">${item.term}</span>
+              </div>
+              <div class="card-actions">
+                <span class="domain-tag">${item.domainLabel}</span>
+                <button class="master-btn ${isDone ? "done" : ""}" onclick="toggleMastered(${item.id})">
+                  ${isDone ? "✓ تم الحفظ" : "تحديد كـ مُتقَن"}
+                </button>
+              </div>
+            </div>
+            <div class="en-box">${item.en}</div>
+            <div class="ar-box"><strong>التفسير:</strong> ${item.ar}</div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  searchInput.addEventListener("input", e => {
+    currentQuery = e.target.value;
+    renderCards();
+  });
+
+  document.getElementById("filterButtons").addEventListener("click", e => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+    currentDomain = e.target.dataset.domain;
+    renderCards();
+  });
+
+  renderCards();
+</script>
+</body>
+</html>
