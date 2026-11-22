@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مرجع 100 تعريف — أساسيات علم الحاسوب (Microsoft) | DZ Cyber Academy</title>
+  <style>
+    :root {
+      --bg: #070d19;
+      --surface: #0f172a;
+      --card: #162033;
+      --border: #25334d;
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --accent: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --en-bg: #09101f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0c4a6e 0%, #09101f 60%, #064e3b 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 760px;
+      margin: 0 auto 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .stats-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #061826;
+      border-color: var(--primary);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: transform 0.15s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+    }
+
+    .card.mastered {
+      border-right: 5px solid var(--accent);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .term-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      direction: ltr;
+    }
+
+    .term-num {
+      background: var(--primary);
+      color: #061826;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .term-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .domain-tag {
+      font-size: 0.78rem;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .master-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .master-btn.done {
+      background: var(--accent);
+      color: #052e16;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .en-box {
+      direction: ltr;
+      text-align: left;
+      background: var(--en-bg);
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .ar-box {
+      color: #f1f5f9;
+      font-size: 0.97rem;
+      padding-right: 4px;
+    }
+
+    .ar-box strong {
+      color: var(--accent);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Microsoft Computer Science Fundamentals — 100 Definitions</div>
+  <h1>بنك الـ 100 تعريف لأساسيات علم الحاسوب (Microsoft)</h1>
+  <p>مصطلحات ومفاهيم أساسية في الحوسبة ونظام Windows، البرمجة وهياكل البيانات، الشبكات وقواعد البيانات والسحابة، والأمن السيبراني.</p>
+  <a href="index.html" class="back-link">↩ العودة إلى الصفحة الرئيسية للأكاديمية</a>
+</header>
+
+<div class="container">
+  <section class="controls-panel">
+    <div class="search-row">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ابحث عن مصطلح أو مفهوم (مثال: Kernel, PowerShell, Binary Search, SQL, Zero Trust)..."
+      />
+      <div class="stats-box">
+        <span id="visibleCount">المعروض: 100</span>
+        <span>|</span>
+        <span id="masteredCount">المُتقَن: 0 / 100</span>
+      </div>
+    </div>
+
+    <div class="filters" id="filterButtons">
+      <button class="filter-btn active" data-domain="all">الكل (100)</button>
+      <button class="filter-btn" data-domain="CS">الحوسبة وWindows</button>
+      <button class="filter-btn" data-domain="DEV">البرمجة وهياكل البيانات</button>
+      <button class="filter-btn" data-domain="NETDB">الشبكات والبيانات والسحابة</button>
+      <button class="filter-btn" data-domain="SEC">الأمن والهوية والسحابة</button>
+    </div>
+  </section>
+
+  <main class="cards-grid" id="cardsContainer"></main>
+  <div class="empty-state" id="emptyState">لا توجد نتائج مطابقة لبحثك. جرّب كلمة مفتاحية أخرى.</div>
+
+  <footer>
+    DZ Cyber Academy — مرجع أساسيات علم الحاسوب بأسلوب Microsoft
+  </footer>
+</div>
+
+<script>
+  const msTerms = [
+    // 1 - 25: الحوسبة وWindows (CS)
+    { id: 1, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Operating System (OS)", en: "System software that manages computer hardware, software resources, and provides common services for computer programs.", ar: "البرنامج الأساسي (مثل Windows أو Linux) الذي ينسق بين العتاد (المعالج، الذاكرة، القرص) والبرامج ويوفر واجهة للمستخدم." },
+    { id: 2, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Kernel", en: "The core component of an operating system that has complete control over everything in the system, handling CPU scheduling, memory management, and hardware I/O.", ar: "القلب النابض للنظام الذي يتحكم في جدولة المعالج والذاكرة والتواصل مع الأجهزة، ويعمل في وضع ذي صلاحيات عليا (Kernel Mode)." },
+    { id: 3, domain: "CS", domainLabel: "الحوسبة وWindows", term: "User Mode vs. Kernel Mode", en: "Execution modes separating standard applications (restricted access to hardware) from core OS components (full access to hardware and system memory).", ar: "فصل تنفيذي يحمي استقرار النظام: البرامج العادية تعمل في User Mode ولا تلمس العتاد مباشرة، بينما النواة والتعريفات تعمل في Kernel Mode." },
+    { id: 4, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Process", en: "An instance of a computer program that is being executed, containing its own program code, execution state, and dedicated memory space.", ar: "برنامج قيد التشغيل فعلياً وله مساحة ذاكرة مستقلة خاصة به؛ تعطل عملية واحدة لا يُسقط بالضرورة باقي العمليات." },
+    { id: 5, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Thread", en: "The smallest unit of execution within a process that can be scheduled by the operating system; multiple threads in a process share memory space.", ar: "أصغر وحدة تنفيذ داخل العملية؛ يمكن لعملية واحدة تشغيل عدة خيوط تتشارك الذاكرة لإنجاز مهام متزامنة بسرعة." },
+    { id: 6, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Virtual Memory & Paging", en: "A memory management technique that uses disk space (page file) to extend available RAM by moving inactive memory pages in and out.", ar: "استخدام مساحة من القرص الصلب (pagefile.sys في Windows) كامتداد للذاكرة العشوائية عبر نقل الصفحات غير النشطة مؤقتاً لتفادي نفاد RAM." },
+    { id: 7, domain: "CS", domainLabel: "الحوسبة وWindows", term: "File System (NTFS vs. FAT32 / exFAT)", en: "The structure and rules an operating system uses to organize, store, retrieve, and control access permissions on files and directories.", ar: "يحدد كيفية تنظيم البيانات على القرص؛ NTFS يدعم الصلاحيات الأمنية والتشفير والملفات الكبيرة في Windows، بينما FAT32 / exFAT شائعان لتوافقية الفلاشات والأقراص الخارجية." },
+    { id: 8, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Registry (Windows Registry)", en: "A centralized hierarchical database in Windows that stores configuration settings and options for the operating system, hardware, and installed applications.", ar: "قاعدة بيانات هرمية تحفظ إعدادات النظام والبرامج والتعريفات؛ أي تعديل خاطئ فيها قد يؤثر على إقلاع أو عمل النظام." },
+    { id: 9, domain: "CS", domainLabel: "الحوسبة وWindows", term: "BIOS vs. UEFI", en: "Firmware interfaces initialized at boot; UEFI is the modern successor to legacy BIOS, supporting larger drives, faster startup, and Secure Boot.", ar: "برمجيات الإقلاع الثابتة قبل تحميل نظام التشغيل؛ UEFI أحدث وأأمن من BIOS التقليدي ويدعم الأقراص الكبيرة وSecure Boot." },
+    { id: 10, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Secure Boot", en: "A UEFI security feature that ensures a device boots using only software trusted by the Original Equipment Manufacturer (OEM) to block rootkits and bootkits.", ar: "ميزة في UEFI تتحقق من التوقيع الرقمي لملفات الإقلاع ومحمل النظام لمنع البرمجيات الخبيثة من التسلل قبل بدء نظام التشغيل." },
+    { id: 11, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Device Driver", en: "Software that allows the operating system and applications to communicate with a specific piece of hardware.", ar: "وسيط برمجي يترجم أوامر نظام التشغيل إلى لغة يفهمها عتاد معين مثل كرت الشاشة أو الطابعة أو كرت الشبكة." },
+    { id: 12, domain: "CS", domainLabel: "الحوسبة وWindows", term: "CPU Architecture (x86 / x64 vs. ARM)", en: "Processor instruction set architectures; x64 (64-bit) addresses large memory spaces, while ARM emphasizes power efficiency widely used in mobile and modern devices.", ar: "معمارية المعالج؛ x64 يتيح عنونة ذاكرة كبيرة وأداءً مكتبياً عالياً، بينما ARM يتميز بكفاءة استهلاك الطاقة وانتشر في الهواتف وأجهزة حديثة." },
+    { id: 13, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Cache Memory (L1, L2, L3)", en: "Small, ultra-fast volatile memory located close to or inside the CPU that stores frequently accessed instructions and data to reduce latency.", ar: "ذاكرة فائقة السرعة قرب المعالج تحتفظ بالبيانات والتعليمات الأكثر استخداماً لتقليل زمن الانتظار مقارنة بـ RAM." },
+    { id: 14, domain: "CS", domainLabel: "الحوسبة وWindows", term: "SSD vs. HDD", en: "Non-volatile storage types; HDDs use spinning magnetic platters, while SSDs use flash memory with no moving parts for faster read/write and shock resistance.", ar: "HDD يعتمد على أقراص مغناطيسية متحركة وسرعته أقل، بينما SSD يستخدم ذاكرة فلاش دون أجزاء متحركة مما يمنحه سرعة أعلى ومقاومة أفضل للصدمات." },
+    { id: 15, domain: "CS", domainLabel: "الحوسبة وWindows", term: "RAID (Redundant Array of Independent Disks)", en: "Combining multiple physical drives into a logical unit for performance (striping), redundancy/fault tolerance (mirroring/parity), or both.", ar: "دمج عدة أقراص صلبة لرفع السرعة أو توفير التكرار وتحمل الأعطال (مثل RAID 1 للمرآة أو RAID 5 للتكافؤ؛ وليس بديلاً عن النسخ الاحتياطي خارج الجهاز)." },
+    { id: 16, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Deadlock", en: "A state where two or more processes are blocked indefinitely because each holds a resource needed by another and neither releases its resource.", ar: "تتوقف عمليتان أو أكثر لأن كل واحدة تنتظر مورداً تحجزه الأخرى ولا تتنازل عنه." },
+    { id: 17, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Interrupt", en: "A signal sent to the CPU by hardware or software indicating an event that requires immediate attention, pausing current execution to run an Interrupt Service Routine (ISR).", ar: "إشارة تنبيه تصل للمعالج (من جهاز أو برنامج) لإيقاف المهمة الحالية مؤقتاً ومعالجة حدث طارئ ثم العودة." },
+    { id: 18, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Command Line Interface (CLI) vs. GUI", en: "CLI uses text commands and scripts (such as PowerShell or Bash) for automation and administration, whereas GUI provides visual windows, icons, and menus.", ar: "GUI واجهة رسومية سهلة بالماوس والنوافذ، بينما CLI (مثل PowerShell في Windows) يتيح التحكم السريع والأتمتة عبر الأوامر والسكربتات." },
+    { id: 19, domain: "CS", domainLabel: "الحوسبة وWindows", term: "PowerShell", en: "Microsoft's cross-platform task automation and configuration management framework using command-line shells, scripts, and object-based cmdlets.", ar: "بيئة أوامر وأتمتة من Microsoft تعتمد على Cmdlets وتتعامل مع الكائنات (Objects) لتسهيل إدارة الأنظمة والخدمات والسحابة." },
+    { id: 20, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Environment Variable", en: "A dynamic named value stored in the operating system environment that affects how running processes behave, such as PATH.", ar: "قيمة مسماة يعرفها النظام تؤثر على سلوك البرامج، مثل PATH الذي يحدد المجلدات التي يبحث فيها النظام عن الملفات التنفيذية." },
+    { id: 21, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Service / Daemon", en: "A background program that runs without direct user interaction to provide system or network functionality continuously.", ar: "برنامج يعمل في الخلفية تلقائياً لتأدية وظيفة مستمرة مثل خدمة الشبكة أو التحديثات أو قاعدة البيانات." },
+    { id: 22, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Patch / Update", en: "Code released by a software vendor to fix bugs, add features, or remediate security vulnerabilities.", ar: "تعديل تصدره الشركة المطورة لسد ثغرات أمنية أو إصلاح أخطاء برمجية وتحسين الاستقرار." },
+    { id: 23, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Throughput vs. Latency", en: "Throughput is the amount of data or work processed over a given time, while latency is the time delay for a single request or packet to travel from source to destination.", ar: "Throughput هو حجم البيانات المنقولة أو المنجزة خلال فترة زمنية، وLatency هو زمن التأخير الذي تستغرقه حزمة أو طلب للوصول." },
+    { id: 24, domain: "CS", domainLabel: "الحوسبة وWindows", term: "Scalability (Vertical vs. Horizontal)", en: "Scaling up (vertical) adds resources like CPU/RAM to one machine; scaling out (horizontal) adds more machines/instances to share workload.", ar: "التوسع الرأسي (Scale Up) يزيد موارد جهاز واحد (معالج/ذاكرة)، بينما التوسع الأفقي (Scale Out) يزيد عدد الأجهزة أو العقد لتوزيع الحمل." },
+    { id: 25, domain: "CS", domainLabel: "الحوسبة وWindows", term: "High Availability (HA) vs. Fault Tolerance", en: "HA minimizes downtime using redundant components and failover; fault tolerance keeps operations running continuously without interruption even when a component fails.", ar: "High Availability يقلل وقت التوقف عبر بدائل وتبديل تلقائي، بينما Fault Tolerance يضمن استمرار العمل دون أي انقطاع ملحوظ عند تعطل مكون." },
+
+    // 26 - 50: البرمجة وهياكل البيانات (DEV)
+    { id: 26, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Algorithm", en: "A finite, well-defined sequence of step-by-step instructions designed to solve a specific problem or perform a computation.", ar: "خطوات واضحة ومحددة ومنطقية لحل مسألة أو تنفيذ مهمة برمجية معينة." },
+    { id: 27, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Data Structure", en: "A specialized format for organizing, storing, and retrieving data efficiently, such as arrays, lists, stacks, queues, trees, and hash tables.", ar: "طريقة تنظيم البيانات في الذاكرة لتسهيل الوصول إليها أو تعديلها أو البحث فيها بكفاءة." },
+    { id: 28, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Array", en: "A contiguous block of memory storing elements of the same type accessible by zero-based index, offering fast index lookup but fixed size in static arrays.", ar: "عناصر متجاورة في الذاكرة تُستدعى برقم الفهرس (Index)؛ الوصول السريع مباشر لكن حجم المصفوفة الثابت محدود." },
+    { id: 29, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Linked List", en: "A linear data structure of nodes where each node holds data and a reference/pointer to the next node, allowing dynamic insertion and deletion.", ar: "عناصر (عقد) مرتبطة عبر مؤشرات؛ يسهل الإضافة والحذف فيها ديناميكياً لكن الوصول العشوائي أبطأ من المصفوفة." },
+    { id: 30, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Stack (LIFO)", en: "A linear data structure following Last-In, First-Out ordering with push and pop operations, used in function call stacks and undo history.", ar: "آخر عنصر يدخل هو أول عنصر يخرج؛ يُستخدم في تتبع استدعاء الدوال (Call Stack) وزر التراجع (Undo)." },
+    { id: 31, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Queue (FIFO)", en: "A linear data structure following First-In, First-Out ordering (enqueue at rear, dequeue at front), used in task scheduling and print/message queues.", ar: "أول عنصر يدخل هو أول عنصر يخرج (مثل طابور الطباعة أو معالجة الطلبات بالترتيب)." },
+    { id: 32, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Hash Table / Dictionary", en: "A data structure mapping keys to values via a hash function, enabling average-case O(1) lookup, insertion, and deletion.", ar: "يربط مفتاحاً (Key) بقيمة (Value) عبر دالة تجزئة ليمنح بحثاً وإضافة سريعة جداً في المتوسط." },
+    { id: 33, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Tree & Binary Search Tree (BST)", en: "A hierarchical node structure; a BST orders left children smaller and right children larger than the parent node for fast searching.", ar: "بنية هرمية؛ في BST تكون القيم الأصغر يسار الجذر والأكبر يمينه لتسريع البحث." },
+    { id: 34, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Graph", en: "A non-linear structure of vertices (nodes) connected by edges (directed or undirected), used to model networks, maps, and dependencies.", ar: "عقد (Vertices) تصل بينها حواف (Edges) لتمثيل الشبكات، الخرائط، والمسارات والعلاقات." },
+    { id: 35, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Time & Space Complexity (Big O Notation)", en: "Asymptotic notation describing how an algorithm's execution time or memory usage grows relative to input size n.", ar: "يصف كيف يزداد استهلاك الوقت أو الذاكرة مع كبر حجم المدخلات (n)؛ مثلاً O(1) ثابت وO(log n) سريع جداً." },
+    { id: 36, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Recursion", en: "A programming technique where a function calls itself directly or indirectly on smaller subproblems until reaching a terminating base case.", ar: "دالة تستدعي نفسها لحل أجزاء أصغر من المسألة، ويجب أن تملك شرط توقف (Base Case) حتى لا تدخل في حلقة لا نهائية." },
+    { id: 37, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Compiler vs. Interpreter", en: "A compiler translates source code into machine code before execution; an interpreter translates and executes code line-by-line at runtime.", ar: "المترجم (Compiler) يحوّل الكود بالكامل إلى لغة الآلة قبل التشغيل، بينما المفسّر (Interpreter) يقرأ وينفذ سطراً بسطر أثناء التشغيل." },
+    { id: 38, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Object-Oriented Programming (OOP)", en: "A paradigm organizing code around objects encapsulating state (attributes) and behavior (methods), supporting encapsulation, inheritance, polymorphism, and abstraction.", ar: "تنظيم الكود في كائنات تجمع البيانات والدوال، وتقوم على التغليف، الوراثة، تعدد الأشكال، والتجريد." },
+    { id: 39, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Encapsulation & Abstraction", en: "Encapsulation bundles data and methods while restricting direct access; abstraction hides complex implementation details behind a clean interface.", ar: "التغليف يجمع البيانات والدوال ويحمي الوصول المباشر لها، والتجريد يخفي التفاصيل المعقدة ويعرض واجهة مبسطة للاستخدام." },
+    { id: 40, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Inheritance & Polymorphism", en: "Inheritance allows a child class to reuse and extend a parent class; polymorphism lets different types respond to the same interface in type-specific ways.", ar: "الوراثة تتيح لصنف فرعي وراثة خصائص ودوال صنف أب، وتعدد الأشكال يسمح بتنفيذ نفس الدالة بسلوك مختلف حسب نوع الكائن." },
+    { id: 41, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "API (Application Programming Interface)", en: "A defined set of rules, endpoints, and contracts enabling different software components or services to communicate with one another.", ar: "عقد وقواعد تواصل تسمح لبرنامج أو خدمة بالتفاعل وطلب البيانات من برنامج آخر بأمان." },
+    { id: 42, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "REST & JSON", en: "REST is an architectural style for stateless web APIs over HTTP (GET, POST, PUT, DELETE); JSON is a lightweight text data-interchange format using key-value pairs.", ar: "REST أسلوب شائع لبناء واجهات الويب عبر HTTP (بدون حفظ حالة الجلسة على الخادم)، وJSON صيغة خفيفة ومقروءة لتبادل البيانات." },
+    { id: 43, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Synchronous vs. Asynchronous Execution", en: "Synchronous tasks run sequentially and block until completion; asynchronous execution allows non-blocking operations so other tasks continue while waiting on I/O.", ar: "التنفيذ المتزامن ينتظر انتهاء كل خطوة قبل التي تليها، بينما غير المتزامن يسمح بمتابعة مهام أخرى أثناء انتظار عملية بطيئة كالشبكة أو الملفات." },
+    { id: 44, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Race Condition", en: "A concurrency bug where program output or state depends on the unpredictable timing or interleaving of multiple threads accessing shared data.", ar: "خلل يحدث عندما تتنافس عدة خيوط على تعديل نفس البيانات دون مزامنة فتصبح النتيجة معتمدة على توقيت التنفيذ العشوائي." },
+    { id: 45, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Mutex / Lock & Semaphore", en: "Synchronization primitives preventing concurrent access conflicts; a mutex grants exclusive ownership to one thread, while a semaphore allows up to N concurrent accesses.", ar: "آليات مزامنة لمنع تضارب الخيوط: Mutex يمنح دخولاً حصرياً لخيط واحد، وSemaphore يسمح لعدد محدد من الخيوط بالدخول في آن واحد." },
+    { id: 46, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Exception Handling (Try / Catch / Finally)", en: "A structured mechanism to detect and handle runtime errors gracefully so a program does not crash unexpectedly and cleans up resources.", ar: "التقاط الأخطاء أثناء التشغيل ومنع انهيار البرنامج مع تنفيذ خطوات التنظيف (مثل إغلاق ملف أو اتصال)." },
+    { id: 47, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Unit Testing vs. Integration Testing", en: "Unit testing verifies individual functions or components in isolation; integration testing verifies that multiple modules work together properly.", ar: "اختبار الوحدة يفحص دالة أو مكوناً صغيراً بمفرده، واختبار التكامل يتأكد من عمل عدة أجزاء معاً بشكل صحيح." },
+    { id: 48, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Version Control (Git)", en: "A distributed system that tracks code changes over time, supporting branches, commits, history auditing, and collaborative merging.", ar: "يسجل تاريخ التعديلات على الكود ويسمح بالعمل على فروع (Branches) والدمج والرجوع لأي نسخة سابقة." },
+    { id: 49, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "CI/CD (Continuous Integration / Continuous Delivery)", en: "Automated DevOps practices that continuously build, test, and deploy code changes to reduce integration errors and speed up releases.", ar: "أتمتة بناء الكود واختباره ونشره باستمرار لتقليل الأخطاء البشرية وتسريع الإطلاق." },
+    { id: 50, domain: "DEV", domainLabel: "البرمجة وهياكل البيانات", term: "Variable Scope & Stack vs. Heap", en: "Scope defines where a variable is accessible; stack stores function call frames and local values, while heap allocates dynamic memory managed by runtime or garbage collector.", ar: "النطاق (Scope) يحدد أين يُرى المتغير؛ Stack يخدم استدعاءات الدوال والمتغيرات المحلية، وHeap يخصص ذاكرة ديناميكية للكائنات والبيانات الكبيرة." },
+
+    // 51 - 75: الشبكات والبيانات والسحابة (NETDB)
+    { id: 51, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "OSI Model (7 Layers)", en: "A conceptual networking reference model dividing communication into Physical, Data Link, Network, Transport, Session, Presentation, and Application layers.", ar: "يقسم الاتصال الشبكي إلى 7 طبقات من الكابل والبتات (الفيزيائية) وصولاً إلى التطبيقات لتسهيل الفهم واستكشاف الأعطال." },
+    { id: 52, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "TCP/IP Model (4 Layers)", en: "The practical internet protocol suite organized into Network Access (Link), Internet, Transport, and Application layers.", ar: "الأساس الفعلي للإنترنت ويتكون من 4 طبقات (الوصول للشبكة، الإنترنت، النقل، التطبيقات)." },
+    { id: 53, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "TCP (Transmission Control Protocol)", en: "A connection-oriented transport protocol (using a three-way handshake) that provides reliable, ordered, error-checked byte delivery with flow and congestion control.", ar: "موثوق ومرتب ويعتمد على المصافحة الثلاثية (SYN, SYN-ACK, ACK) وإعادة الإرسال عند الفقد (مناسب للملفات والويب والبريد)." },
+    { id: 54, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "UDP (User Datagram Protocol)", en: "A connectionless, low-overhead transport protocol offering fast best-effort delivery without ordering guarantees or retransmissions.", ar: "سريع وخفيف دون إنشاء اتصال مسبق أو إعادة إرسال؛ مثالي للبث المباشر، الألعاب، وDNS وDHCP." },
+    { id: 55, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Port Numbers & Common Ports", en: "Logical 16-bit endpoints (0–65535) identifying specific network services/processes on a host (e.g., 53 DNS, 80 HTTP, 443 HTTPS, 22 SSH).", ar: "تميّز التطبيق أو الخدمة داخل الجهاز (مثل 443 لـ HTTPS، 80 لـ HTTP، 22 لـ SSH، 53 لـ DNS)." },
+    { id: 56, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "IP Address (IPv4 vs. IPv6)", en: "Logical network identifiers; IPv4 uses 32-bit addresses (dotted decimal), while IPv6 uses 128-bit addresses (hexadecimal) to expand address space.", ar: "IPv4 بطول 32 بت (مثل 192.168.1.1) وIPv6 بطول 128 بت لحل محدودية العناوين وتسهيل التوجيه الحديث." },
+    { id: 57, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "MAC Address", en: "A hardware identifier burned into or assigned to a network interface controller (NIC) used for local link-layer frame delivery.", ar: "يُستخدم داخل الشبكة المحلية (الطبقة الثانية) لتوجيه الإطارات بين الأجهزة المتصلة مباشرة." },
+    { id: 58, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "DNS (Domain Name System)", en: "Translates human-friendly domain names into IP addresses using hierarchical resolution (recursive resolver, root, TLD, authoritative servers) and records like A, AAAA, CNAME, MX.", ar: "يترجم أسماء المواقع إلى عناوين IP عبر سجلات مثل A (لـ IPv4)، AAAA (لـ IPv6)، CNAME (اسم مستعار)، وMX (للبريد)." },
+    { id: 59, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "HTTP vs. HTTPS (TLS)", en: "HTTP sends web traffic in plaintext; HTTPS wraps HTTP inside TLS to provide encryption, server/client authentication, and integrity.", ar: "HTTPS يضيف طبقة تشفير TLS فوق HTTP لحماية البيانات من التنصت والتعديل وإثبات هوية الموقع عبر الشهادة الرقمية." },
+    { id: 60, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "DHCP (Dynamic Host Configuration Protocol)", en: "Automatically leases IP addresses, subnet masks, default gateways, and DNS settings to network clients.", ar: "يمنح الأجهزة إعدادات الشبكة دون إدخال يدوي مع تحديد مدة إيجار (Lease Time)." },
+    { id: 61, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "NAT / PAT", en: "Translates private RFC 1918 IP addresses (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to public IPs for internet routing.", ar: "يتيح للأجهزة ذات العناوين الداخلية الخاصة الوصول للإنترنت عبر عنوان عام واحد أو مجموعة عناوين." },
+    { id: 62, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Subnet Mask & Default Gateway", en: "A subnet mask separates network and host bits of an IP address; the default gateway is the router IP used to reach destinations outside the local subnet.", ar: "قناع الشبكة يحدد جزء الشبكة وجزء الجهاز، والبوابة الافتراضية هي عنوان الراوتر الذي يخرج الحزم خارج الشبكة المحلية." },
+    { id: 63, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Switch vs. Router vs. Access Point (WAP)", en: "A switch forwards frames within a LAN using MAC addresses; a router routes packets between different networks using IP addresses; a WAP bridges wireless clients to a wired LAN.", ar: "المبدل (Switch) يربط أجهزة الشبكة المحلية بـ MAC؛ الراوتر (Router) يربط شبكات مختلفة بـ IP؛ ونقطة الوصول (WAP) تربط الأجهزة اللاسلكية بالشبكة." },
+    { id: 64, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Relational Database (RDBMS) & SQL", en: "Stores structured data in tables with rows and columns linked by primary and foreign keys, queried and managed using Structured Query Language (SQL).", ar: "تنظم البيانات في جداول مرتبطة عبر مفاتيح أساسية (Primary Key) وخارجية (Foreign Key) وتُدار بلغة SQL." },
+    { id: 65, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "ACID Properties", en: "Database transaction guarantees: Atomicity (all or nothing), Consistency (valid state), Isolation (concurrent transactions don't interfere), and Durability (committed data persists).", ar: "خصائص المعاملة الموثوقة في قواعد البيانات: تنفيذ كامل أو إلغاء كامل، الحفاظ على صحة البيانات، عزل العمليات المتزامنة، وثبات البيانات بعد التأكيد." },
+    { id: 66, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "NoSQL Database", en: "Non-relational databases (document, key-value, wide-column, graph) designed for flexible schemas, unstructured/semi-structured data, and horizontal scale.", ar: "قواعد بيانات غير علائقية تناسب البيانات المرنة أو غير المهيكلة والتوسع الأفقي السريع (مثل قواعد المستندات أو المفاتيح والقيم)." },
+    { id: 67, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Database Index", en: "A data structure on table columns that speeds up read queries at the cost of extra storage and slower writes/updates.", ar: "يسرّع عمليات البحث والاستعلام بشكل كبير مقابل مساحة تخزين إضافية وبطء طفيف عند التعديل والإضافة." },
+    { id: 68, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Primary Key vs. Foreign Key", en: "A primary key uniquely identifies each row in a table; a foreign key references a primary key in another table to enforce relational integrity.", ar: "المفتاح الأساسي يميّز كل صف بشكل فريد في الجدول، والمفتاح الخارجي يربط صفاً بصف في جدول آخر لضمان ترابط البيانات." },
+    { id: 69, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Caching (Redis / CDN)", en: "Storing copies of frequently requested data in fast memory or edge locations to reduce database load and improve response times.", ar: "حفظ البيانات المتكررة في ذاكرة سريعة أو خوادم قريبة من المستخدم لتخفيف الحمل على قاعدة البيانات وتسريع الاستجابة." },
+    { id: 70, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Load Balancer", en: "Distributes incoming network or application traffic across multiple backend servers to improve availability, reliability, and throughput.", ar: "يوزع الطلبات الواردة على عدة خوادم خلفية لمنع إرهاق خادم واحد وضمان استمرارية الخدمة." },
+    { id: 71, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Cloud Computing Service Models (IaaS, PaaS, SaaS)", en: "IaaS rents virtualized compute/storage/network; PaaS provides runtime/platform to build and deploy apps; SaaS delivers ready-to-use software over the internet.", ar: "IaaS توفر خوادم وشبكات افتراضية، PaaS توفر بيئة جاهزة لتشغيل وتطوير التطبيقات، وSaaS توفر برنامجاً جاهزاً مباشرة للمستخدم." },
+    { id: 72, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Shared Responsibility Model", en: "Defines which security tasks are handled by the cloud provider (e.g., physical data center and host hypervisor) and which by the customer (e.g., data, identity, access, app config).", ar: "يوضح ما يلتزم بتأمينه مزود السحابة (كالبنية المادية) وما يقع على عاتق العميل (كالبيانات وإدارة الهوية والصلاحيات)." },
+    { id: 73, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Virtualization & Hypervisor (Type 1 vs. Type 2)", en: "Running multiple virtual machines on physical hardware via a hypervisor; Type 1 runs directly on bare metal, while Type 2 runs atop a host OS.", ar: "تشغيل أجهزة افتراضية متعددة على عتاد واحد؛ النوع الأول يعمل مباشرة على العتاد والثاني فوق نظام تشغيل مضيف." },
+    { id: 74, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Containers (Docker) vs. Virtual Machines", en: "Containers package an application and its dependencies sharing the host OS kernel for fast startup and lightweight footprint; VMs each run a full guest OS kernel.", ar: "الحاويات (Containers) تشارك نواة نظام التشغيل المضيف وتقلع بسرعة وخفة، بينما الآلات الافتراضية (VMs) تحوي كل منها نظام تشغيل كاملاً مستقلاً." },
+    { id: 75, domain: "NETDB", domainLabel: "الشبكات والبيانات والسحابة", term: "Microservices vs. Monolith", en: "A monolith builds an application as a single unified codebase/deployment; microservices split functionality into independent, loosely coupled services communicating over APIs.", ar: "Monolith يجمع التطبيق كوحدة متكاملة واحدة، بينما Microservices يقسمه إلى خدمات مستقلة صغيرة تتواصل عبر APIs لتسهيل الصيانة والتوسع." },
+
+    // 76 - 100: الأمن والهوية والسحابة (SEC)
+    { id: 76, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "CIA Triad", en: "Confidentiality (authorized access only), Integrity (accurate, untampered data), and Availability (timely, reliable access to systems and data).", ar: "السرية (منع التسريب لغير المخولين)، النزاهة (منع التلاعب والتعديل غير المصرح به)، والتوافر (بقاء الخدمة متاحة عند الحاجة)." },
+    { id: 77, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Authentication vs. Authorization", en: "Authentication verifies who or what an entity is; authorization determines what resources or actions that authenticated entity is permitted to access or perform.", ar: "المصادقة (Authentication) تتحقق من الهوية، والتفويض (Authorization) يحدد الصلاحيات المسموحة بعد التحقق." },
+    { id: 78, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "MFA (Multi-Factor Authentication)", en: "Requiring two or more distinct verification factors (knowledge, possession, inherence) to significantly reduce account compromise risk.", ar: "دمج عاملين مختلفين أو أكثر (مثل كلمة مرور + رمز تطبيق مصادقة أو بصمة) لحماية الحساب حتى لو سُرقت كلمة المرور." },
+    { id: 79, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "RBAC (Role-Based Access Control)", en: "Assigning permissions to roles based on job functions rather than granting ad-hoc permissions directly to individual users.", ar: "منح الصلاحيات لدور وظيفي (مثل قارئ، محرر، مسؤول) لتسهيل إدارتها ومراجعتها." },
+    { id: 80, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Principle of Least Privilege", en: "Granting users, services, and processes only the minimum permissions strictly required to perform their tasks.", ar: "إعطاء الصلاحية الضرورية فقط وللمدة المطلوبة لتقليل الضرر المحتمل عند الخطأ أو الاختراق." },
+    { id: 81, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Zero Trust", en: "Security posture assuming no implicit trust based on network location; every access request is explicitly verified, authenticated, and authorized with least privilege.", ar: "عدم اعتبار أي شبكة أو طلب موثوقاً تلقائياً، والتحقق المستمر من الهوية والجهاز والصلاحية في كل مرة." },
+    { id: 82, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Symmetric vs. Asymmetric Encryption", en: "Symmetric encryption uses one shared secret key for encryption and decryption (fast, e.g., AES); asymmetric uses a public/private key pair (e.g., RSA/ECC).", ar: "التشفير المتماثل يستخدم مفتاحاً مشتركاً واحداً وسريعاً للبيانات الكبيرة، وغير المتماثل يستخدم مفتاحاً عاماً ومفتاحاً خاصاً لتبادل المفاتيح والتوقيع الرقمي." },
+    { id: 83, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Hashing vs. Encryption", en: "Encryption is reversible with the proper key to protect confidentiality; hashing is a one-way digest function used to verify integrity or store password verifiers safely.", ar: "التشفير قابل للفك بالمفتاح لحماية السرية، بينما التجزئة (Hashing) في اتجاه واحد للتحقق من السلامة أو تخزين بصمات كلمات المرور." },
+    { id: 84, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "PKI & TLS Certificates", en: "Public Key Infrastructure manages digital certificates issued by Certificate Authorities (CAs) to bind public keys to identities and establish encrypted TLS sessions.", ar: "منظومة الشهادات الرقمية التي تثبت هوية الخوادم والمواقع عبر جهات إصدار موثوقة (CAs) وتؤسس لاتصال HTTPS المشفر." },
+    { id: 85, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Firewall (Packet Filter vs. Next-Gen / WAF)", en: "Filters network traffic based on rules; a Web Application Firewall (WAF) specifically inspects HTTP/HTTPS web traffic to block web attacks like SQLi and XSS.", ar: "الجدار الناري يراقب ويفلتر حركة الشبكة حسب القواعد، وWAF يحمي تطبيقات الويب تحديداً من هجمات مثل حقن SQL والبرمجة عبر المواقع (XSS)." },
+    { id: 86, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Phishing & Social Engineering", en: "Manipulating people into revealing secrets or executing actions; phishing uses deceptive messages or fake login pages to steal credentials or deliver malware.", ar: "خداع البشر عبر رسائل أو صفحات مزيفة لانتزاع كلمات المرور أو تثبيت برمجيات ضارة." },
+    { id: 87, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Malware Types (Ransomware, Trojan, Worm, Spyware)", en: "Ransomware encrypts data for extortion; Trojans disguise malicious payloads inside legitimate-looking files; worms self-propagate across networks; spyware covertly collects user data.", ar: "Ransomware يشفر الملفات لطلب فدية، Trojan يتخفى داخل برنامج يبدو مفيداً، Worm ينتشر تلقائياً عبر الشبكة، وSpyware يتجسس ويجمع البيانات سراً." },
+    { id: 88, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "SQL Injection (SQLi)", en: "A web vulnerability where untrusted user input is concatenated directly into a database query, allowing an attacker to read, alter, or bypass data logic.", ar: "ثغرة تحدث عند دمج مدخلات المستخدم مباشرة في استعلام قاعدة البيانات دون التحقق أو استخدام الاستعلامات المهيأة (Parameterized Queries)." },
+    { id: 89, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Cross-Site Scripting (XSS)", en: "A vulnerability allowing an attacker to inject malicious scripts (typically JavaScript) into web pages viewed by other users in their browsers.", ar: "حقن كود برمجي ضار يُنفّذ في متصفح الضحية مما قد يعرّض الجلسة أو البيانات للسرقة." },
+    { id: 90, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "DDoS (Distributed Denial of Service)", en: "Coordinated traffic from many distributed sources overwhelming a target's bandwidth, compute, or application resources to disrupt availability.", ar: "إغراق الخدمة بطلبات ضخمة من مصادر متعددة لإسقاطها ومنع وصول المستخدمين." },
+    { id: 91, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Man-in-the-Middle (MitM)", en: "Intercepting or altering communication between two parties without their knowledge, mitigated by strong TLS validation and secure networks.", ar: "اعتراض الاتصال بين طرفين للتنصت أو التعديل، ويُقاوم بتشفير TLS والتحقق الصحيح من الشهادات." },
+    { id: 92, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Vulnerability vs. Exploit vs. Patch", en: "A vulnerability is a weakness; an exploit is code or technique that leverages that weakness; a patch is a fix that closes the weakness.", ar: "الثغرة (Vulnerability) هي نقطة الضعف، الاستغلال (Exploit) هو أسلوب أو كود يستغلها، والتحديث (Patch) هو الإصلاح الذي يسدها." },
+    { id: 93, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Backup Strategy (3-2-1 Rule)", en: "Keeping at least 3 copies of data, on 2 different media types, with 1 copy stored offsite/isolated to recover from hardware failure or ransomware.", ar: "3 نسخ من البيانات، على وسيطين مختلفين، ونسخة واحدة خارج الموقع أو معزولة لحمايتها من الأعطال أو الفدية." },
+    { id: 94, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Incident Response Lifecycle", en: "Structured phases for handling security incidents: Preparation, Detection & Analysis, Containment, Eradication & Recovery, and Post-Incident Activity (Lessons Learned).", ar: "التحضير، الكشف والتحليل، الاحتواء، الاستئصال والتعافي، ثم التوثيق واستخلاص الدروس لتفادي التكرار." },
+    { id: 95, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "SIEM & Log Monitoring", en: "Security Information and Event Management aggregates, normalizes, correlates, and alerts on security logs across systems to detect suspicious activity.", ar: "يجمع السجلات من مختلف الأجهزة والأنظمة ويربط الأحداث لاكتشاف الهجمات والتنبيه عنها مبكراً." },
+    { id: 96, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "IAM (Identity and Access Management)", en: "The discipline and framework of policies and technologies managing digital identities, authentication, authorization, and lifecycle access across systems and cloud.", ar: "منظومة إدارة المستخدمين والخدمات وتحديد من يدخل وإلى ماذا يصل وكيف تُراقب وتُراجع صلاحياته." },
+    { id: 97, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Token / Session & OAuth / JWT", en: "Tokens represent authenticated sessions or delegated permissions; OAuth delegates authorization without sharing passwords, and JWT carries signed claims.", ar: "OAuth يسمح بتفويض الوصول دون مشاركة كلمة المرور، وJWT (JSON Web Token) يحمل بيانات موقعة للتحقق من هوية وصلاحية الطلب." },
+    { id: 98, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "DevSecOps", en: "Integrating security practices, automated scanning, and compliance checks throughout the software development lifecycle rather than treating security as a final step.", ar: "دمج الأمان والفحوصات الأمنية في كل مراحل تطوير ونشر البرمجيات منذ البداية بدل تأجيله إلى النهاية." },
+    { id: 99, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Compliance & Data Privacy (GDPR / Classification)", en: "Adhering to legal/regulatory standards and classifying data by sensitivity so personal and regulated information is handled lawfully and protected appropriately.", ar: "الالتزام بالقوانين واللوائح وحماية الخصوصية وتصنيف البيانات حسب حساسيتها لتطبيق ضوابط حماية مناسبة لكل مستوى." },
+    { id: 100, domain: "SEC", domainLabel: "الأمن والهوية والسحابة", term: "Defense in Depth", en: "Applying multiple overlapping layers of administrative, technical, and physical controls so if one layer is bypassed, subsequent layers still protect critical assets.", ar: "بناء طبقات حماية متكاملة (شبكية، نظام تشغيل، هوية، تطبيقات، توعية) بحيث لا يعتمد أمن النظام على دفاع واحد فقط." }
+  ];
+
+  const STORAGE_KEY = "microsoft_cs_100_mastered";
+  let masteredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  let currentDomain = "all";
+  let currentQuery = "";
+
+  const cardsContainer = document.getElementById("cardsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const visibleCountEl = document.getElementById("visibleCount");
+  const masteredCountEl = document.getElementById("masteredCount");
+  const emptyStateEl = document.getElementById("emptyState");
+
+  function saveMastered() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...masteredSet]));
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+  }
+
+  function toggleMastered(id) {
+    if (masteredSet.has(id)) {
+      masteredSet.delete(id);
+    } else {
+      masteredSet.add(id);
+    }
+    saveMastered();
+    renderCards();
+  }
+
+  function renderCards() {
+    const q = currentQuery.trim().toLowerCase();
+    const filtered = msTerms.filter(item => {
+      const matchDomain = currentDomain === "all" || item.domain === currentDomain;
+      const matchSearch =
+        !q ||
+        item.term.toLowerCase().includes(q) ||
+        item.en.toLowerCase().includes(q) ||
+        item.ar.toLowerCase().includes(q) ||
+        String(item.id) === q;
+      return matchDomain && matchSearch;
+    });
+
+    visibleCountEl.textContent = `المعروض: ${filtered.length}`;
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+
+    if (filtered.length === 0) {
+      cardsContainer.innerHTML = "";
+      emptyStateEl.style.display = "block";
+      return;
+    }
+
+    emptyStateEl.style.display = "none";
+    cardsContainer.innerHTML = filtered
+      .map(item => {
+        const isDone = masteredSet.has(item.id);
+        return `
+          <article class="card ${isDone ? "mastered" : ""}">
+            <div class="card-header">
+              <div class="term-title">
+                <span class="term-num">#${item.id}</span>
+                <span class="term-name">${item.term}</span>
+              </div>
+              <div class="card-actions">
+                <span class="domain-tag">${item.domainLabel}</span>
+                <button class="master-btn ${isDone ? "done" : ""}" onclick="toggleMastered(${item.id})">
+                  ${isDone ? "✓ تم الحفظ" : "تحديد كـ مُتقَن"}
+                </button>
+              </div>
+            </div>
+            <div class="en-box">${item.en}</div>
+            <div class="ar-box"><strong>التفسير:</strong> ${item.ar}</div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  searchInput.addEventListener("input", e => {
+    currentQuery = e.target.value;
+    renderCards();
+  });
+
+  document.getElementById("filterButtons").addEventListener("click", e => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+    currentDomain = e.target.dataset.domain;
+    renderCards();
+  });
+
+  renderCards();
+</script>
+</body>
+</html>
