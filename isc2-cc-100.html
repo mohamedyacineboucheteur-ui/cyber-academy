@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مرجع 100 تعريف رسمي — شهادة ISC2 CC | أكاديمية الأمن السيبراني</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --surface: #111827;
+      --card: #1e293b;
+      --border: #334155;
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --en-bg: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #064e3b 0%, #0f172a 60%, #1e1b4b 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .stats-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #042f2e;
+      border-color: var(--primary);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: transform 0.15s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+    }
+
+    .card.mastered {
+      border-right: 5px solid var(--primary);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .term-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      direction: ltr;
+    }
+
+    .term-num {
+      background: var(--primary);
+      color: #042f2e;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .term-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .domain-tag {
+      font-size: 0.78rem;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .master-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .master-btn.done {
+      background: var(--primary);
+      color: #042f2e;
+      border-color: var(--primary);
+      font-weight: 700;
+    }
+
+    .en-box {
+      direction: ltr;
+      text-align: left;
+      background: var(--en-bg);
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.96rem;
+      margin-bottom: 10px;
+    }
+
+    .ar-box {
+      color: #f1f5f9;
+      font-size: 0.98rem;
+      padding-right: 4px;
+    }
+
+    .ar-box strong {
+      color: var(--primary);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">ISC2 Certified in Cybersecurity (CC) — المرجع الشامل</div>
+  <h1>بنك الـ 100 تعريف الأساسي لاختبار ISC2 CC</h1>
+  <p>التعريفات الرسمية باللغة الإنجليزية مع التفسير المنطقي والعملي باللغة العربية — مرتبة حسب مجالات الاختبار الخمسة.</p>
+</header>
+
+<div class="container">
+  <section class="controls-panel">
+    <div class="search-row">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ابحث عن مصطلح بالإنجليزية أو العربية (مثال: Phishing, RTO, التشفير, السرية)..."
+      />
+      <div class="stats-box">
+        <span id="visibleCount">المعروض: 100</span>
+        <span>|</span>
+        <span id="masteredCount">المُتقَن: 0 / 100</span>
+      </div>
+    </div>
+
+    <div class="filters" id="filterButtons">
+      <button class="filter-btn active" data-domain="all">الكل (100)</button>
+      <button class="filter-btn" data-domain="D1">D1: مبادئ الأمن والحوكمة</button>
+      <button class="filter-btn" data-domain="D2">D2: استمرارية الأعمال والحوادث</button>
+      <button class="filter-btn" data-domain="D3">D3: التحكم في الوصول</button>
+      <button class="filter-btn" data-domain="D4">D4: أمن الشبكات</button>
+      <button class="filter-btn" data-domain="D5">D5: التشفير وأمن العمليات</button>
+    </div>
+  </section>
+
+  <main class="cards-grid" id="cardsContainer"></main>
+  <div class="empty-state" id="emptyState">لا توجد نتائج مطابقة لبحثك. جرّب كلمة مفتاحية أخرى.</div>
+
+  <footer>
+    مرجع دراسي دائم — التحضير لشهادة ISC2 Certified in Cybersecurity (CC)
+  </footer>
+</div>
+
+<script>
+  const termsData = [
+    // 1 - 20
+    { id: 1, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Confidentiality", en: "Ensuring that information is accessible only to those authorized to have access.", ar: "حماية البيانات من اطلاع أي شخص غير مخول؛ الفكرة هنا تتعلق بمن يحق له قراءة أو رؤية المعلومة، مثل تشفير الملفات أو تقييد الوصول إلى السجلات الحساسة." },
+    { id: 2, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Integrity", en: "Guarding against improper information modification or destruction, and ensuring information non-repudiation and authenticity.", ar: "ضمان بقاء البيانات صحيحة وسليمة دون تلاعب أو تعديل أو تلف غير مصرح به؛ إذا تم تغيير رقم في قاعدة بيانات أو ملف دون إذن، فهنا تضررت النزاهة." },
+    { id: 3, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Availability", en: "Ensuring timely and reliable access to and use of information.", ar: "أن تكون الأنظمة والبيانات متاحة وجاهزة للاستخدام في الوقت المناسب لمن يحتاجها؛ فحتى لو كانت البيانات مشفرة ومحمية، فإن تعطل الخادم أو حجب الخدمة يضرب التوافر." },
+    { id: 4, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Risk", en: "The potential that a given threat will exploit vulnerabilities of an asset or group of assets and thereby cause harm to the organization.", ar: "احتمالية أن يستغل تهديد معين نقطة ضعف في أصل أو نظام ليُحدث ضرراً؛ الخطر يرتبط بالتقاء التهديد بالثغرة وتأثير ذلك على العمل." },
+    { id: 5, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Threat", en: "Any circumstance or event with the potential to adversely impact organizational operations, organizational assets, or individuals through an information system.", ar: "أي مصدر أو حدث أو عامل قد يسبب ضرراً للأنظمة أو البيانات أو الأفراد، سواء كان هجوماً متعمداً كالبرمجيات الخبيثة، أو خطأ بشرياً، أو عطلًا تقنياً." },
+    { id: 6, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Vulnerability", en: "A weakness in an information system, system security procedures, internal controls, or implementation that could be exploited by a threat source.", ar: "نقطة ضعف أو ثغرة في النظام أو الإعدادات أو الإجراءات الأمنية يمكن أن يستغلها تهديد؛ مثلاً برنامج قديم لم يتم تحديثه أو كلمة مرور ضعيفة." },
+    { id: 7, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Asset", en: "Anything that has value to the organization, including information, hardware, software, facilities, people, and reputation.", ar: "أي شيء له قيمة للمؤسسة ويحتاج إلى حماية؛ لا يقتصر على الأجهزة والبيانات فقط، بل يشمل الموظفين، المباني، والسمعة المؤسسية أيضاً." },
+    { id: 8, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Control (Safeguard / Countermeasure)", en: "The management, operational, and technical controls prescribed for an information system to protect the confidentiality, integrity, and availability of the system and its information.", ar: "الإجراء أو الضابط أو الأداة (إدارية، تشغيلية، أو تقنية) التي نستخدمها لتقليل المخاطر وحماية السرية والنزاهة والتوافر، مثل جدار الحماية أو سياسات الوصول." },
+    { id: 9, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Least Privilege", en: "The security principle requiring that a user, program, or process is given only those privileges necessary to complete its assigned task.", ar: "مبدأ منح الحساب أو البرنامج أقل قدر من الصلاحيات اللازمة لأداء المهمة المطلوبة فقط، ولفترة الحاجة إليها، لتقليل حجم الضرر إذا تم اختراق الحساب." },
+    { id: 10, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Need-to-Know", en: "The principle that access to information is restricted to individuals who require it to perform their legitimate job duties.", ar: "مبدأ تقييد الوصول إلى المعلومة بحيث يطلع عليها فقط من يحتاج إليها فعلاً لإنجاز عمله، حتى لو كان يملك صلاحيات عامة داخل المؤسسة." },
+    { id: 11, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Separation of Duties (SoD)", en: "A security principle that divides critical tasks and privileges among multiple individuals so that no single person has complete control over a sensitive process from start to finish.", ar: "تقسيم المهام الحساسة بين أكثر من شخص بحيث لا يملك فرد واحد صلاحية إتمام عملية خطيرة بمفرده من البداية للنهاية لمنع الاحتيال والأخطاء." },
+    { id: 12, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Defense in Depth (Layered Security)", en: "An information security strategy integrating people, technology, and operations capabilities to establish variable barriers across multiple layers and missions of the organization.", ar: "وضع طبقات حماية متعددة ومتتابعة (جدار ناري، مصادقة متعددة، تشفير، مراقبة) بحيث إذا تم اختراق طبقة واحدة تتصدى الطبقات التالية للهجوم." },
+    { id: 13, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Non-repudiation", en: "Assurance that the sender of information is provided with proof of delivery and the recipient is provided with proof of the sender’s identity, so neither can later deny having processed the information.", ar: "ضمان وجود دليل تقني يثبت هوية من أرسل أو نفّذ العملية بحيث لا يستطيع إنكارها لاحقاً (مثل التوقيع الرقمي أو سجلات التدقيق الموثقة)." },
+    { id: 14, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Authentication", en: "Verifying the identity of a user, process, or device, often as a prerequisite to allowing access to resources in an information system.", ar: "التحقق من أن المستخدم أو الجهاز هو فعلاً من يدّعي أنه هو قبل منحه الدخول، عبر شيء تعرفه، أو تملكه، أو من صفاتك الحيوية." },
+    { id: 15, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Authorization", en: "The process of verifying that a requested action or service is approved for a specific entity after its identity has been authenticated.", ar: "تحديد ما يُسمح للمستخدم بفعله أو الوصول إليه بعد نجاح التحقق من هويته (Authentication)؛ فالدخول شيء، وصلاحية التعديل شيء آخر." },
+    { id: 16, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Accountability (Auditability)", en: "The security goal that generates the requirement for actions of an entity to be traced uniquely to that entity, supporting non-repudiation, deterrence, fault isolation, intrusion detection, and legal action.", ar: "ربط كل إجراء أو تعديل في النظام بحساب الشخص الذي قام به عبر سجلات التدقيق (Logs)، بحيث يُساءل كل فرد عن أفعاله ولا تُستخدم حسابات مشتركة مجهولة." },
+    { id: 17, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Multi-Factor Authentication (MFA)", en: "Authentication using two or more different factors to achieve authentication: something you know, something you have, or something you are.", ar: "التحقق من الهوية باستخدام عاملين مختلفين على الأقل من فئات مختلفة (كلمة مرور + رمز هاتف أو بصمة)؛ كلمتا مرور معاً لا تُعد MFA." },
+    { id: 18, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Preventive Control", en: "A security control designed to stop an unwanted or unauthorized activity from occurring in the first place.", ar: "ضابط يشتغل قبل وقوع الحادث ليمنعه من الأساس، مثل الجدار الناري (Firewall) الذي يحظر الدخول غير المصرح به، أو التشفير، أو الأقفال المادية." },
+    { id: 19, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Detective Control", en: "A security control designed to identify, discover, or alert on unwanted or unauthorized activity while it is occurring or after it has occurred.", ar: "ضابط لا يمنع الهجوم بنفسه، بل يكتشفه ويسجله أو ينبّه إليه أثناء حدوثه أو بعده، مثل أنظمة كشف التسلل (IDS)، سجلات المراقبة (Logs)، وكاميرات المراقبة." },
+    { id: 20, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Corrective Control", en: "A security control designed to restore systems or data to normal operation and limit damage after an unwanted or unauthorized event has occurred.", ar: "ضابط يُستخدم بعد وقوع الضرر لإصلاح الوضع وإعادة النظام للعمل الطبيعي، مثل استعادة النسخ الاحتياطية (Backups)، تطبيق التحديثات، أو عزل جهاز مصاب." },
+
+    // 21 - 45
+    { id: 21, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Deterrent Control", en: "A security control intended to discourage a potential attacker or violator from attempting an unauthorized action by warning of consequences.", ar: "ضابط رادع يهدف لثني المهاجم أو المخالف نفسياً قبل أن يحاول، مثل لافتة المراقبة بالكاميرات أو شاشة التحذير القانوني (Login Banner)." },
+    { id: 22, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Business Continuity Plan (BCP)", en: "A comprehensive written plan to maintain or quickly resume critical business operations following a major disruption or disaster, focusing on keeping the business running.", ar: "خطة شاملة تهدف إلى إبقاء العمليات الحيوية للمؤسسة مستمرة أو استئنافها بأقل انقطاع ممكن عند حدوث كارثة أو أزمة." },
+    { id: 23, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Disaster Recovery Plan (DRP)", en: "A documented, structured approach with instructions for responding to unplanned incidents, focused specifically on restoring IT infrastructure, systems, and data after a disaster.", ar: "خطة تقنية تركز على استعادة الأنظمة التقنية والبنية التحتية والبيانات بعد وقوع كارثة (مثل حريق أو هجوم فدية)؛ وهي جزء يخدم BCP." },
+    { id: 24, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Business Impact Analysis (BIA)", en: "An assessment that identifies critical business functions and processes, evaluates the potential operational and financial impacts of disruptions, and determines recovery priorities.", ar: "دراسة تحليلية تحدد ما هي العمليات الأكثر حساسية في المؤسسة، وما حجم الخسارة المالية والتشغيلية إذا توقفت، لتحديد أولويات الاستعادة." },
+    { id: 25, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Incident Response (IR)", en: "An organized approach to addressing and managing the aftermath of a security breach or cyberattack, with the goal of limiting damage and reducing recovery time and costs.", ar: "منهجية منظمة للتعامل الفوري مع الحوادث الأمنية (التحضير، الكشف، الاحتواء، الاستئصال، التعافي، الدروس المستفادة) للسيطرة على الاختراق بسرعة." },
+    { id: 26, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Recovery Time Objective (RTO)", en: "The maximum acceptable length of time that a computer, system, network, or application can be down after a failure or disaster occurs before causing unacceptable harm to the business.", ar: "الحد الأقصى للوقت المسموح به لتوقف النظام بعد حدوث عطل أو كارثة قبل أن تتكبد المؤسسة خسائر غير مقبولة." },
+    { id: 27, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Recovery Point Objective (RPO)", en: "The maximum acceptable amount of data loss measured in time, which determines how frequently backups must be taken.", ar: "الحد الأقصى لكمية البيانات المسموح بفقدانها مقاسة بالزمن؛ وهو ما يحدد وتيرة أخذ النسخ الاحتياطية." },
+    { id: 28, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Risk Acceptance", en: "A risk management decision in which an organization acknowledges a risk and chooses to take no action because the cost of mitigation exceeds the potential impact of the risk.", ar: "قرار إداري بقبول الخطر والتعايش معه دون تطبيق ضوابط إضافية عندما تكون تكلفة الحماية أعلى من حجم الخسارة المحتملة." },
+    { id: 29, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Risk Mitigation (Risk Reduction)", en: "The process of implementing security controls and countermeasures to reduce the likelihood or impact of a risk to an acceptable level.", ar: "تخفيف الخطر وتقليله إلى مستوى مقبول عبر تركيب ضوابط حماية لتقليل احتمالية حدوث الهجوم أو تقليل أثره." },
+    { id: 30, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Risk Transference (Risk Sharing)", en: "Shifting the financial impact of a potential risk to a third party, typically through cyber insurance or outsourcing services.", ar: "نقل العبء المالي للخطر إلى طرف ثالث (مثل التأمين السيبراني)، مع بقاء المسؤولية القانونية والأخلاقية على عاتق المؤسسة." },
+    { id: 31, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Risk Avoidance", en: "The elimination of a risk by ceasing the activity, removing the asset, or changing the business process that introduces the risk.", ar: "تجنب الخطر كلياً عبر إيقاف النشاط أو إزالة الخدمة التي تسببه نهائياً." },
+    { id: 32, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Security Policy", en: "A high-level, formal document issued by senior management that establishes the organization's strategic security goals, direction, and mandatory rules.", ar: "السياسة الأمنية؛ وثيقة عليا ورسمية تصدرها الإدارة العليا وتحدد التوجه العام والقواعد الإلزامية للأمن في المؤسسة." },
+    { id: 33, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Standard", en: "A mandatory specification or requirement that defines specific technologies, configurations, or uniform rules used to enforce a security policy.", ar: "المعيار الإلزامي؛ قواعد تقنية محددة وإلزامية تُترجم السياسة الأمنية إلى أرقام ومواصفات دقيقة (مثل طول كلمة المرور أو نوع التشفير)." },
+    { id: 34, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Procedure", en: "A detailed, step-by-step set of instructions describing how to perform a specific operational task or implement a policy and standard.", ar: "الإجراء التنفيذي؛ دليل عملي يشرح الخطوات التفصيلية خطوة بخطوة لكيفية تنفيذ مهمة معينة." },
+    { id: 35, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Guideline", en: "A recommended best practice or non-mandatory suggestion intended to assist users and administrators when no specific standard applies.", ar: "الإرشاد أو التوجيه؛ نصائح وأفضل ممارسات اختيارية (غير إلزامية) تساعد الموظفين على العمل بأمان." },
+    { id: 36, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Due Care", en: "Reasonable steps and actions taken by an organization or individual to protect assets and prevent foreseeable harm, acting as a prudent person would.", ar: "العناية الواجبة؛ القيام بالإجراءات المعقولة والعملية لحماية المؤسسة (فعل الشيء الصحيح)." },
+    { id: 37, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Due Diligence", en: "The ongoing investigation, research, and auditing performed to verify that controls are working effectively and risks are properly understood before making decisions.", ar: "بذل الجهد والتدقيق المستمر؛ البحث والمراجعة للتأكد من أن الحماية فعالة وأن المخاطر مدروسة جيداً." },
+    { id: 38, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Quantitative Risk Analysis", en: "A risk assessment method that assigns objective numerical and monetary values to assets, potential losses, and likelihoods to calculate financial exposure.", ar: "التحليل الكمي للمخاطر؛ تقييم المخاطر بالأرقام والمبالغ المالية الدقيقة." },
+    { id: 39, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Qualitative Risk Analysis", en: "A risk assessment method that evaluates and prioritizes risks based on subjective ratings, expert judgment, and descriptive scales such as High, Medium, or Low.", ar: "التحليل النوعي للمخاطر؛ تقييم المخاطر بناءً على الخبرة والتقدير باستخدام مستويات وصفية (عالي، متوسط، منخفض)." },
+    { id: 40, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Single Loss Expectancy (SLE)", en: "The expected monetary loss every time a specific risk or threat occurs once, calculated as Asset Value (AV) multiplied by Exposure Factor (EF).", ar: "الخسارة المتوقعة في المرة الواحدة؛ المبلغ المالي الذي ستخسره المؤسسة إذا وقع الحادث مرة واحدة فقط (SLE = AV × EF)." },
+    { id: 41, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Annualized Rate of Occurrence (ARO)", en: "The estimated frequency or number of times a specific threat or loss event is expected to happen within a single year.", ar: "معدل التكرار السنوي؛ كم مرة يُتوقع أن يحدث هذا التهديد خلال سنة واحدة." },
+    { id: 42, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Annualized Loss Expectancy (ALE)", en: "The expected monetary loss for an asset due to a specific risk over a one-year period, calculated as Single Loss Expectancy (SLE) multiplied by Annualized Rate of Occurrence (ARO).", ar: "الخسارة السنوية المتوقعة؛ إجمالي الخسارة المالية المتوقعة خلال عام كامل (ALE = SLE × ARO)." },
+    { id: 43, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Tabletop Exercise", en: "A discussion-based exercise where team members meet in an informal setting to walk through simulated emergency or incident scenarios and validate response plans.", ar: "التمرين النظري (على الطاولة)؛ اجتماع يناقش فيه الفريق سيناريو أزمة افتراضي خطوة بخطوة لاختبار الخطط دون إيقاف الأنظمة." },
+    { id: 44, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Parallel Test", en: "A disaster recovery test where backup systems are brought online and run simultaneously alongside primary production systems without disrupting live operations.", ar: "الاختبار المتوازي؛ تشغيل أنظمة الطوارئ والنسخ الاحتياطية جنباً إلى جنب مع الأنظمة الأساسية دون قطع الخدمة." },
+    { id: 45, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Full Interruption Test", en: "A comprehensive disaster recovery test in which primary production operations are completely shut down and shifted entirely to the recovery site.", ar: "اختبار الانقطاع الكامل؛ إيقاف الأنظمة الأساسية فعلياً ونقل العمل بالكامل إلى موقع الطوارئ." },
+
+    // 46 - 60
+    { id: 46, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Physical Access Control", en: "Security measures that restrict physical entry to buildings, rooms, server racks, and hardware assets, such as fences, locks, badges, mantraps, and guards.", ar: "التحكم المادي في الوصول؛ كل وسيلة ملموسة تمنع الوصول الجسدي غير المصرح به للأجهزة والمباني (الأقفال، البطاقات، البوابات المزدوجة، الحراس)." },
+    { id: 47, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Logical (Technical) Access Control", en: "Hardware or software mechanisms used to manage access to systems, networks, and data, such as passwords, encryption, firewalls, and access control lists.", ar: "التحكم المنطقي (التقني) في الوصول؛ الآليات البرمجية والتقنية التي تمنع الوصول الرقمي للأنظمة والبيانات." },
+    { id: 48, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Administrative Access Control", en: "Policies, procedures, standards, training, and background checks implemented by management to govern user behavior and access permissions.", ar: "التحكم الإداري في الوصول؛ القواعد والسياسات البشرية والتنظيمية التي تضعها الإدارة (التدريب الأمني، فحص خلفية الموظفين)." },
+    { id: 49, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Discretionary Access Control (DAC)", en: "An access control model in which the owner of a resource determines who is allowed to access it and what privileges they have.", ar: "التحكم التقديري في الوصول؛ نموذج يكون فيه مالك الملف أو المجلد هو من يقرر من يُسمح له بالدخول أو التعديل." },
+    { id: 50, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Mandatory Access Control (MAC)", en: "A strict access control model enforced by the operating system based on security labels (classifications) and user clearances, where users cannot alter permissions.", ar: "التحكم الإلزامي في الوصول؛ نظام صارم يعتمد على تصنيف سرية البيانات وتصريح المستخدم؛ حتى مالك الملف لا يستطيع تغيير صلاحياته." },
+    { id: 51, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Role-Based Access Control (RBAC)", en: "An access control model that assigns permissions to specific roles or job titles rather than individual users, simplifying administration.", ar: "التحكم المبني على الأدوار الوظيفية؛ تُمنح الصلاحيات للدور الوظيفي (مثل محاسب أو ممرض) وليس للشخص نفسه." },
+    { id: 52, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Attribute-Based Access Control (ABAC)", en: "A dynamic access control model that grants or denies access based on evaluating multiple attributes such as user role, time of day, location, and device health.", ar: "التحكم المبني على السمات والظروف؛ نموذج مرن يقرر السماح أو المنع بناءً على شروط متعددة معاً (الدور، الوقت، الموقع، حالة الجهاز)." },
+    { id: 53, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Principle of Privilege Creep", en: "The gradual accumulation of excessive access rights over time when employees change roles or projects without having their old permissions revoked.", ar: "تراكم الصلاحيات؛ عندما ينتقل موظف من قسم لآخر وتُضاف له صلاحيات جديدة دون حذف صلاحياته القديمة." },
+    { id: 54, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Provisioning", en: "The process of creating, configuring, and granting user accounts and access rights to systems and applications based on approved requests.", ar: "تزويد الحسابات والصلاحيات؛ إنشاء حساب جديد للموظف ومنحه الصلاحيات التي يحتاجها عند انضمامه للعمل." },
+    { id: 55, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Deprovisioning", en: "The timely removal or disabling of user accounts and access privileges when an employee leaves the organization or no longer requires access.", ar: "إلغاء وسحب الصلاحيات؛ إيقاف أو حذف حسابات وصلاحيات الموظف فوراً عند استقالته أو إنهاء عقده." },
+    { id: 56, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Biometrics", en: "Authentication methods based on unique physiological or behavioral human characteristics, such as fingerprints, iris scans, facial recognition, or voice patterns.", ar: "المقاييس الحيوية؛ التحقق من الهوية عبر صفات جسدية أو سلوكية فريدة في الإنسان (بصمة الإصبع، العين، الوجه)." },
+    { id: 57, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Single Sign-On (SSO)", en: "An authentication mechanism that allows a user to log in once with a single set of credentials and gain access to multiple related applications without re-authenticating.", ar: "تسجيل الدخول الموحد؛ آلية تسمح للمستخدم بتسجيل الدخول مرة واحدة فقط للوصول إلى عدة تطبيقات مرتبطة." },
+    { id: 58, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Privileged Access Management (PAM)", en: "Security solutions and practices used to monitor, control, and audit access for accounts with elevated administrative privileges.", ar: "إدارة الوصول المميز؛ أدوات وسياسات لمراقبة وحماية الحسابات ذات الصلاحيات العليا (Administrator / Root)." },
+    { id: 59, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Mantrap (Access Control Vestibule)", en: "A physical security entrance consisting of a small space with two interlocking doors where the second door cannot open until the first door closes and identity is verified.", ar: "البوابة الأمنية المزدوجة؛ غرفة صغيرة ببابين متتاليين؛ لا يُفتح الباب الثاني إلا بعد إغلاق الباب الأول والتحقق من الهوية." },
+    { id: 60, domain: "D3", domainLabel: "D3: التحكم في الوصول", term: "Tailgating (Piggybacking)", en: "A physical security breach in which an unauthorized person follows an authorized individual into a restricted area without presenting credentials.", ar: "التسلل خلف شخص مصرح له؛ دخول شخص غير مخول إلى مبنى أو غرفة محمية مستغلاً فتح الباب من قبل موظف مصرح له." },
+
+    // 61 - 80
+    { id: 61, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Firewall", en: "A network security device or software that monitors and filters incoming and outgoing network traffic based on an organization's previously established security policies.", ar: "الجدار الناري؛ حاجز أمني يفحص حزم البيانات الداخلة والخارجة من الشبكة ويسمح بها أو يمنعها بناءً على قواعد محددة." },
+    { id: 62, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Intrusion Detection System (IDS)", en: "A passive security system that monitors network traffic or system activities for malicious activity or policy violations and generates alerts without blocking traffic.", ar: "نظام كشف التسلل؛ نظام مراقبة سلبي يكتشف الأنشطة المشبوهة ويرسل تنبيهات، لكنه لا يوقف الهجوم تلقائياً." },
+    { id: 63, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Intrusion Prevention System (IPS)", en: "An active network security system placed inline with traffic that detects malicious activity and automatically blocks or drops the traffic in real time.", ar: "نظام منع التسلل؛ نظام أمني نشط يوضع في مسار الشبكة مباشرة؛ يكتشف الهجوم ويحظره فوراً في الوقت الفعلي." },
+    { id: 64, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Virtual Private Network (VPN)", en: "An encrypted communication tunnel created over an untrusted public network (such as the internet) to ensure confidentiality and integrity of transmitted data.", ar: "الشبكة الخاصة الافتراضية؛ نفق مشفر ينقل البيانات بأمان عبر شبكة عامة غير موثوقة (كالإنترنت) لحماية خصوصيتها." },
+    { id: 65, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Demilitarized Zone (DMZ / Screened Subnet)", en: "A perimeter network segment isolated between the external untrusted internet and the internal trusted network to host public-facing services like web and email servers.", ar: "المنطقة منزوعة السلاح (الشبكة المعزولة)؛ منطقة عازلة توضع فيها الخوادم الموجهة للجمهور لحماية الشبكة الداخلية الحساسة." },
+    { id: 66, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Network Segmentation", en: "Dividing a larger computer network into smaller, isolated subnetworks (such as VLANs) to improve security, contain breaches, and limit lateral movement.", ar: "تقسيم الشبكة؛ تجزئة الشبكة الكبيرة إلى شبكات فرعية معزولة لاحتواء الاختراقات ومنع الانتشار الأفقي للهجمات." },
+    { id: 67, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Zero Trust Architecture", en: "A security model based on the principle of 'never trust, always verify,' requiring strict identity and device verification for every user and request regardless of network location.", ar: "معمارية انعدام الثقة؛ نموذج يقوم على مبدأ (لا تثق أبداً، تحقق دائماً)؛ لا تُمنح ثقة تلقائية لأي جهاز حتى داخل الشبكة." },
+    { id: 68, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Denial of Service (DoS) / DDoS", en: "An attack that attempts to make a machine or network resource unavailable to its intended users by overwhelming it with excessive traffic or requests.", ar: "هجوم حجب الخدمة (الموزع)؛ إغراق الخادم أو الشبكة بسيل هائل من الطلبات الوهمية لتعطيله وضرب ركن التوافر." },
+    { id: 69, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Man-in-the-Middle (MitM / On-Path) Attack", en: "An attack in which an adversary secretly intercepts, relays, and possibly alters communications between two parties who believe they are communicating directly with each other.", ar: "هجوم الرجل في المنتصف؛ اعتراض الاتصال سراً بين طرفين والتنصت على البيانات أو تعديلها دون علمهما." },
+    { id: 70, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Phishing", en: "A social engineering attack sent via electronic communication (usually email) that masquerades as a trustworthy entity to trick victims into revealing sensitive data or installing malware.", ar: "التصيد الاحتيالي؛ رسائل خادعة تنتحل صفة جهة موثوقة لخداع الضحية وسرقة كلمات المرور أو بيانات الدفع." },
+    { id: 71, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Spear Phishing", en: "A highly targeted phishing attack customized for a specific individual, role, or organization using researched personal or institutional details.", ar: "التصيد الموجه؛ هجوم تصيد مصمم خصيصاً لشخص أو قسم محدد بعد جمع معلومات دقيقة عنه." },
+    { id: 72, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Whaling", en: "A specialized form of spear phishing aimed specifically at high-profile targets such as senior executives (CEOs, CFOs), politicians, or wealthy individuals.", ar: "صيد الحيتان؛ تصيد موجه يستهدف كبار المسؤولين والمديرين التنفيذيين في المؤسسة." },
+    { id: 73, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Ransomware", en: "A type of malicious software that encrypts a victim's files or locks their system and demands a financial payment (ransom) in exchange for the decryption key.", ar: "برمجيات الفدية؛ برمجية خبيثة تقوم بتشفير ملفات الضحية وتطالبه بدفع فدية مالية مقابل فك التشفير." },
+    { id: 74, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Trojan Horse", en: "Malware disguised as legitimate, useful software that tricks users into installing it, thereby creating a backdoor or executing unauthorized actions.", ar: "حصان طروادة؛ برنامج خبيث يتخفى في شكل برنامج مفيد أو لعبة مجانية ليخدع المستخدم ويجعله يثبته بنفسه." },
+    { id: 75, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "Worm", en: "Self-replicating malware that spreads independently across networks by exploiting vulnerabilities without requiring human interaction or a host file.", ar: "الدودة الإلكترونية؛ برمجية خبيثة تنسخ نفسها وتنتشر تلقائياً عبر الشبكات من جهاز لآخر دون الحاجة لتدخل المستخدم." },
+    { id: 76, domain: "D1", domainLabel: "D1: مبادئ الأمن", term: "Social Engineering", en: "Psychological manipulation of people into performing actions or divulging confidential information rather than exploiting technical vulnerabilities.", ar: "الهندسة الاجتماعية؛ استغلال الثقة البشرية أو الخوف أو الفضول لخداع الأشخاص ودفعهم لكشف معلومات سرية." },
+    { id: 77, domain: "D5", domainLabel: "D5: أمن العمليات", term: "Security Information and Event Management (SIEM)", en: "A centralized security solution that collects, aggregates, correlates, and analyzes log data from across an organization's infrastructure in real time to detect threats.", ar: "نظام إدارة المعلومات والأحداث الأمنية؛ منصة مركزية تجمع سجلات الأحداث (Logs) وتحللها وتربطها لاكتشاف الهجمات." },
+    { id: 78, domain: "D5", domainLabel: "D5: أمن العمليات", term: "Endpoint Detection and Response (EDR)", en: "A security solution deployed on end-user devices (endpoints) that continuously monitors behavior to detect, investigate, and contain advanced threats.", ar: "الكشف والاستجابة على النقاط الطرفية؛ أداة تُثبت على الحواسيب والخوادم لمراقبة سلوك العمليات وعزل الجهاز المصاب فوراً." },
+    { id: 79, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "DNS (Domain Name System)", en: "The hierarchical naming system that translates human-readable domain names into numerical IP addresses required for network routing.", ar: "نظام أسماء النطاقات؛ دليل الهاتف الخاص بالإنترنت الذي يحول أسماء المواقع إلى عناوين رقمية (IP)." },
+    { id: 80, domain: "D4", domainLabel: "D4: أمن الشبكات", term: "ARP (Address Resolution Protocol)", en: "A network protocol used to map a known logical IP address to a physical hardware MAC address within a local area network (LAN).", ar: "بروتوكول تحليل العناوين؛ بروتوكول يعمل داخل الشبكة المحلية لربط عنوان الشبكة المنطقي (IP) بالعنوان الفيزيائي (MAC)." },
+
+    // 81 - 100
+    { id: 81, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Encryption", en: "The process of converting readable data (plaintext) into an unreadable, scrambled format (ciphertext) using an algorithm and a key to protect confidentiality.", ar: "التشفير؛ تحويل البيانات الواضحة المقروءة (Plaintext) إلى نص مشفر غير مفهوم (Ciphertext) لحماية سريتها." },
+    { id: 82, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Symmetric Encryption", en: "An encryption method that uses the exact same secret key for both encrypting plaintext and decrypting ciphertext; it is fast and suited for bulk data.", ar: "التشفير المتماثل؛ استخدام نفس المفتاح السري للتشفير وفك التشفير (مثل AES)؛ يتميز بالسرعة العالية." },
+    { id: 83, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Asymmetric Encryption (Public Key Cryptography)", en: "An encryption method that uses a mathematically linked pair of keys—a public key and a private key—where one encrypts and the other decrypts.", ar: "التشفير غير المتماثل؛ استخدام زوج من المفاتيح: مفتاح عام للتشفير، ومفتاح خاص سري لفك التشفير (مثل RSA)." },
+    { id: 84, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Hashing", en: "A one-way mathematical function that converts input data of any size into a fixed-length string (hash digest) to verify data integrity; it cannot be reversed.", ar: "التجزئة (البصمة الرقمية للبيانات)؛ دالة رياضية في اتجاه واحد فقط (لا يمكن فكها) للتحقق من سلامة البيانات وعدم تعديلها." },
+    { id: 85, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Digital Signature", en: "A cryptographic mechanism that uses the sender's private key to sign a hash of a message, providing authentication, integrity, and non-repudiation.", ar: "التوقيع الرقمي؛ تشفير بصمة الرسالة بالمفتاح الخاص للمُرسل؛ يثبت هوية المُرسل وسلامة الرسالة وعدم الإنكار." },
+    { id: 86, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Public Key Infrastructure (PKI)", en: "The framework of policies, roles, hardware, software, and procedures needed to create, manage, distribute, store, and revoke digital certificates.", ar: "البنية التحتية للمفاتيح العامة؛ المنظومة الكاملة المسؤولة عن إصدار وإدارة وإلغاء الشهادات الرقمية (مثل HTTPS)." },
+    { id: 87, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Data at Rest", en: "Inactive data stored physically in any digital form, such as on hard drives, databases, USB flash drives, or cloud storage buckets.", ar: "البيانات في حالة سكون؛ البيانات المخزنة الثابتة على الأقراص الصلبة أو قواعد البيانات، وتُحمى بتشفير الأقراص." },
+    { id: 88, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Data in Transit (Data in Motion)", en: "Active data moving across a public or private network from one location or device to another.", ar: "البيانات أثناء النقل؛ البيانات التي تتحرك عبر الشبكة أو الإنترنت بين جهازين، وتُحمى ببروتوكولات مشفرة مثل TLS و VPN." },
+    { id: 89, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Data in Use", en: "Active data currently being processed, read, updated, or erased by an application in system memory (RAM) or CPU registers.", ar: "البيانات قيد الاستخدام؛ البيانات الموجودة حالياً في الذاكرة العشوائية (RAM) أو المعالج أثناء قراءتها أو تعديلها." },
+    { id: 90, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Data Classification", en: "The process of categorizing data based on its sensitivity, value, and criticality to the organization to determine appropriate protection levels.", ar: "تصنيف البيانات؛ تقسيم البيانات إلى مستويات حسب حساسيتها (سري للغاية، سري، داخلي، عام) لتحديد الحماية المناسبة." },
+    { id: 91, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Data Retention", en: "Policies and practices that define how long specific types of data must be stored to meet legal, regulatory, and business requirements before secure disposal.", ar: "الاحتفاظ بالبيانات؛ القواعد التي تحدد المدة الزمنية الواجب الاحتفاظ خلالها بالسجلات والبيانات قبل إتلافها بشكل آمن." },
+    { id: 92, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Patch Management", en: "The systematic process of identifying, testing, and installing software updates (patches) to remediate vulnerabilities and improve system stability.", ar: "إدارة التحديثات الأمنية؛ عملية فحص واختبار وتثبيت التحديثات البرمجية بانتظام لسد الثغرات الأمنية." },
+    { id: 93, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Change Management", en: "A structured process for requesting, reviewing, approving, testing, and documenting modifications to IT systems to minimize disruptions and security risks.", ar: "إدارة التغييرات؛ إجراءات منظمة تتطلب المراجعة والموافقة والاختبار قبل إجراء أي تعديل على الأنظمة لتجنب الأعطال." },
+    { id: 94, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Configuration Management (Baseline)", en: "Establishing and maintaining a consistent, secure standard configuration (baseline) for systems and software throughout their lifecycle.", ar: "إدارة الإعدادات (الخط الأساسي الآمن)؛ وضع إعدادات قياسية آمنة وموحدة لكل نظام ومراقبة عدم الانحراف عنها." },
+    { id: 95, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Security Awareness Training", en: "Ongoing educational programs designed to teach employees how to recognize security threats (like phishing) and follow safe computing practices.", ar: "التدريب والتوعية الأمنية؛ برامج مستمرة لتدريب الموظفين على اكتشاف الخدع الإلكترونية لأن العنصر البشري هو خط الدفاع الأول." },
+    { id: 96, domain: "D5", domainLabel: "D5: التشفير والعمليات", term: "Data Loss Prevention (DLP)", en: "Technologies and policies designed to detect and prevent unauthorized transmission, leakage, or exfiltration of sensitive information outside the organization.", ar: "منع فقدان أو تسرب البيانات؛ أدوات وسياسات تراقب حركة البيانات وتمنع إرسال المعلومات الحساسة خارج المؤسسة دون تصريح." },
+    { id: 97, domain: "D2", domainLabel: "D2: الاستمرارية والحوادث", term: "Chain of Custody", en: "Chronological documentation showing the seizure, custody, control, transfer, analysis, and disposition of physical or digital evidence to maintain legal admissibility.", ar: "سلسلة الحيازة؛ سجل دقيق يوثق كل شخص استلم الدليل الرقمي منذ لحظة جمعه وحتى تقديمه للقضاء لإثبات عدم العبث به." },
+    { id: 98, domain: "D1", domainLabel: "D1: مبادئ الأمن والأخلاقيات", term: "ISC2 Code of Ethics — Canon 1", en: "Protect society, the common good, necessary public trust and confidence, and the infrastructure.", ar: "المبدأ الأخلاقي الأول لـ ISC2 (الأعلى أولوية): حماية المجتمع، والصالح العام، والثقة العامة، والبنية التحتية الحيوية." },
+    { id: 99, domain: "D1", domainLabel: "D1: مبادئ الأمن والأخلاقيات", term: "ISC2 Code of Ethics — Canon 2 & 3", en: "Canon 2: Act honorably, honestly, justly, responsibly, and legally. Canon 3: Provide diligent and competent service to principals.", ar: "المبدأ الثاني والثالث لـ ISC2: التصرف بشرف وأمانة وعدل ومسؤولية ووفق القانون (2)، وتقديم خدمة متقنة وكفؤة لأصحاب العمل (3)." },
+    { id: 100, domain: "D1", domainLabel: "D1: مبادئ الأمن والأخلاقيات", term: "ISC2 Code of Ethics — Canon 4", en: "Advance and protect the profession.", ar: "المبدأ الأخلاقي الرابع لـ ISC2: تطوير مهنة الأمن السيبراني وحمايتها، ومشاركة المعرفة والالتزام بالمعايير المهنية العالية." }
+  ];
+
+  const STORAGE_KEY = "isc2_cc_100_mastered";
+  let masteredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  let currentDomain = "all";
+  let currentQuery = "";
+
+  const cardsContainer = document.getElementById("cardsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const visibleCountEl = document.getElementById("visibleCount");
+  const masteredCountEl = document.getElementById("masteredCount");
+  const emptyStateEl = document.getElementById("emptyState");
+
+  function saveMastered() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...masteredSet]));
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+  }
+
+  function toggleMastered(id) {
+    if (masteredSet.has(id)) {
+      masteredSet.delete(id);
+    } else {
+      masteredSet.add(id);
+    }
+    saveMastered();
+    renderCards();
+  }
+
+  function renderCards() {
+    const q = currentQuery.trim().toLowerCase();
+    const filtered = termsData.filter(item => {
+      const matchDomain = currentDomain === "all" || item.domain === currentDomain;
+      const matchSearch =
+        !q ||
+        item.term.toLowerCase().includes(q) ||
+        item.en.toLowerCase().includes(q) ||
+        item.ar.toLowerCase().includes(q) ||
+        String(item.id) === q;
+      return matchDomain && matchSearch;
+    });
+
+    visibleCountEl.textContent = `المعروض: ${filtered.length}`;
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+
+    if (filtered.length === 0) {
+      cardsContainer.innerHTML = "";
+      emptyStateEl.style.display = "block";
+      return;
+    }
+
+    emptyStateEl.style.display = "none";
+    cardsContainer.innerHTML = filtered
+      .map(item => {
+        const isDone = masteredSet.has(item.id);
+        return `
+          <article class="card ${isDone ? "mastered" : ""}">
+            <div class="card-header">
+              <div class="term-title">
+                <span class="term-num">#${item.id}</span>
+                <span class="term-name">${item.term}</span>
+              </div>
+              <div class="card-actions">
+                <span class="domain-tag">${item.domainLabel}</span>
+                <button class="master-btn ${isDone ? "done" : ""}" onclick="toggleMastered(${item.id})">
+                  ${isDone ? "✓ تم الحفظ" : "تحديد كـ مُتقَن"}
+                </button>
+              </div>
+            </div>
+            <div class="en-box">${item.en}</div>
+            <div class="ar-box"><strong>التفسير:</strong> ${item.ar}</div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  searchInput.addEventListener("input", e => {
+    currentQuery = e.target.value;
+    renderCards();
+  });
+
+  document.getElementById("filterButtons").addEventListener("click", e => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+    currentDomain = e.target.dataset.domain;
+    renderCards();
+  });
+
+  renderCards();
+</script>
+</body>
+</html>
