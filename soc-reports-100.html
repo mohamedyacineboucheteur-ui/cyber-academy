@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بنك 100 تقرير SOC Analyst في البيئات الحقيقية | DZ Cyber Academy</title>
+  <style>
+    :root {
+      --bg: #070d19;
+      --surface: #0f172a;
+      --card: #162033;
+      --border: #25334d;
+      --primary: #38bdf8;
+      --accent: #10b981;
+      --warn: #f59e0b;
+      --crit: #ef4444;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --code-bg: #09101f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0c4a6e 0%, #09101f 60%, #064e3b 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 780px;
+      margin: 0 auto 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .stats-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #061826;
+      border-color: var(--primary);
+    }
+
+    .reports-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .report-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: border-color 0.2s;
+    }
+
+    .report-card:hover {
+      border-color: var(--primary);
+    }
+
+    .report-card.reviewed {
+      border-right: 5px solid var(--accent);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .report-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .report-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .inc-id {
+      background: var(--primary);
+      color: #061826;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      direction: ltr;
+    }
+
+    .report-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .badges-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sev-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      direction: ltr;
+    }
+
+    .sev-High {
+      background: rgba(239, 68, 68, 0.18);
+      color: #fca5a5;
+      border: 1px solid #ef4444;
+    }
+
+    .sev-Medium {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fcd34d;
+      border: 1px solid #f59e0b;
+    }
+
+    .sev-Low {
+      background: rgba(56, 189, 248, 0.18);
+      color: #7dd3fc;
+      border: 1px solid #38bdf8;
+    }
+
+    .cat-tag {
+      font-size: 0.78rem;
+      background: rgba(148, 163, 184, 0.12);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .review-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+
+    .review-btn.done {
+      background: var(--accent);
+      color: #052e16;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+    }
+
+    .meta-item strong {
+      color: var(--primary);
+    }
+
+    .tactic-pill {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.12);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      margin-top: 4px;
+    }
+
+    .section-block {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .section-block strong {
+      color: var(--accent);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">SOC Operations & Triage Reports — 100 Real-World Scenarios</div>
+  <h1>بنك الـ 100 مثال لتقارير SOC Analyst في البيئات الحقيقية</h1>
+  <p>نماذج عملية لفرز التنبيهات والتحقيق والاستجابة في شبكات المؤسسات، الخوادم، الهويات، السحابة، والبريد الإلكتروني عبر 100 سيناريو واقعي.</p>
+  <a href="index.html" class="back-link">↩ العودة إلى الصفحة الرئيسية للأكاديمية</a>
+</header>
+
+<div class="container">
+  <section class="controls-panel">
+    <div class="search-row">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ابحث عن حالة، أصل، تكتيك، أو إجراء (مثال: Phishing, RDP, IAM, Cloud, DNS, EDR)..."
+      />
+      <div class="stats-box">
+        <span id="visibleCount">المعروض: 100</span>
+        <span>|</span>
+        <span id="reviewedCount">المُراجَع: 0 / 100</span>
+      </div>
+    </div>
+
+    <div class="filters" id="filterButtons">
+      <button class="filter-btn active" data-cat="all">الكل (100)</button>
+      <button class="filter-btn" data-cat="END">نقاط النهاية والخوادم (1–25)</button>
+      <button class="filter-btn" data-cat="IDN">الهويات والوصول والبريد (26–50)</button>
+      <button class="filter-btn" data-cat="NET">الشبكات والحدود والـ DNS (51–75)</button>
+      <button class="filter-btn" data-cat="CLD">السحابة والحاويات والبيانات (76–100)</button>
+    </div>
+  </section>
+
+  <main class="reports-grid" id="reportsContainer"></main>
+  <div class="empty-state" id="emptyState">لا توجد تقارير مطابقة لمعايير البحث أو التصنيف الحالية.</div>
+
+  <footer>
+    DZ Cyber Academy — مرجع تقارير عمليات الأمن السيبراني (SOC)
+  </footer>
+</div>
+
+<script>
+  const socReports = [
+    // 1 - 25: نقاط النهاية والخوادم (END)
+    { id: 1, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تنفيذ سكريبت غير معتاد من مجلد مؤقت على محطة عمل", sev: "High", asset: "WKST-FIN-042", source: "EDR + Sysmon", tactics: ["Execution", "Defense Evasion"], summary: "رصد تشغيل سكريبت من مسار مؤقت للمستخدم تلاه اتصال خارجي غير مألوف.", action: "عزل المحطة شبكياً، إيقاف العملية، فحص الذاكرة، وإعادة ضبط الجلسات." },
+    { id: 2, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "محاولة تفريغ بيانات الاعتماد من ذاكرة نظام التشغيل", sev: "High", asset: "SRV-APP-011", source: "EDR + Windows Security Logs", tactics: ["Credential Access"], summary: "تنبيه حول وصول عملية غير مصرحة إلى مساحة ذاكرة خدمة المصادقة.", action: "عزل الخادم، تدوير كلمات المرور ذات الصلاحية، ومراجعة الجلسات النشطة." },
+    { id: 3, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "إطلاق موجه الأوامر أو الصدفة من تطبيق مكتبي أو متصفح", sev: "Medium", asset: "WKST-HR-019", source: "EDR", tactics: ["Execution"], summary: "توليد عملية صدفة فرعية من برنامج عرض مستندات أو متصفح بشكل غير معتاد.", action: "التحقق من الملف المصدري، فحص سجل الأوامر، وإغلاق الجلسة المشبوهة." },
+    { id: 4, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تعديل مجدول المهام لإضافة مهمة تشغيل تلقائية جديدة", sev: "Medium", asset: "SRV-WEB-003", source: "SIEM + EDR", tactics: ["Persistence"], summary: "إنشاء مهمة مجدولة جديدة تشير إلى مسار غير قياسي خارج أوقات الصيانة.", action: "مراجعة المهمة مع فريق التشغيل، تعطيلها إذا لم تكن معتمدة، وفحص المالك." },
+    { id: 5, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تعطيل أو إيقاف عامل الحماية أو سجل التدقيق محلياً", sev: "High", asset: "WKST-DEV-088", source: "EDR Health + SIEM", tactics: ["Defense Evasion"], summary: "انقطاع مفاجئ في إرسال السجلات أو تغيير حالة خدمة الحماية على جهاز نشط.", action: "التحقق الفوري من حالة الجهاز، منعه من الوصول للشبكة الحساسة، وإعادة تفعيل الحماية." },
+    { id: 6, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "استخدام أداة إدارة عن بُعد غير معتمدة على خادم داخلي", sev: "High", asset: "SRV-DB-002", source: "EDR + Proxy", tactics: ["Command and Control", "Remote Access"], summary: "رصد تشغيل أداة تحكم عن بُعد خارج القائمة المعتمدة على خادم قاعدة بيانات.", action: "إيقاف الجلسة فوراً، حظر النطاق أو الوجهة الخارجية، والتحقيق في مصدر التثبيت." },
+    { id: 7, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تشفير سريع أو تعديل مكثف للملفات على مشاركة شبكة", sev: "High", asset: "SRV-FILE-001", source: "File Integrity + EDR", tactics: ["Impact"], summary: "ارتفاع حاد في وتيرة تعديل الملفات أو تغيير امتداداتها خلال دقائق معدودة.", action: "فصل مشاركة الملفات المتأثرة، عزل الأجهزة المرتبطة، وتفعيل خطة الاستجابة للحوادث." },
+    { id: 8, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تثبيت خدمة نظام جديدة باسم قريب من خدمة معروفة", sev: "Medium", asset: "SRV-PRINT-004", source: "Windows Event Logs + EDR", tactics: ["Persistence"], summary: "تسجيل خدمة جديدة بمسار ملف غير معتاد واسم يسهل الخلط بينه وبين خدمة أصلية.", action: "التحقق من توقيع الملف ومساره، إيقاف الخدمة المشبوهة، ومراجعة الصلاحيات." },
+    { id: 9, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "اكتشاف أداة فحص شبكة أو جمع معلومات داخلية على محطة", sev: "Medium", asset: "WKST-OPS-031", source: "EDR + IDS", tactics: ["Discovery"], summary: "تشغيل أدوات استكشاف المنافذ أو الشبكة من جهاز مستخدم عادي.", action: "مراجعة نشاط المستخدم، التحقق من وجود تصريح اختبار، وعزل الجهاز عند الاشتباه." },
+    { id: 10, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "حذف نسخ الظل أو سجلات النظام قبل محاولة تخريب", sev: "High", asset: "SRV-ERP-005", source: "EDR + SIEM", tactics: ["Defense Evasion", "Impact"], summary: "رصد أوامر تمسح نسخ الاستعادة أو تفرغ سجلات الأحداث الأمنية.", action: "عزل الخادم فوراً، الحفاظ على اللقطات المتبقية للتحليل، وتصعيد الحادث كأولوية قصوى." },
+    { id: 11, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تحميل مكتبة ديناميكية غير موقعة من مسار غير قياسي", sev: "Medium", asset: "WKST-ACC-012", source: "EDR", tactics: ["Defense Evasion", "Execution"], summary: "استدعاء مكتبة برمجية تفتقر للتوقيع الرقمي أو تقع خارج مجلدات النظام المعتمدة.", action: "فحص الملف وسلسلة الاستدعاء، والتحقق من تحديث البرنامج المضيف." },
+    { id: 12, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تنفيذ أوامر استعلام عن المستخدمين والمجموعات والصلاحيات", sev: "Low", asset: "WKST-MKT-027", source: "EDR + SIEM", tactics: ["Discovery"], summary: "سلسلة أوامر استعلام عن حسابات الدليل والمجموعات الإدارية خلال فترة قصيرة.", action: "مقارنة السلوك بنشاط المستخدم المعتاد ومراقبة أي تصعيد لاحق." },
+    { id: 13, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "اتصال عملية خادم ويب بواجهة الصدفة أو الشبكة الخارجية", sev: "High", asset: "SRV-DMZ-007", source: "EDR + Firewall", tactics: ["Execution", "Command and Control"], summary: "عملية خادم ويب تطلق أمراً نظامياً أو تفتح اتصالاً صادراً غير متوقع.", action: "عزل الخادم، فحص ثغرات التطبيق المنشور، ومراجعة سجلات الطلبات الواردة." },
+    { id: 14, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تعديل مفاتيح التشغيل التلقائي في سجل النظام", sev: "Medium", asset: "WKST-ENG-054", source: "Sysmon + EDR", tactics: ["Persistence"], summary: "إضافة أو تعديل قيمة في مفاتيح بدء التشغيل التلقائي للمستخدم أو النظام.", action: "التحقق من القيمة المضافة، إزالتها إذا كانت غير مصرح بها، وفحص مصدر التعديل." },
+    { id: 15, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "استخدام أداة ضغط وتقسيم ملفات على مجلد بيانات حساسة", sev: "High", asset: "SRV-DATA-009", source: "EDR + DLP", tactics: ["Collection"], summary: "ضغط كمية كبيرة من الملفات الحساسة في أرشيفات داخل مجلد مؤقت.", action: "تقييد الوصول للمجلد، فحص الأرشيفات، ومراقبة أي محاولة نقل خارجي." },
+    { id: 16, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "فشل متكرر في تسجيل الدخول المحلي أو الإداري على خادم", sev: "Medium", asset: "SRV-AD-002", source: "Windows Security Logs", tactics: ["Credential Access"], summary: "سلسلة إخفاقات مصادقة متتالية على حساب أو خادم خلال دقائق قليلة.", action: "التحقق من المصدر الداخلي أو الخارجي، تطبيق التقييد، ومراجعة الحساب المستهدف." },
+    { id: 17, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تشغيل ملف تنفيذي قادم من وحدة تخزين خارجية محظورة", sev: "Medium", asset: "WKST-LOG-015", source: "Device Control + EDR", tactics: ["Initial Access", "Execution"], summary: "محاولة تشغيل برنامج من وسيط تخزين قابل للإزالة على محطة مقيدة.", action: "منع التنفيذ، فحص الوسيط والملف، وتذكير المستخدم بسياسة الوسائط." },
+    { id: 18, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تغيير مفاجئ في صلاحيات ملف أو مجلد حساس", sev: "Medium", asset: "SRV-HR-002", source: "File Audit Logs", tactics: ["Defense Evasion"], summary: "منح صلاحية كاملة أو تغيير ملكية ملف حساس لحساب غير معتاد.", action: "إعادة ضبط الصلاحيات وفق مبدأ أقل صلاحية والتحقق من هوية المنفّذ." },
+    { id: 19, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "انحراف تكوين خادم لينكس أو إضافة مستخدم بصلاحيات مرتفعة", sev: "High", asset: "LNX-GW-003", source: "Auditd + SIEM", tactics: ["Persistence", "Privilege Escalation"], summary: "إضافة حساب جديد أو تعديل ملفات الصلاحيات الإدارية على خادم لينكس.", action: "التحقق من تذكرة التغيير، تعطيل الحساب غير المصرح به، ومراجعة الجلسات." },
+    { id: 20, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تنفيذ تعليمة برمجية مدمجة في الذاكرة دون ملف على القرص", sev: "High", asset: "WKST-EXEC-006", source: "EDR + AMSI", tactics: ["Execution", "Defense Evasion"], summary: "تنبيه حول شيفرة مشبوهة تم فحصها في الذاكرة أثناء تشغيل أمر نصي.", action: "عزل الجهاز فوراً، جمع بيانات الاستجابة، وفحص الحساب المرتبط بالجلسة." },
+    { id: 21, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تعدد جلسات الدخول لنفس الحساب الإداري من أجهزة مختلفة", sev: "High", asset: "SRV-OPS-010", source: "SIEM + Identity Logs", tactics: ["Lateral Movement"], summary: "ظهور جلسات إدارية متزامنة لنفس الحساب على عدة أجهزة خلال فترة وجيزة.", action: "إنهاء الجلسات غير المؤكدة، تدوير بيانات الاعتماد، والتحقيق في نقطة الانطلاق." },
+    { id: 22, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "محاولة وصول عبر مشاركة إدارية داخلية بين محطتين", sev: "Medium", asset: "WKST-IT-014", source: "SMB Logs + EDR", tactics: ["Lateral Movement"], summary: "اتصال مشاركة إدارية بين أجهزة مستخدمين خارج نطاق الإدارة المعتاد.", action: "تحديد مصدر الاتصال ووجهته، والتحقق من وجود برمجية انتشار أو أداة إدارة." },
+    { id: 23, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "توقف مفاجئ لخدمة تطبيق حيوي متبوع برسالة خطأ غير عادية", sev: "Medium", asset: "SRV-PAY-002", source: "App Logs + SIEM", tactics: ["Impact"], summary: "تعطل خدمة معالجة متبوع بأخطاء استثناء متكررة تشير لاحتمال إساءة استخدام.", action: "إبلاغ فريق التطبيقات، فحص المدخلات الأخيرة، ومراقبة استقرار الخدمة." },
+    { id: 24, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "إعادة تشغيل غير مجدولة لخادم إنتاج خارج نافذة الصيانة", sev: "Medium", asset: "SRV-CRM-001", source: "System Logs + Monitoring", tactics: ["Impact"], summary: "إعادة تشغيل مفاجئة لخادم رئيسي دون طلب تغيير أو تحديث مجدول.", action: "مراجعة سبب الإعادة في سجلات النظام وفحص أي نشاط قبل التوقف مباشرة." },
+    { id: 25, cat: "END", catLabel: "نقاط النهاية والخوادم", title: "تجاوز حد الأخطاء البرمجية في واجهة ويب داخلية", sev: "Low", asset: "SRV-INT-008", source: "Web Server + WAF", tactics: ["Discovery"], summary: "ارتفاع ملحوظ في استجابات الخطأ على مسارات محددة من مصدر واحد.", action: "مراجعة الطلبات المرسلة، التحقق من وجود مسح تلقائي، وتطبيق التقييد إن لزم." },
+
+    // 26 - 50: الهويات والوصول والبريد (IDN)
+    { id: 26, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "تسجيل دخول ناجح من موقع جغرافي بعيد خلال وقت قصير", sev: "High", asset: "IDP-USER-0412", source: "Identity Provider Logs", tactics: ["Initial Access", "Valid Accounts"], summary: "مصادقة ناجحة لحساب من دولة أخرى بعد فترة قصيرة من دخول محلي.", action: "إبطال الجلسات فوراً، فرض إعادة المصادقة وتغيير كلمة المرور، والتحقق مع المستخدم." },
+    { id: 27, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "تجاوز أو فشل متكرر في المصادقة متعددة العوامل لحساب حساس", sev: "High", asset: "IDP-ADM-0009", source: "MFA + SIEM", tactics: ["Credential Access"], summary: "سلسلة محاولات مصادقة متعددة العوامل أو طلبات موافقة متكررة على حساب إداري.", action: "تعطيل الجلسات المؤقتة، التواصل المباشر مع المسؤول، وتشديد سياسة التحقق." },
+    { id: 28, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "رش كلمات المرور عبر عشرات الحسابات من مصدر واحد", sev: "Medium", asset: "IDP-GATEWAY", source: "Auth Logs", tactics: ["Credential Access"], summary: "محاولات دخول منخفضة الكثافة لكل حساب لكنها موزعة على عدد كبير من الحسابات.", action: "حظر أو تقييد المصدر، مراجعة أي نجاح استثنائي، وتنبيه الحسابات المتأثرة." },
+    { id: 29, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "إضافة جهاز أو وسيلة مصادقة جديدة لحساب دون سابقة", sev: "High", asset: "IDP-USER-0891", source: "Audit Logs", tactics: ["Persistence", "Account Manipulation"], summary: "تسجيل وسيلة تحقق إضافية أو جهاز جديد على حساب موظف خارج الإجراء المعتاد.", action: "إزالة الوسيلة غير المألوفة فوراً، مراجعة الجلسات الحديثة، وتأكيد هوية المستخدم." },
+    { id: 30, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "إنشاء قاعدة إعادة توجيه بريد إلكتروني تلقائية إلى نطاق خارجي", sev: "High", asset: "MAIL-USER-0234", source: "Email Audit Logs", tactics: ["Collection", "Exfiltration"], summary: "إضافة قاعدة تحويل للرسائل الواردة أو المرسلة نحو عنوان خارجي غير تابع للمؤسسة.", action: "حذف القاعدة فوراً، فحص الرسائل المحولة، ومراجعة نشاط الحساب مؤخراً." },
+    { id: 31, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "حملة تصيد احتيالي تنتحل هوية جهة داخلية أو مورد معروف", sev: "High", asset: "SEG-MAIL-01", source: "Email Security Gateway", tactics: ["Initial Access"], summary: "وصول رسائل ذات روابط أو مرفقات مشبوهة تتنكر بأسماء قيادات أو شركاء.", action: "عزل الرسائل من الصناديق، حظر الروابط والمرسلين، وتنبيه المستلمين المتفاعلين." },
+    { id: 32, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "نقر مستخدم على رابط تصيد مصنف كخبيث أو مشبوه", sev: "High", asset: "WKST-SAL-011", source: "Proxy + Email Gateway", tactics: ["Initial Access"], summary: "تسجيل زيارة لصفحة مشبوهة بعد دقائق من استلام رسالة بريدية غير موثوقة.", action: "فحص جهاز المستخدم، التحقق من إدخال بيانات دخول، وتغيير كلمة المرور إن لزم." },
+    { id: 33, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "إرسال عدد كبير من رسائل البريد الصادرة من حساب موظف فجأة", sev: "High", asset: "MAIL-USER-0519", source: "Email Gateway + SIEM", tactics: ["Command and Control", "Impact"], summary: "ارتفاع مفاجئ في حجم الرسائل الصادرة من حساب واحد مقارنة بمعدله اليومي.", action: "تعليق الإرسال مؤقتاً للحساب، التحقق من اختراق الحساب، وإزالة الرسائل غير المشروعة." },
+    { id: 34, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "تفعيل حساب معطل أو منتهي الصلاحية دون طلب رسمي", sev: "High", asset: "DIR-SVC-01", source: "Directory Audit Logs", tactics: ["Persistence", "Valid Accounts"], summary: "إعادة تفعيل حساب موظف سابق أو حساب خدمة معطل خارج مسار الموافقات.", action: "إعادة تعطيل الحساب فوراً، التحقق من منفّذ التغيير، ومراجعة صلاحياته." },
+    { id: 35, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "إضافة مستخدم إلى مجموعة ذات صلاحيات إدارية عليا", sev: "High", asset: "DIR-ADMIN-GRP", source: "Directory Audit Logs", tactics: ["Privilege Escalation"], summary: "ضم حساب إلى مجموعة إدارية دون تذكرة تغيير معتمدة مسبقاً.", action: "التحقق الفوري مع إدارة الهويات، إزالة العضوية عند عدم الاعتماد، ومراجعة النشاط." },
+    { id: 36, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "دخول حساب خدمة من محطة عمل مستخدم بدلاً من خادمه", sev: "Medium", asset: "SVC-BACKUP-02", source: "Auth + EDR Logs", tactics: ["Lateral Movement"], summary: "استخدام حساب خدمة تفاعلياً أو من جهاز غير مخصص لتشغيله.", action: "منع الدخول التفاعلي لحساب الخدمة، تدوير بياناته، وفحص الجهاز المصدر." },
+    { id: 37, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "استخدام أداة دخول عبر شبكة مجهولة أو خدمة إخفاء هوية", sev: "Medium", asset: "IDP-USER-0703", source: "Identity Risk Engine", tactics: ["Defense Evasion", "Initial Access"], summary: "محاولة وصول من شبكة إخفاء أو بروكسي مجهول لحساب مؤسسي.", action: "التحقق من سياق الجلسة، فرض تحقق إضافي، ومراجعة نشاط الحساب بعد الدخول." },
+    { id: 38, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "تعديل بيانات الاتصال أو رقم التحقق لحساب مستخدم", sev: "Medium", asset: "IDP-USER-0188", source: "Audit Logs", tactics: ["Account Manipulation"], summary: "تغيير رقم الهاتف أو البريد البديل المربوط بحساب دون تأكيد مسبق.", action: "التواصل المباشر مع صاحب الحساب، استعادة البيانات الصحيحة، وفحص الجلسات." },
+    { id: 39, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "محاولة دخول متكررة على حسابات مغادرة أو مستقيلة", sev: "Medium", asset: "IDP-LEGACY", source: "Auth Logs", tactics: ["Credential Access"], summary: "استهداف حسابات تم إيقافها مؤخراً بمحاولات مصادقة من الخارج.", action: "التأكد من إغلاق كافة الجلسات والرموز المرتبطة بالحسابات المعطلة وحظر المصادر." },
+    { id: 40, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "منح صلاحيات واسعة لتطبيق خارجي على حسابات المؤسسة", sev: "High", asset: "OAUTH-APP-07", source: "Cloud Identity Logs", tactics: ["Persistence", "Collection"], summary: "الموافقة على ربط تطبيق طرف ثالث يطلب صلاحيات واسعة على البريد أو الملفات.", action: "إلغاء الموافقة غير المعتمدة، مراجعة سياسة ربط التطبيقات، وفحص البيانات الموصول إليها." },
+    { id: 41, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "تغيير كلمة مرور حساب إداري خارج الإجراء القياسي", sev: "Medium", asset: "ADM-SEC-03", source: "PAM + Directory Logs", tactics: ["Account Manipulation"], summary: "تحديث كلمة مرور حساب مميز دون المرور بنظام إدارة الصلاحيات المعتمد.", action: "التحقق من السبب مع فريق الأمن، إعادة ضبطها عبر النظام المعتمد، ومراجعة السجلات." },
+    { id: 42, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "تكرار رفض المصادقة من نفس عنوان IP عبر عدة خدمات", sev: "Medium", asset: "SSO-PORTAL", source: "SSO + WAF Logs", tactics: ["Credential Access"], summary: "عنوان مصدر واحد يولد إخفاقات مصادقة على بوابة الدخول الموحد وخدمات فرعية.", action: "تطبيق حظر أو تهدئة مؤقتة للعنوان وفحص ما إذا كان تابعاً لمزود أو مستخدم معين." },
+    { id: 43, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "رسالة بريد تحتوي مرفقاً مضغوطاً محمياً بكلمة مرور", sev: "Medium", asset: "SEG-MAIL-02", source: "Email Security Gateway", tactics: ["Initial Access", "Defense Evasion"], summary: "وصول مرفق مشفر بكلمة مرور يحد من قدرة الفحص الآلي لمحتواه الداخلي.", action: "عزل المرفق أو وسمه بوضوح، وتنبيه المستخدم بعدم فتح مرفقات مجهولة المصدر." },
+    { id: 44, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "تسجيل دخول فاشل متكرر على بوابة VPN من خارج المنطقة", sev: "Medium", asset: "VPN-GW-01", source: "VPN + SIEM", tactics: ["Initial Access"], summary: "محاولات دخول متكررة على بوابة الوصول عن بُعد من نطاقات جغرافية غير معتادة.", action: "تشديد قواعد الوصول الجغرافي، مراقبة أي نجاح، وتطبيق التقييد التلقائي." },
+    { id: 45, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "جلسة VPN نشطة لوقت طويل جداً دون نشاط تشغيلي", sev: "Low", asset: "VPN-USER-064", source: "VPN Gateway Logs", tactics: ["Command and Control"], summary: "بقاء اتصال عن بُعد مفتوحاً لساعات طويلة مع حركة بيانات متقطعة أو محدودة.", action: "التحقق من الجلسة مع المستخدم وتطبيق سياسة انتهاء الجلسات الخاملة." },
+    { id: 46, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "محاولة استعلام مكثفة عن بيانات الموظفين عبر الدليل", sev: "Medium", asset: "DIR-SRV-01", source: "Directory + SIEM", tactics: ["Discovery"], summary: "استعلامات متكررة وسريعة لقراءة سمات عدد كبير من الحسابات خلال وقت قصير.", action: "تحديد الحساب المستعلم وفحص ما إذا كان مرتبطاً بسكربت أو أداة غير مصرح بها." },
+    { id: 47, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "استخدام رمز وصول منتهي أو مرفوض بشكل متكرر على واجهة", sev: "Low", asset: "API-AUTH-01", source: "API Gateway Logs", tactics: ["Credential Access"], summary: "إرسال رموز مصادقة غير صالحة أو منتهية بمعدل مرتفع من عميل معين.", action: "مراجعة العميل المرسل للتأكد من وجود خطأ برمجي أو محاولة تخمين رموز." },
+    { id: 48, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "تعديل إعدادات الحماية أو المصادقة على مستوى المستأجر", sev: "High", asset: "TENANT-SEC-CFG", source: "Identity Audit Logs", tactics: ["Defense Evasion"], summary: "تغيير سياسة المصادقة أو شروط الوصول على مستوى النظام ككل دون اعتماد موثق.", action: "مراجعة التغيير فوراً، إرجاع الإعداد السليم عند الحاجة، والتحقيق في الحساب المنفّذ." },
+    { id: 49, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "وصول متكرر إلى صناديق بريد مشتركة أو حسابات غير مملوكة", sev: "Medium", asset: "MAIL-SHARED-05", source: "Email Audit Logs", tactics: ["Collection"], summary: "قراءة أو تنزيل رسائل من صندوق مشترك من حساب لم يعتد الوصول إليه.", action: "مراجعة الصلاحيات الممنوحة على الصندوق والتحقق من سبب الوصول مع المعنيين." },
+    { id: 50, cat: "IDN", catLabel: "الهويات والوصول والبريد", title: "فشل مصادقة متكرر لحساب مستخدم بعد تغيير كلمة المرور", sev: "Low", asset: "IDP-USER-0315", source: "Auth Logs", tactics: ["Credential Access"], summary: "إرسال بيانات قديمة من جهاز أو تطبيق مخزن بعد تحديث كلمة المرور.", action: "إرشاد المستخدم لتحديث الجلسات والخدمات المحفوظة ومنع قفل الحساب المتكرر." },
+
+    // 51 - 75: الشبكات والحدود والـ DNS (NET)
+    { id: 51, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "اتصال صادر مستمر إلى نطاق حديث التسجيل أو مصنف كخبيث", sev: "High", asset: "WKST-OPS-077", source: "DNS + Proxy + Threat Intel", tactics: ["Command and Control"], summary: "تكرار طلبات الاتصال نحو نطاق جديد أو مدرج في قوائم التهديدات من جهاز داخلي.", action: "حظر النطاق والاتصال فوراً، عزل الجهاز المتصل، وفحص العمليات النشطة عليه." },
+    { id: 52, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "مؤشرات نفق DNS عبر استعلامات طويلة أو مشفرة ظاهرياً", sev: "High", asset: "WKST-FIN-019", source: "DNS Logs + IDS", tactics: ["Command and Control", "Exfiltration"], summary: "استعلامات DNS متكررة بنصوص طويلة غير اعتيادية نحو نطاق فرعي واحد.", action: "تقييد الاستعلام نحو النطاق المشبوه، فحص الجهاز المصدر، ومراقبة حجم البيانات." },
+    { id: 53, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "حجم مرتفع غير معتاد للبيانات الصادرة نحو وجهة خارجية", sev: "High", asset: "SRV-DB-004", source: "NetFlow + Firewall", tactics: ["Exfiltration"], summary: "نقل حجم كبير من البيانات خارج الشبكة خلال فترة وجيزة مقارنة بالمعتاد.", action: "تقييد الاتصال الصادر أو إيقافه مؤقتاً، فحص البيانات المنقولة، والتحقيق في المصدر." },
+    { id: 54, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "مسح منافذ أو اكتشاف خدمات من عنوان داخلي نحو شبكات فرعية", sev: "Medium", asset: "WKST-ENG-012", source: "IDS + Firewall Logs", tactics: ["Discovery"], summary: "محاولات اتصال متعددة بمنافذ أو أجهزة مختلفة من مصدر واحد خلال وقت قصير.", action: "التحقق من وجود فحص أمني معتمد أو إصابة برمجية، وعزل المصدر عند الاشتباه." },
+    { id: 55, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "محاولة وصول خارجية مباشرة إلى منفذ إدارة أو سطح مكتب بعيد", sev: "Medium", asset: "FW-EDGE-01", source: "Firewall Logs", tactics: ["Initial Access"], summary: "اتصالات واردة من الإنترنت نحو منافذ إدارة أو وصول بعيد غير مخصصة للانكشاف العام.", action: "التأكد من إغلاق المنافذ غير المصرح بها على الحافة وتشديد قواعد الجدار الناري." },
+    { id: 56, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "تجاوز قاعدة في جدار الحماية أو تعديل قائمة الوصول دون توثيق", sev: "High", asset: "FW-CORE-01", source: "Firewall Audit Logs", tactics: ["Defense Evasion"], summary: "إضافة أو تعديل قاعدة تسمح بمرور إضافي دون سجل تغيير معتمد.", action: "مراجعة القاعدة مع فريق الشبكة، إرجاعها إذا كانت غير مصرح بها، وفحص منفّذ التعديل." },
+    { id: 57, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "سلسلة محاولات استغلال أو حقن مسجلة على بوابة التطبيقات", sev: "High", asset: "WAF-PROD-01", source: "WAF + Web Logs", tactics: ["Initial Access"], summary: "طلبات تحتوي أنماط حقن أو تجاوز مسارات موجهة نحو تطبيق منشور.", action: "فحص ما إذا نجح أي طلب أو أعاد استجابة غير عادية، وحظر المصدر المتكرر عند الحاجة." },
+    { id: 58, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "اتصال من قطاع المستخدمين إلى خوادم قواعد البيانات مباشرة", sev: "High", asset: "VLAN-USER -> SRV-DB", source: "Firewall + NetFlow", tactics: ["Lateral Movement"], summary: "حركة شبكة تتجاوز الطبقات الوسيطة المعتادة للوصول إلى خادم بيانات حساس.", action: "حظر المسار المباشر فوراً، التحقق من الجهاز المصدر، ومراجعة قواعد العزل الشبكي." },
+    { id: 59, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "استخدام بروتوكول غير مشفر لنقل بيانات أو أوامر حساسة", sev: "Medium", asset: "SRV-APP-009", source: "IDS + Packet/Flow Logs", tactics: ["Credential Access", "Collection"], summary: "رصد حركة بيانات أو مصادقة عبر قنوات غير مشفرة داخل الشبكة.", action: "تحديث الإعدادات لاعتماد قنوات مشفرة وفحص ما إذا تم التقاط بيانات حساسة." },
+    { id: 60, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "اتصال بجهاز أو عنوان محظور سابقاً في سياسة الحماية", sev: "Medium", asset: "WKST-SAL-045", source: "Firewall + Proxy", tactics: ["Command and Control"], summary: "محاولة اتصال صادرة نحو عنوان أو نطاق مدرج ضمن قائمة الحظر.", action: "التحقق من سبب المحاولة على الجهاز وفحص وجود برمجية ضارة تحاول الاتصال." },
+    { id: 61, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "ارتفاع مفاجئ في طلبات HTTP أو الاتصالات المتزامنة نحو خدمة", sev: "Medium", asset: "LB-WEB-01", source: "Load Balancer + WAF", tactics: ["Impact"], summary: "زيادة حادة في معدل الطلبات أو الاتصالات المفتوحة تؤثر على زمن الاستجابة.", action: "تفعيل قواعد التقييد والتخفيف ومراقبة توفر الخدمة بالتنسيق مع فريق البنية." },
+    { id: 62, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "استعلام DNS مكثف عن نطاقات غير موجودة من مصدر داخلي", sev: "Low", asset: "WKST-MKT-008", source: "DNS Server Logs", tactics: ["Command and Control", "Discovery"], summary: "عدد كبير من ردود عدم وجود النطاق من جهاز واحد خلال فترة قصيرة.", action: "فحص الجهاز بحثاً عن برمجية تولد أسماء نطاقات عشوائية أو أداة غير معتمدة." },
+    { id: 63, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "شهادة TLS غير موثوقة أو منتهية أو غير متطابقة على خدمة", sev: "Medium", asset: "GW-API-02", source: "TLS Monitoring + Proxy", tactics: ["Defense Evasion", "Initial Access"], summary: "رصد اتصال يستخدم شهادة ذاتية أو غير مطابقة للنطاق المتوقع.", action: "التحقق من الشهادة مع فريق التشغيل ومعالجة الخطأ أو فحص وجود اعتراض محتمل." },
+    { id: 64, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "اتصال من جهاز محمول غير مسجل بشبكة داخلية محمية", sev: "Medium", asset: "NAC-WIFI-01", source: "NAC + Wireless Logs", tactics: ["Initial Access"], summary: "محاولة جهاز غير معروف أو غير متوافق مع السياسة الحصول على وصول شبكي.", action: "إبقائه في شبكة العزل أو حظره، والتحقق من هويته وسبب وجوده في الموقع." },
+    { id: 65, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "مرور بيانات عبر منفذ غير قياسي لبروتوكول معروف", sev: "Medium", asset: "WKST-DEV-021", source: "IDS + Firewall", tactics: ["Command and Control", "Defense Evasion"], summary: "استخدام بروتوكول اتصال على منفذ مختلف عن المنفذ القياسي المعتاد.", action: "فحص طبيعة الحركة وتحديد التطبيق المسؤول والتحقق من مشروعية استخدامه." },
+    { id: 66, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "تغير مفاجئ في مسار التوجيه أو إعلان شبكة على موجه حدودي", sev: "High", asset: "RTR-EDGE-02", source: "Network Telemetry + SIEM", tactics: ["Impact", "Collection"], summary: "رصد تغير غير متوقع في جداول التوجيه أو حالة الجلسات البينية.", action: "إبلاغ فريق الشبكة فوراً، التحقق من سلامة التهيئة، ومراقبة انقطاع أو تحويل الحركة." },
+    { id: 67, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "اتصالات صادرة دورية منتظمة نحو خادم خارجي واحد", sev: "Medium", asset: "WKST-HR-033", source: "Proxy + NetFlow", tactics: ["Command and Control"], summary: "نبضات اتصال متكررة بفواصل زمنية منتظمة نحو عنوان خارجي غير مألوف.", action: "فحص الجهاز والعمليات المرتبطة بالاتصال وحظر الوجهة عند تأكيد الشبهة." },
+    { id: 68, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "محاولة وصول إلى خدمة إدارة داخلية من شبكة الضيوف", sev: "High", asset: "VLAN-GUEST -> MGMT", source: "Firewall Logs", tactics: ["Lateral Movement", "Discovery"], summary: "حركة واردة من شبكة الضيوف أو الشبكات غير الموثوقة تستهدف نطاق الإدارة.", action: "التحقق من فاعلية العزل، حظر المصدر، ومراجعة قواعد الفصل بين الشبكات." },
+    { id: 69, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "زيادة مفاجئة في حزم الفحص أو الاستكشاف من عنوان خارجي", sev: "Low", asset: "FW-EDGE-01", source: "IDS + Firewall", tactics: ["Reconnaissance"], summary: "مسح استطلاعي من عنوان خارجي يستهدف منافذ متعددة على الحافة.", action: "تقييم شدة المسح والتأكد من إغلاق المنافذ غير اللازمة دون إشغال الفريق بضوضاء عادية." },
+    { id: 70, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "تنزيل ملف تنفيذي أو أرشيف كبير من مصدر غير معروف عبر المتصفح", sev: "Medium", asset: "WKST-ACC-004", source: "Proxy + EDR", tactics: ["Initial Access"], summary: "تحميل ملف غير معتاد من موقع حديث أو منخفض السمعة على جهاز موظف.", action: "فحص الملف والتحقق من تشغيله، وحظر المصدر إذا ثبتت خطورته." },
+    { id: 71, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "اتصال داخلي مكثف ببروتوكول مشاركة الملفات بين أجهزة متعددة", sev: "Medium", asset: "VLAN-CORP", source: "NetFlow + IDS", tactics: ["Lateral Movement", "Discovery"], summary: "مسح أو اتصال واسع بمنافذ مشاركة الملفات من نقطة داخلية واحدة.", action: "تحديد الجهاز المصدر، فحصه أمنياً، والتحقق من عدم وجود أداة انتشار." },
+    { id: 72, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "تجاوز حد طلبات واجهة برمجة تطبيقات من مفتاح أو عميل واحد", sev: "Medium", asset: "API-GW-01", source: "API Gateway + WAF", tactics: ["Discovery", "Impact"], summary: "إرسال طلبات بمعدل يفوق الحد المسموح للعميل أو المفتاح خلال فترة قصيرة.", action: "تطبيق التقييد، مراجعة سلوك العميل، والتحقق من تسرب المفتاح أو إساءة استخدامه." },
+    { id: 73, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "اتصال خادم داخلي بخدمة سحابية خارج النطاق المعتاد للعمل", sev: "Medium", asset: "SRV-APP-014", source: "Proxy + Cloud Logs", tactics: ["Exfiltration", "Command and Control"], summary: "خادم تطبيقات يتصل بحساب تخزين أو خدمة خارجية لم يعتد التعامل معها.", action: "مراجعة سبب الاتصال مع مالك التطبيق وحظره فوراً إذا كان غير مشروع." },
+    { id: 74, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "فشل متكرر في ربط شبكة افتراضية أو نفق موقع إلى موقع", sev: "Medium", asset: "VPN-SITE-01", source: "VPN + Network Logs", tactics: ["Impact"], summary: "انقطاع أو فشل متكرر في مصادقة نفق الربط بين موقعين.", action: "التحقق من الحالة مع فريق الشبكة واستبعاد وجود تعطل أو محاولة تشويش." },
+    { id: 75, cat: "NET", catLabel: "الشبكات والحدود والـ DNS", title: "استخدام أداة سطر أوامر شبكية غير معتادة على محطة مستخدم", sev: "Low", asset: "WKST-OPS-052", source: "EDR + NetFlow", tactics: ["Discovery", "Command and Control"], summary: "تشغيل أداة اتصال شبكي من مجلد مستخدم أو خارج المسارات القياسية.", action: "فحص الأداة والهدف المتصل به والتأكد من خلو الجهاز من أي تأثير ضار." },
+
+    // 76 - 100: السحابة والحاويات والبيانات (CLD)
+    { id: 76, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تغيير حاوية تخزين سحابية من خاصة إلى متاحة للعامة", sev: "High", asset: "S3-BUCKET-PROD-01", source: "Cloud Posture + Audit Logs", tactics: ["Exposure", "Collection"], summary: "تعديل صلاحيات الوصول على حاوية بيانات لتصبح قابلة للقراءة أو الوصول العام.", action: "إعادة ضبط الصلاحيات إلى خاصة فوراً، فحص البيانات المخزنة، ومراجعة من نفّذ التغيير." },
+    { id: 77, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "إنشاء مفتاح وصول أو بيانات اعتماد جديدة لحساب سحابي مميز", sev: "High", asset: "IAM-ROLE-ADMIN", source: "Cloud Audit Logs", tactics: ["Persistence", "Credential Access"], summary: "توليد مفتاح برمجي جديد لحساب أو دور عالي الصلاحية دون طلب معتمد.", action: "التحقق من المشروعية مع مسؤول السحابة، تعطيل المفتاح غير المعتمد، ومراجعة استخدامه." },
+    { id: 78, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "إطلاق آلة افتراضية أو مورد سحابي كبير في منطقة غير معتادة", sev: "High", asset: "CLD-REGION-AP", source: "Cloud Billing + Audit Logs", tactics: ["Resource Hijacking", "Impact"], summary: "إنشاء موارد حوسبية ذات استهلاك مرتفع في منطقة جغرافية لا تستخدمها المؤسسة.", action: "إيقاف أو إزالة الموارد غير المصرح بها، التحقق من الحساب المنفّذ، ومراجعة المفاتيح." },
+    { id: 79, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "إيقاف تسجيل الأحداث السحابية أو تعديل إعدادات المراقبة", sev: "High", asset: "CLD-AUDIT-TRAIL", source: "Cloud Audit Logs", tactics: ["Defense Evasion"], summary: "تعطيل مسار التدقيق أو حذف قناة تجميع السجلات السحابية.", action: "إعادة تفعيل التسجيل فوراً، التحقق من هوية المنفّذ، وتصعيد الحادث." },
+    { id: 80, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تنفيذ أمر داخل حاوية نشطة أو الخروج من بيئة الحاوية", sev: "High", asset: "K8S-POD-WEB-12", source: "Container Runtime Security", tactics: ["Execution", "Privilege Escalation"], summary: "رصد جلسة تنفيذ أو محاولة تجاوز حدود العزل داخل حاوية تشغيل.", action: "عزل العقدة أو إيقاف الحاوية المصابة، فحص الصورة، ومراجعة صلاحيات التشغيل." },
+    { id: 81, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "سحب أو تحميل كمية كبيرة من الكائنات من مخزن سحابي", sev: "High", asset: "CLD-OBJ-FINANCE", source: "Cloud Data Access Logs", tactics: ["Collection", "Exfiltration"], summary: "قراءة أو تنزيل مكثف للملفات من هوية أو عنوان خارج النمط المعتاد.", action: "تقييد الوصول للهوية أو المصدر، فحص الملفات الموصول إليها، والتحقيق في النشاط." },
+    { id: 82, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تعديل مجموعة أمان سحابية لفتح منفذ حساس على الإنترنت", sev: "High", asset: "SG-DB-PROD", source: "Cloud Network Audit", tactics: ["Defense Evasion", "Initial Access"], summary: "إضافة قاعدة تسمح بالوصول العام إلى منفذ قاعدة بيانات أو إدارة.", action: "إزالة القاعدة المفتوحة فوراً، التحقق من عدم حدوث وصول غير مصرح، وتشديد القيود." },
+    { id: 83, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تصدير أو مشاركة لقطة قرص أو نسخة احتياطية خارج الحساب", sev: "High", asset: "SNAP-DB-CORE-01", source: "Cloud Audit Logs", tactics: ["Exfiltration"], summary: "مشاركة أو نسخ لقطة بيانات حساسة إلى حساب أو جهة خارجية.", action: "إلغاء المشاركة فوراً، التحقق من سلامة البيانات، والتحقيق في الحساب المنفّذ." },
+    { id: 84, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "استخدام بيانات اعتماد سحابية من عنوان خارج نطاق العمل", sev: "High", asset: "IAM-USER-DEPLOY", source: "Cloud Access Logs", tactics: ["Valid Accounts", "Initial Access"], summary: "تنفيذ أوامر برمجية بمفتاح وصول سحابي من موقع أو شبكة غير معتادة.", action: "تعطيل المفتاح مؤقتاً، تدوير الأسرار، ومراجعة كل العمليات المنفذة عبره." },
+    { id: 85, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "نشر صورة حاوية تحتوي ثغرات حرجة أو غير مفحوصة", sev: "Medium", asset: "REG-APP-IMAGE", source: "Registry Scan + CI/CD", tactics: ["Initial Access"], summary: "محاولة تشغيل حاوية بصورة لم تجتز فحص الأمان أو تحوي مكونات مكشوفة.", action: "منع النشر غير المفحوص، إبلاغ فريق التطوير، وتحديث الصورة الأساسية." },
+    { id: 86, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تعديل سياسة وصول هوية سحابية لمنح صلاحيات واسعة", sev: "High", asset: "IAM-POLICY-04", source: "Cloud Audit Logs", tactics: ["Privilege Escalation"], summary: "منح صلاحيات إدارية أو شاملة لهوية دون تقيد بالموارد أو الشروط.", action: "مراجعة السياسة وتقليص الصلاحيات إلى الحد الأدنى والتحقق من سبب التعديل." },
+    { id: 87, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "محاولة وصول متكررة إلى خدمة البيانات الوصفية من مثيل", sev: "Medium", asset: "VM-WEB-005", source: "Host + Cloud Telemetry", tactics: ["Credential Access", "Discovery"], summary: "طلبات متكررة لعنوان البيانات الوصفية للآلة الافتراضية قد تشير لمحاولة استغلال.", action: "فحص التطبيق المستضاف على المثيل والتحقق من تفعيل النسخة الآمنة لخدمة البيانات." },
+    { id: 88, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "إزالة مفتاح تشفير أو تعطيل تدوير المفاتيح السحابية", sev: "High", asset: "KMS-KEY-PROD", source: "Cloud KMS Logs", tactics: ["Impact", "Defense Evasion"], summary: "جدولة حذف مفتاح تشفير أو إيقاف التجديد الآلي لمفتاح يخدم بيانات حساسة.", action: "إلغاء الحذف فوراً، التحقق من المنفّذ، وضمان عدم تأثر قراءة البيانات." },
+    { id: 89, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "ارتفاع غير معتاد في استعلامات قاعدة بيانات سحابية أو محاولات فاشلة", sev: "Medium", asset: "RDS-CUST-01", source: "Database Audit Logs", tactics: ["Credential Access", "Collection"], summary: "تكرار فشل المصادقة أو استعلامات ضخمة غير معتادة على قاعدة البيانات.", action: "مراجعة مصادر الاتصال، فحص الحسابات المستخدمة، وتأمين قواعد الوصول الشبكي." },
+    { id: 90, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "إنشاء حساب خدمة جديد في نظام حاويات بصلاحيات مرتفعة", sev: "High", asset: "K8S-SA-ADMIN", source: "Kubernetes Audit Logs", tactics: ["Privilege Escalation", "Persistence"], summary: "إنشاء حساب خدمة أو ربط دور إداري جديد داخل عنقود الحاويات.", action: "التحقق من اعتماد التغيير، إزالة الصلاحيات الزائدة، ومراجعة أي pods تستخدمه." },
+    { id: 91, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تجاوز حد منع تسرب البيانات عند إرسال ملفات أو رسائل", sev: "High", asset: "DLP-CHANNEL-01", source: "DLP Logs", tactics: ["Exfiltration"], summary: "محاولة نقل أو إرسال مستندات مصنفة كسرية عبر قناة غير مصرح بها.", action: "منع أو إيقاف النقل حسب السياسة، التحقق من المحتوى والمرسل، وتصعيد الحالة." },
+    { id: 92, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "وصول متكرر إلى ملفات حساسة من مستخدم خارج ساعات العمل", sev: "Medium", asset: "REPO-CONF-DOCS", source: "File/Cloud Access Logs", tactics: ["Collection"], summary: "فتح أو تنزيل ملفات حساسة في أوقات غير معتادة للمستخدم.", action: "التحقق من السياق مع المستخدم أو مديره ومراجعة ما إذا كان هناك نشاط غير طبيعي." },
+    { id: 93, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تسرب محتمل لسر أو رمز في مستودع شيفرة أو سجل بناء", sev: "High", asset: "CI-PIPELINE-02", source: "Secret Scanner + CI Logs", tactics: ["Credential Access"], summary: "رصد نمط مفتاح أو كلمة مرور ضمن ملف شيفرة أو مخرجات بناء.", action: "إبطال أو تدوير السر فوراً، إزالته من السجل، ومراجعة أي وصول تم به." },
+    { id: 94, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تعديل إعدادات مشاركة الملفات السحابية لروابط خارجية مفتوحة", sev: "Medium", asset: "CLOUD-DRIVE-01", source: "Cloud Collaboration Logs", tactics: ["Exposure"], summary: "إنشاء رابط مشاركة خارجي أو بلا قيود على مجلد أو ملف عمل.", action: "تقييد الرابط أو إزالته، مراجعة الملفات المشاركة، وتذكير المستخدم بقواعد المشاركة." },
+    { id: 95, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "فشل متكرر في الوصول إلى مخزن أسرار من تطبيق إنتاجي", sev: "Medium", asset: "VAULT-PROD-01", source: "Secrets Manager Logs", tactics: ["Credential Access", "Impact"], summary: "رفض طلبات قراءة الأسرار أو انتهاء صلاحية الرموز بشكل متكرر.", action: "التنسيق مع فريق التطبيقات لمعالجة انتهاء الصلاحية واستبعاد محاولة وصول غير مشروعة." },
+    { id: 96, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تغير مفاجئ في حجم النسخ الاحتياطي أو فشل اكتماله", sev: "Medium", asset: "BKP-VAULT-01", source: "Backup Monitoring + SIEM", tactics: ["Impact"], summary: "انخفاض كبير في حجم النسخة أو فشل نسخ الأنظمة الحساسة.", action: "التحقق من سبب الفشل مع فريق البنية وضمان توفر نسخ سليمة ومعزولة." },
+    { id: 97, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تنفيذ دالة بدون خادم بمعدل استدعاء أو زمن غير معتاد", sev: "Medium", asset: "FN-WEBHOOK-03", source: "Serverless + Cloud Logs", tactics: ["Execution", "Impact"], summary: "ارتفاع حاد في استدعاءات دالة أو أخطاء التنفيذ خلال دقائق قليلة.", action: "فحص مصدر الطلبات والمدخلات، تطبيق التقييد، والتحقق من عدم إساءة استخدام نقطة النهاية." },
+    { id: 98, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "إضافة مستخدم خارجي إلى مساحة عمل أو مشروع مشترك", sev: "Medium", asset: "WS-PROJ-ALPHA", source: "Collaboration Audit Logs", tactics: ["Persistence", "Collection"], summary: "دعوة أو إضافة حساب خارجي إلى مساحة عمل تحوي شيفرة أو وثائق.", action: "التحقق من اعتماد الإضافة، إزالة الحساب غير المصرح به، ومراجعة النشاط داخل المساحة." },
+    { id: 99, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "حذف جماعي للملفات أو السجلات من حساب مستخدم واحد", sev: "High", asset: "CLD-STORAGE-04", source: "Cloud Audit Logs", tactics: ["Impact", "Defense Evasion"], summary: "حذف عدد كبير من الملفات أو الكائنات خلال فترة قصيرة بواسطة حساب واحد.", action: "إيقاف النشاط أو عزل الحساب مؤقتاً، التحقق من إمكانية الاستعادة، وتصعيد الحادث." },
+    { id: 100, cat: "CLD", catLabel: "السحابة والحاويات والبيانات", title: "تضارب في التوقيت أو انقطاع مزامنة الوقت بين خوادم ومستشعرات", sev: "Low", asset: "NTP-CLUSTER-01", source: "SIEM Health + System Logs", tactics: ["Defense Evasion"], summary: "انحراف زمني بين الأنظمة يؤثر على دقة ترتيب الأحداث والتحقيق.", action: "إعادة مزامنة الوقت عبر خوادم موثوقة لضمان موثوقية الجداول الزمنية في التحقيق." }
+  ];
+
+  const STORAGE_KEY = "soc_100_real_reports_reviewed";
+  let reviewedSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  let currentCat = "all";
+  let currentQuery = "";
+
+  const container = document.getElementById("reportsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const visibleCountEl = document.getElementById("visibleCount");
+  const reviewedCountEl = document.getElementById("reviewedCount");
+  const emptyStateEl = document.getElementById("emptyState");
+
+  function saveReviewed() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...reviewedSet]));
+    reviewedCountEl.textContent = `المُراجَع: ${reviewedSet.size} / 100`;
+  }
+
+  function toggleReviewed(id) {
+    if (reviewedSet.has(id)) {
+      reviewedSet.delete(id);
+    } else {
+      reviewedSet.add(id);
+    }
+    saveReviewed();
+    renderReports();
+  }
+
+  function renderReports() {
+    const q = currentQuery.trim().toLowerCase();
+    const filtered = socReports.filter(r => {
+      const matchCat = currentCat === "all" || r.cat === currentCat;
+      const matchSearch =
+        !q ||
+        r.title.toLowerCase().includes(q) ||
+        r.asset.toLowerCase().includes(q) ||
+        r.source.toLowerCase().includes(q) ||
+        r.summary.toLowerCase().includes(q) ||
+        r.action.toLowerCase().includes(q) ||
+        r.tactics.some(t => t.toLowerCase().includes(q)) ||
+        String(r.id) === q;
+      return matchCat && matchSearch;
+    });
+
+    visibleCountEl.textContent = `المعروض: ${filtered.length}`;
+    reviewedCountEl.textContent = `المُراجَع: ${reviewedSet.size} / 100`;
+
+    if (filtered.length === 0) {
+      container.innerHTML = "";
+      emptyStateEl.style.display = "block";
+      return;
+    }
+
+    emptyStateEl.style.display = "none";
+    container.innerHTML = filtered
+      .map(r => {
+        const isDone = reviewedSet.has(r.id);
+        const incCode = `INC-${String(r.id).padStart(3, "0")}`;
+        const tacticsHtml = r.tactics.map(t => `<span class="tactic-pill">${t}</span>`).join(" ");
+        return `
+          <article class="report-card ${isDone ? "reviewed" : ""}">
+            <div class="report-header">
+              <div class="report-title-wrap">
+                <span class="inc-id">${incCode}</span>
+                <h2 class="report-title">${r.title}</h2>
+              </div>
+              <div class="badges-wrap">
+                <span class="sev-badge sev-${r.sev}">${r.sev}</span>
+                <span class="cat-tag">${r.catLabel}</span>
+                <button class="review-btn ${isDone ? "done" : ""}" onclick="toggleReviewed(${r.id})">
+                  ${isDone ? "✓ تمت المراجعة" : "تحديد كـ مُراجَع"}
+                </button>
+              </div>
+            </div>
+
+            <div class="meta-grid">
+              <div class="meta-item"><strong>الأصل المستهدف:</strong> <span>${r.asset}</span></div>
+              <div class="meta-item"><strong>مصدر الرصد:</strong> <span>${r.source}</span></div>
+              <div class="meta-item"><strong>التصنيف السلوكي:</strong><br/>${tacticsHtml}</div>
+            </div>
+
+            <div class="section-block"><strong>ملخص التحقيق:</strong> ${r.summary}</div>
+            <div class="section-block"><strong>إجراء الاحتواء والتصعيد:</strong> ${r.action}</div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  searchInput.addEventListener("input", e => {
+    currentQuery = e.target.value;
+    renderReports();
+  });
+
+  document.getElementById("filterButtons").addEventListener("click", e => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+    e.target.classList.add("active");
+    currentCat = e.target.dataset.cat;
+    renderReports();
+  });
+
+  renderReports();
+</script>
+</body>
+</html>
