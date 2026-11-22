@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مرجع 100 تعريف — أمن التطبيقات والمنصات (OWASP) | DZ Cyber Academy</title>
+  <style>
+    :root {
+      --bg: #070d19;
+      --surface: #0f172a;
+      --card: #162033;
+      --border: #25334d;
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --accent: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --en-bg: #09101f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0c4a6e 0%, #09101f 60%, #064e3b 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 760px;
+      margin: 0 auto 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .stats-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #061826;
+      border-color: var(--primary);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: transform 0.15s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+    }
+
+    .card.mastered {
+      border-right: 5px solid var(--accent);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .term-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      direction: ltr;
+    }
+
+    .term-num {
+      background: var(--primary);
+      color: #061826;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .term-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .domain-tag {
+      font-size: 0.78rem;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .master-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .master-btn.done {
+      background: var(--accent);
+      color: #052e16;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .en-box {
+      direction: ltr;
+      text-align: left;
+      background: var(--en-bg);
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .ar-box {
+      color: #f1f5f9;
+      font-size: 0.97rem;
+      padding-right: 4px;
+    }
+
+    .ar-box strong {
+      color: var(--accent);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">OWASP Application & Platform Security — 100 Definitions</div>
+  <h1>بنك الـ 100 تعريف لأمن التطبيقات والمنصات (OWASP)</h1>
+  <p>مصطلحات ومفاهيم أساسية في التحكم بالوصول والمصادقة، الحقن ومعالجة المدخلات، التشفير والإعدادات، والاختبار والهندسة الآمنة بأسلوب OWASP.</p>
+  <a href="index.html" class="back-link">↩ العودة إلى الصفحة الرئيسية للأكاديمية</a>
+</header>
+
+<div class="container">
+  <section class="controls-panel">
+    <div class="search-row">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ابحث عن مفهوم أو ثغرة أو معيار (مثال: Access Control, Injection, XSS, SSRF, ASVS)..."
+      />
+      <div class="stats-box">
+        <span id="visibleCount">المعروض: 100</span>
+        <span>|</span>
+        <span id="masteredCount">المُتقَن: 0 / 100</span>
+      </div>
+    </div>
+
+    <div class="filters" id="filterButtons">
+      <button class="filter-btn active" data-domain="all">الكل (100)</button>
+      <button class="filter-btn" data-domain="ACC">الوصول والمصادقة والجلسات</button>
+      <button class="filter-btn" data-domain="INJ">الحقن ومعالجة المدخلات</button>
+      <button class="filter-btn" data-domain="CRY">التشفير والإعدادات والبيانات</button>
+      <button class="filter-btn" data-domain="SDLC">الاختبار والرصد والهندسة الآمنة</button>
+    </div>
+  </section>
+
+  <main class="cards-grid" id="cardsContainer"></main>
+  <div class="empty-state" id="emptyState">لا توجد نتائج مطابقة لبحثك. جرّب كلمة مفتاحية أخرى.</div>
+
+  <footer>
+    DZ Cyber Academy — مرجع أمن التطبيقات والمنصات بأسلوب OWASP
+  </footer>
+</div>
+
+<script>
+  const owaspTerms = [
+    // 1 - 25: الوصول والمصادقة والجلسات (ACC)
+    { id: 1, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Broken Access Control (ضعف التحكم بالوصول)", en: "Restrictions on what authenticated users are allowed to do are not properly enforced, allowing users to act outside their intended permissions.", ar: "خلل في فحص الصلاحيات يسمح بتجاوز النطاق المسموح؛ يُعالج بالتحقق في الخادم لكل طلب وتطبيق أقل صلاحية." },
+    { id: 2, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "BOLA / IDOR (Broken Object Level Authorization / IDOR)", en: "An endpoint accesses a data object using a user-supplied identifier without verifying that the requesting user is authorized for that specific object.", ar: "الوصول إلى سجل أو ملف بتغيير معرفه دون تحقق من ملكية المستخدم؛ يُعالج بفحص صلاحية الكائن في كل استعلام." },
+    { id: 3, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "BFLA (Broken Function Level Authorization)", en: "Missing or weak authorization checks allow low-privilege or unauthorized users to invoke administrative or privileged functions or endpoints.", ar: "إتاحة دوال أو مسارات إدارية لغير المخولين لغياب الفحص على مستوى الوظيفة؛ يُعالج بالتحقق من الدور والصلاحية لكل دالة." },
+    { id: 4, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Vertical vs. Horizontal Privilege Escalation", en: "Vertical escalation gains higher privilege roles (e.g., user to admin); horizontal escalation accesses resources of another user at the same privilege level.", ar: "التصعيد الرأسي يرفع الصلاحية لرتبة أعلى، بينما التصعيد الأفقي يصل لبيانات مستخدم آخر بنفس المستوى." },
+    { id: 5, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Privilege Escalation via Mass Assignment", en: "Binding incoming request fields directly to internal object properties allows attackers to overwrite sensitive attributes such as isAdmin or role.", ar: "ربط حقول الطلب مباشرة بخصائص الكائن دون تحديد المسموح؛ يُعالج بحصر الحقول المسموحة صراحة." },
+    { id: 6, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Forced Browsing / Path Discovery", en: "Accessing unlinked or hidden pages, directories, or administrative panels by guessing or enumerating paths when access controls are missing.", ar: "الوصول لصفحات أو مسارات غير ظاهرة عبر تخمينها؛ يجب حماية كل مسار بصلاحية مستقلة ولا يُكتفى بإخفاء الرابط." },
+    { id: 7, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "CORS Misconfiguration (Cross-Origin Resource Sharing)", en: "Overly permissive CORS headers (such as reflecting arbitrary origins with credentials allowed) let untrusted websites read sensitive cross-origin responses.", ar: "إعدادات مشاركة الموارد المفتوحة بإفراط؛ تُعالج بحصر النطاقات الموثوقة صراحة وتجنب الجمع العشوائي مع بيانات الاعتماد." },
+    { id: 8, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Authentication Failures (فشل المصادقة)", en: "Weaknesses in identity verification workflows—such as credential stuffing, weak passwords, or missing MFA—allow attackers to compromise accounts.", ar: "ثغرات في التحقق من الهوية تسهل اختراق الحسابات؛ تُعالج بـ MFA، وحماية التخمين، وسياسات كلمات مرور قوية." },
+    { id: 9, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Session Fixation & Session Hijacking", en: "Capturing, predicting, or forcing a session identifier so an attacker hijacks an authenticated user session.", ar: "الاستيلاء على معرف الجلسة أو فرضه لانتحال الهوية؛ يُعالج بتوليد معرف جديد عند الدخول وتأمين الكوكيز وانتهاء الجلسات." },
+    { id: 10, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Cookie Security Flags (HttpOnly, Secure, SameSite)", en: "Browser cookie attributes that mitigate script access (HttpOnly), enforce HTTPS transmission (Secure), and restrict cross-site sending (SameSite).", ar: "خصائص حماية الكوكيز: HttpOnly يمنع قراءتها عبر السكريبتات، Secure يشترط HTTPS، وSameSite يحد من إرسالها عبر المواقع الأخرى." },
+    { id: 11, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "JWT Vulnerabilities (JSON Web Token)", en: "Flaws in validating JWT signatures, algorithms, expiration (exp), or claims—such as accepting unsigned tokens (alg: none) or weak secrets.", ar: "أخطاء التحقق من توقيع أو صلاحية أو خوارزمية رمز JWT؛ تُعالج بفرض التحقق الصارم وعدم قبول الرموز غير الموقعة." },
+    { id: 12, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "OAuth & OpenID Connect Misuse", en: "Improly validated redirect URIs, state parameters, or scopes allowing token interception, CSRF, or excessive third-party access.", ar: "سوء ضبط معاملات إعادة التوجيه أو الحالة أو الصلاحيات؛ يُعالج بالتحقق الدقيق من redirect_uri واستخدام state وتقليل النطاقات." },
+    { id: 13, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "MFA Fatigue / Bypass", en: "Circumventing multi-factor checks via prompt bombing, weak fallback factors, or session/authentication proxying.", ar: "تجاوز المصادقة متعددة العوامل عبر إرهاق المستخدم بالطلبات أو العوامل الضعيفة؛ يُعالج بوسائل تحقق أقوى وربط السياق." },
+    { id: 14, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Password Reset & Account Recovery Flaws", en: "Predictable reset tokens, long token lifetimes, or leaking account existence/reset details enabling unauthorized account takeover.", ar: "ضعف آلية استعادة كلمة المرور كالرموز السهلة أو طويلة العمر؛ يُعالج برموز عشوائية قوية قصيرة العمر وتنبيه المستخدم." },
+    { id: 15, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Brute-Force & Rate Limiting Bypass", en: "Repeating login or OTP requests without throttling, lockouts, or distributed-source controls to guess secrets.", ar: "تكرار محاولات الدخول أو الرموز دون تقييد؛ يُعالج بتحديد المعدل والكشف عن الأنماط غير الطبيعية." },
+    { id: 16, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Improper Asset / API Inventory Management", en: "Failing to track legacy, shadow, or undocumented endpoints and versions leaves unpatched or weakly secured interfaces exposed.", ar: "إهمال جرد النسخ القديمة أو المسارات غير الموثقة يترك نقاط دخول منسية؛ يتطلب توثيق الواجهات وإيقاف القديم غير الآمن." },
+    { id: 17, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Broken Object Property Level Authorization", en: "Allowing a user to read or modify sensitive fields/properties of an object even when authorized to access the object itself.", ar: "قراءة أو تعديل حقول حساسة داخل سجل مسموح؛ يُعالج بتصفية الحقول المخرجة والمسموح بتعديلها حسب الدور." },
+    { id: 18, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Unrestricted Access to Sensitive Business Flows", en: "Exposing automated business actions—such as mass booking, coupon abuse, or automated purchasing—without flow or rate controls.", ar: "إتاحة تنفيذ عمليات تجارية حساسة آلياً دون قيود؛ يُعالج بضوابط تدفق ومراقبة سلوكية وتحديد المعدل." },
+    { id: 19, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Impersonation & Least Privilege Violation", en: "Running services or sessions with broader privileges than required or failing to verify actor identity across internal calls.", ar: "تشغيل العمليات بصلاحيات زائدة أو دون تحقق من هوية المنفّذ؛ يُعالج بتطبيق أقل صلاحية والتحقق من الهوية في كل طبقة." },
+    { id: 20, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Cross-Site Request Forgery (CSRF)", en: "Tricking an authenticated browser into issuing unwanted state-changing requests to a web application where the user is logged in.", ar: "إجبار متصفح المستخدم الموثق على إرسال طلب يغير الحالة دون علمه؛ يُعالج برموز تحقق للطلبات وضبط SameSite." },
+    { id: 21, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Clickjacking (UI Redressing)", en: "Embedding a target page inside an invisible or disguised frame (iframe) to trick users into clicking unintended actions.", ar: "إخفاء صفحة داخل إطار لخداع المستخدم بالضغط على زر غير مقصود؛ يُعالج برؤوس X-Frame-Options أو frame-ancestors." },
+    { id: 22, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Open Redirect", en: "Unvalidated redirection parameters sending users to arbitrary external URLs, often used to make phishing links appear trustworthy.", ar: "إعادة توجيه المستخدم لرابط خارجي غير متحقق منه؛ يُعالج بحصر الوجهات المسموحة أو استخدام معرفات داخلية آمنة." },
+    { id: 23, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Session Timeout & Invalidation on Logout", en: "Leaving sessions or tokens valid after logout or inactivity, increasing window of exposure on shared or stolen devices.", ar: "عدم إبطال الجلسة فوراً عند الخروج أو انتهاء المهلة؛ يُعالج بإلغاء الجلسة والرموز من الخادم وتحديد مدة صلاحية مناسبة." },
+    { id: 24, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Account Enumeration", en: "Revealing whether a username or email exists via distinct error messages, timing differences, or responses during login or registration.", ar: "كشف وجود الحساب من اختلاف رسائل الخطأ أو زمن الاستجابة؛ يُعالج بتوحيد الرسائل وتقليل الفروق الواضحة." },
+    { id: 25, domain: "ACC", domainLabel: "الوصول والمصادقة والجلسات", term: "Principle of Least Privilege (أقل صلاحية)", en: "Granting every user, service, and component only the minimum permissions necessary to perform its intended function.", ar: "منح الصلاحية الضرورية فقط لتقليل مساحة الضرر عند أي ثغرة أو خطأ بشري." },
+
+    // 26 - 50: الحقن ومعالجة المدخلات (INJ)
+    { id: 26, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Injection (الحقن العام)", en: "Untrusted input is sent to an interpreter as part of a command or query, tricking the interpreter into executing unintended commands or accessing data.", ar: "دمج بيانات المستخدم كأوامر أو استعلامات؛ يُعالج بفصل البيانات عن الأوامر والتحقق الصارم من المدخلات." },
+    { id: 27, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "SQL Injection (SQLi)", en: "Inserting malicious SQL syntax into user input concatenated into a database query to bypass auth, read data, or alter records.", ar: "حقن أوامر SQL في استعلام مبني بنص مدمج؛ يُعالج بالاستعلامات المهيأة (Parameterized Queries)." },
+    { id: 28, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "NoSQL Injection", en: "Manipulating query operators or structured inputs passed to NoSQL databases to alter query logic or extract data.", ar: "التلاعب بمدخلات أو عوامل استعلام قواعد NoSQL؛ يُعالج بالتحقق من النوع والبنية وتجنب تمرير كائنات خام غير موثوقة." },
+    { id: 29, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "OS Command Injection", en: "Passing unsanitized input to an operating system shell or command execution call, allowing arbitrary system commands to run.", ar: "تمرير مدخلات غير منقحة لتنفيذ أوامر النظام؛ يُعالج بتجنب الصدفة واستخدام واجهات آمنة وحصر القيم المسموحة." },
+    { id: 30, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "LDAP / XPath / Expression Language Injection", en: "Injecting untrusted input into directory queries, XML/XPath expressions, or server expression evaluators to alter logic or access data.", ar: "حقن مدخلات في استعلامات الدليل أو تعبيرات الخادم؛ يُعالج بالترميز السليم وتحديد المدخلات المسموحة." },
+    { id: 31, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Cross-Site Scripting (XSS — Stored, Reflected, DOM)", en: "Injecting malicious scripts into web content executed in a victim's browser; stored persists in app data, reflected echoes input in response, and DOM occurs in client-side scripts.", ar: "تنفيذ سكريبت ضار في متصفح الضحية؛ يُعالج بترميز المخرجات حسب السياق وتطبيق سياسة أمان المحتوى (CSP)." },
+    { id: 32, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Server-Side Request Forgery (SSRF)", en: "A server fetches a remote or internal resource from a user-supplied URL without sufficient validation, potentially reaching internal services or cloud metadata.", ar: "إجبار الخادم على طلب عنوان داخلي أو حساس؛ يُعالج بحصر النطاقات والمنافذ المسموحة وحماية خدمات البيانات الوصفية." },
+    { id: 33, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Path Traversal / Directory Traversal", en: "Using sequences such as ../ in file path inputs to escape the intended base directory and read or overwrite restricted files.", ar: "تجاوز المجلد المسموح للوصول لملفات أخرى؛ يُعالج بحصر المسار ضمن مجلد الجذر والتحقق من المسار الحقيقي." },
+    { id: 34, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Unrestricted File Upload", en: "Accepting uploaded files without validating type, content, size, or storage location, enabling malware hosting or execution.", ar: "رفع ملفات دون فحص صارم للنوع والمحتوى والمسار؛ يُعالج بفحص المحتوى، حفظها خارج مسار التنفيذ، وتسميتها عشوائياً." },
+    { id: 35, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Insecure Deserialization", en: "Deserializing untrusted or tampered serialized data without strict validation, risking logic manipulation, denial of service, or code execution.", ar: "فك تسلسل بيانات قادمة من مصدر غير موثوق دون تحقق؛ يُعالج باستخدام صيغ بيانات آمنة كـ JSON والتحقق الصارم." },
+    { id: 36, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "XML External Entity (XXE)", en: "An XML parser configured to resolve external entities processes crafted XML input to read local files, perform SSRF, or cause DoS.", ar: "استغلال محلل XML لفتح كيانات خارجية كقراءة ملفات؛ يُعالج بتعطيل الكيانات الخارجية في المحلل." },
+    { id: 37, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Server-Side Template Injection (SSTI)", en: "Embedding template syntax inside user input evaluated by a server-side template engine, potentially leading to code execution.", ar: "حقن تعبيرات قوالب تُقيّم على الخادم؛ يُعالج بعدم تمرير مدخلات المستخدم كقالب وتطبيق عزل آمن." },
+    { id: 38, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Regex Denial of Service (ReDoS)", en: "Crafty input causes a poorly written regular expression to take exponential time to evaluate, tying up CPU or blocking requests.", ar: "مدخلات تسبب استهلاكاً هائلاً للمعالج في تعبير نمطي معقد؛ يُعالج بتبسيط التعابير أو استخدام محركات ومهلات زمنية آمنة." },
+    { id: 39, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Integer Overflow / Underflow & Buffer Errors", en: "Arithmetic wrap-around or out-of-bounds memory writes/reads causing crashes, corrupted state, or memory safety vulnerabilities.", ar: "تجاوز الحدود الحسابية أو الذاكرة؛ يُعالج بفحص الحدود واستخدام لغات أو مكتبات آمنة للذاكرة والتحديث المستمر." },
+    { id: 40, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Race Condition / TOCTOU (Time-of-Check to Time-of-Use)", en: "A gap between checking a condition/permission and using the resource allows concurrent actions to alter state and bypass rules.", ar: "فجوة زمنية بين الفحص والتنفيذ تستغلها طلبات متزامنة؛ يُعالج بالمزامنة والفحص الذري." },
+    { id: 41, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Business Logic Flaws (ثغرات منطق الأعمال)", en: "Valid workflows or features are abused out of order or with manipulated values (e.g., negative quantities or skipped steps) because business rules aren't enforced.", ar: "استغلال مسار عمل مشروع بقيم أو خطوات غير منطقية؛ يُعالج بالتحقق من قواعد العمل في الخادم في كل خطوة." },
+    { id: 42, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "HTTP Request Smuggling", en: "Discrepancies in how front-end and back-end servers parse Content-Length and Transfer-Encoding allow splitting or poisoning requests.", ar: "اختلاف تحليل طول الطلب بين الخادم الأمامي والخلفي لتهريب طلب؛ يُعالج بتوحيد المعايير وتحديث الخوادم وتقييد التحويلات." },
+    { id: 43, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "HTTP Parameter Pollution (HPP)", en: "Supplying multiple parameters with the same name to confuse parsing or override values across layers.", ar: "تكرار نفس اسم المعامل لتضليل التحليل أو تجاوز قيمة؛ يُعالج بتحديد كيفية التعامل مع القيم المتعددة بوضوح." },
+    { id: 44, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Server-Side Code Execution / Eval Abuse", en: "Evaluating dynamic strings or user-controlled expressions at runtime (eval style) allowing arbitrary execution.", ar: "تنفيذ نصوص ديناميكية قادمة من المستخدم؛ يُعالج بتجنب التقييم الديناميكي للمدخلات نهائياً." },
+    { id: 45, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Input Validation vs. Output Encoding", en: "Input validation checks whether data conforms to expected rules; output encoding makes data safe to render in a specific context (HTML, JS, SQL).", ar: "التحقق من المدخلات يتأكد من صحتها وشكلها، وترميز المخرجات يمنع اعتبارها كوداً تنفيذياً في سياق العرض." },
+    { id: 46, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Allowlisting vs. Denylisting (القائمة البيضاء مقابل السوداء)", en: "Allowlisting permits only explicitly approved values/patterns and is far stronger than denylisting, which tries to block known bad inputs that attackers can often bypass.", ar: "السماح بما هو معروف ومسموح فقط أقوى وأكثر أماناً من محاولة حظر كل السيئ." },
+    { id: 47, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "GraphQL Security Risks (Depth / Batching / Introspection)", en: "Deeply nested queries, batched requests, or exposed schema details in GraphQL that can cause DoS or excessive data exposure if unrestricted.", ar: "استعلامات متداخلة عميقة أو مجمعة تسبب إرهاقاً أو كشف بيانات؛ تُعالج بتحديد العمق والمعدل وضبط الصلاحيات." },
+    { id: 48, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "WebSocket Security Risks (CSWSH & Origin Check)", en: "Missing origin verification or authentication on WebSocket handshakes allows unauthorized cross-site connections or message abuse.", ar: "غياب التحقق من المصدر أو الهوية عند فتح اتصال WebSocket؛ يُعالج بفحص Origin والمصادقة وتأمين الرسائل." },
+    { id: 49, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Cache Poisoning & Web Cache Deception", en: "Trick a caching layer into storing malicious or private user responses and serving them to other users.", ar: "تسميم الكاش لتقديم محتوى ضار أو خاص لغير صاحبه؛ يُعالج بضبط مفاتيح الكاش ورؤوس التحكم في التخزين المؤقت." },
+    { id: 50, domain: "INJ", domainLabel: "الحقن ومعالجة المدخلات", term: "Command / Query Logging Hygiene", en: "Avoiding logging sensitive secrets, tokens, or raw PII while recording enough context to investigate security events.", ar: "تسجيل ما يلزم للتحقيق دون حفظ كلمات المرور أو الرموز أو البيانات الحساسة في السجلات." },
+
+    // 51 - 75: التشفير والإعدادات والبيانات (CRY)
+    { id: 51, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Cryptographic Failures (فشل التشفير)", en: "Weak algorithms, hardcoded keys, unencrypted sensitive data, or improper key/certificate handling exposing confidentiality or integrity.", ar: "ضعف الخوارزميات أو المفاتيح الثابتة أو غياب التشفير؛ يُعالج بتشفير البيانات المخزنة والمنقولة واستخدام خوارزميات وإدارة مفاتيح حديثة." },
+    { id: 52, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Weak Hashing Algorithms (MD5 / SHA-1 for Passwords)", en: "Using fast or broken hash functions without proper slow/salted password hashing makes stored password hashes vulnerable to fast cracking.", ar: "استخدام دوال تجزئة سريعة أو قديمة لكلمات المرور يسهل تخمينها؛ يُعالج بخوارزميات مخصصة لكلمات المرور مع Salt." },
+    { id: 53, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Hardcoded Secrets & Keys", en: "Embedding passwords, API keys, or private keys directly in source code, mobile apps, or containers where they can be extracted.", ar: "حفظ المفاتيح أو كلمات المرور داخل الكود أو التطبيقات؛ يُعالج بنقلها إلى مخازن أسرار آمنة وتدويرها." },
+    { id: 54, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "TLS / SSL Misconfiguration & Weak Ciphers", en: "Supporting outdated protocols (TLS 1.0/1.1), weak cipher suites, or skipping certificate validation exposes transit traffic to interception.", ar: "ضعف إعدادات TLS أو تجاوز التحقق من الشهادات يعرض البيانات أثناء النقل؛ يُعالج بفرض TLS 1.2/1.3 والتحقق الصارم من الشهادات." },
+    { id: 55, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Certificate Validation Bypass", en: "Disabling TLS certificate or hostname checks in clients or services allows Man-in-the-Middle attacks using rogue certificates.", ar: "تعطيل التحقق من شهادة الخادم أو اسم النطاق؛ يُعالج بإبقاء التحقق مفعلاً بالكامل في كل البيئات." },
+    { id: 56, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Security Misconfiguration (سوء الإعداد الأمني)", en: "Default accounts, unnecessary enabled features, verbose error stack traces, or unhardened servers/cloud resources creating exploitable weaknesses.", ar: "الإعدادات الافتراضية أو الخدمات غير اللازمة أو كشف تفاصيل الأخطاء؛ يُعالج بتطبيق معايير التحصين وإغلاق غير الضروري." },
+    { id: 57, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Verbose Error Messages & Stack Traces", en: "Returning detailed internal errors, database queries, or stack traces to external users helps attackers map system internals.", ar: "إظهار تفاصيل الأخطاء الداخلية للمستخدم يكشف بنية النظام؛ يُعالج بعرض رسائل عامة للمستخدم وتسجيل التفاصيل داخلياً بأمان." },
+    { id: 58, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Vulnerable and Outdated Components", en: "Using libraries, frameworks, plugins, or containers with known vulnerabilities without timely inventory and patching.", ar: "الاعتماد على مكتبات أو مكونات قديمة بها ثغرات؛ يُعالج بجرد التبعيات وتحديثها باستمرار." },
+    { id: 59, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Software and Data Integrity Failures", en: "Relying on unverified updates, untrusted CI/CD pipelines, or unvalidated serialized/critical data without integrity checks.", ar: "غياب التحقق من سلامة التحديثات أو الكود أو البيانات؛ يُعالج بالتوقيع الرقمي وحماية خطوط البناء والنشر." },
+    { id: 60, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Supply Chain Risk in Web & App Dependencies", en: "Compromised upstream packages, build steps, or third-party scripts introducing malicious behavior into applications.", ar: "خطورة التبعيات الخارجية أو السكربتات الطرفية؛ يُعالج بتثبيت الإصدارات الموثوقة وفحص التبعيات ومراجعة التغييرات." },
+    { id: 61, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Content Security Policy (CSP)", en: "An HTTP response header instructing browsers which sources of scripts, styles, frames, and connections are trusted to reduce XSS and injection impact.", ar: "سياسة أمان المحتوى تحدد للمتصفح المصادر الموثوقة لتنفيذ السكريبتات وتحميل الموارد لتقليل خطر XSS." },
+    { id: 62, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "HSTS (HTTP Strict Transport Security)", en: "A header telling browsers to connect exclusively over HTTPS and prevent protocol downgrade or cookie exposure over plain HTTP.", ar: "يجبر المتصفح على استخدام HTTPS دائماً ويمنع الرجوع لاتصال غير مشفر." },
+    { id: 63, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Sensitive Data Exposure / Excessive Data Exposure", en: "Returning more fields or sensitive records than the client needs (especially in APIs) or storing sensitive data without protection.", ar: "إرسال بيانات زائدة في الاستجابة أو تخزين بيانات حساسة دون حماية؛ يُعالج بإرجاع الحقول المطلوبة فقط وتشفير وحماية البيانات." },
+    { id: 64, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Data Classification & PII Protection", en: "Categorizing data by sensitivity—such as personal, financial, or health data—and applying access, retention, and protection controls accordingly.", ar: "تصنيف البيانات حسب حساسيتها لتطبيق ضوابط وصول وحفظ وتشفير متناسبة مع كل فئة." },
+    { id: 65, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Tokenization & Masking", en: "Replacing sensitive values with non-sensitive tokens or masking display fields (such as partial card numbers) to limit exposure.", ar: "استبدال البيانات الحساسة برموز أو إخفاء أجزاء منها لتقليل خطر تسربها." },
+    { id: 66, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Key Rotation & Lifecycle Management", en: "Periodically rotating cryptographic keys and retiring old keys to limit impact if a key is leaked or compromised.", ar: "تجديد المفاتيح التشفيرية دورياً وإلغاء القديمة لتقليل أثر أي تسرب محتمل." },
+    { id: 67, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Third-Party Script & Widget Risk", en: "External analytics, chat, or ad scripts loaded in web pages run in the page context and can be abused if compromised.", ar: "السكربتات الخارجية تعمل ضمن سياق الصفحة وقد تسبب خطراً إذا اُخترقت؛ يُعالج بتقليلها ومراجعة مصدرها وحماية المحتوى." },
+    { id: 68, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Subresource Integrity (SRI)", en: "Using cryptographic hashes (integrity attribute) on external scripts/styles so browsers reject tampered files from CDNs.", ar: "التحقق من بصمة الملف الخارجي قبل تشغيله لمنع تشغيل ملف معدل من شبكة التوزيع." },
+    { id: 69, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Secure Configuration Baseline & Drift Detection", en: "Defining hardened settings for servers, containers, and apps and detecting unauthorized or accidental configuration changes.", ar: "تحديد إعدادات قياسية آمنة ومراقبة أي انحراف أو تعديل غير مصرح به." },
+    { id: 70, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Secure File & Storage Permissions", en: "Restricting read/write/execute permissions on application directories, backups, and object storage buckets.", ar: "ضبط صلاحيات المجلدات والنسخ والتخزين لمنع القراءة أو التعديل غير المصرح به." },
+    { id: 71, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Secrets Scanning in Repositories", en: "Automated checks in code commits and pull requests to catch accidentally committed API keys, tokens, or credentials before release.", ar: "فحص الكود تلقائياً لمنع تسرب المفاتيح أو كلمات المرور إلى المستودعات." },
+    { id: 72, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Data Minimization & Retention", en: "Collecting only data strictly needed and deleting expired data to reduce breach scope and compliance burden.", ar: "تقليل جمع البيانات وحذف ما انتهت الحاجة إليه لتقليص حجم الخطر عند أي اختراق." },
+    { id: 73, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Secure Defaults", en: "Configuring systems and frameworks to be safe out of the box rather than requiring administrators to manually lock down insecure defaults.", ar: "جعل الإعداد الافتراضي آمناً ومغلقاً لغير مصرح به منذ البداية." },
+    { id: 74, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "API Rate Limiting & Resource Quotas", en: "Limiting request rates, payload sizes, and concurrency per user/IP/key to prevent abuse and resource exhaustion.", ar: "تحديد سقف الطلبات وحجم البيانات لكل مستخدم أو مفتاح لمنع إساءة الاستخدام أو الإغراق." },
+    { id: 75, domain: "CRY", domainLabel: "التشفير والإعدادات والبيانات", term: "Transport Security Across Microservices (mTLS)", en: "Using mutual TLS so both client and server services authenticate each other cryptographically and encrypt service-to-service traffic.", ar: "مصادقة متبادلة بشهادات TLS بين الخدمات الداخلية لتشفير التواصل وضمان هوية الطرفين." },
+
+    // 76 - 100: الاختبار والرصد والهندسة الآمنة (SDLC)
+    { id: 76, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Security Logging and Monitoring Failures", en: "Missing, insufficient, or unmonitored logs prevent timely detection, investigation, and response to attacks and breaches.", ar: "نقص السجلات أو غياب مراقبتها يعيق اكتشاف الهجمات والتحقيق فيها؛ يُعالج بتسجيل الأحداث الأمنية المهمة ومراقبتها مركزياً." },
+    { id: 77, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Audit Trail & Log Integrity", en: "Maintaining tamper-evident, chronological records of critical actions and authentication events to support forensics and accountability.", ar: "حفظ سجل موثق ومرتب زمنياً للعمليات الحساسة ومنع التلاعب به لدعم التحقيق والمساءلة." },
+    { id: 78, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Alerting & Incident Triage", en: "Generating actionable alerts on high-risk patterns and triaging them to contain threats quickly while reducing false alarms.", ar: "توليد تنبيهات دقيقة للأنشطة الخطرة وفرزها للاستجابة السريعة دون إرهاق الفريق بالإنذارات الكاذبة." },
+    { id: 79, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Threat Modeling (نمذجة التهديدات)", en: "Systematically analyzing system architecture, data flows, and trust boundaries to identify threats and design mitigations early.", ar: "تحليل المعمارية ومسارات البيانات وحدود الثقة لاكتشاف التهديدات ووضع ضوابطها أثناء التصميم." },
+    { id: 80, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Trust Boundaries & Data Flow Diagrams (DFD)", en: "Mapping where data moves and where trust levels change (e.g., browser to API, internal to external) to place security controls accurately.", ar: "تحديد نقاط انتقال البيانات وتغير مستوى الثقة لوضع ضوابط التحقق والحماية في المكان الصحيح." },
+    { id: 81, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Attack Surface Reduction (تقليص سطح الهجوم)", en: "Minimizing exposed endpoints, unused features, open ports, and unnecessary dependencies to shrink potential entry points.", ar: "تقليل المنافذ والخدمات والمكونات غير الضرورية لتضييق فرص الهجوم." },
+    { id: 82, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Defense in Depth (الدفاع المتعمق)", en: "Layering independent preventive, detective, and responsive controls so a single failure does not compromise the system.", ar: "الجمع بين ضوابط وقائية وكاشفة واستجابية متعددة بحيث لا يعتمد الأمان على خط دفاع واحد." },
+    { id: 83, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Secure SDLC (Secure Software Development Lifecycle)", en: "Integrating threat modeling, secure coding, code review, testing, and security checks across every stage of software development.", ar: "دمج الأمان في كل مراحل تطوير البرمجيات من التصميم والبرمجة إلى الاختبار والنشر." },
+    { id: 84, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "OWASP ASVS (Application Security Verification Standard)", en: "A community standard defining security requirements and verification levels for testing and engineering web application security.", ar: "معيار مرجعي يحدد متطلبات ومستويات التحقق الأمني لتطبيقات الويب وتقييم جاهزيتها." },
+    { id: 85, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "OWASP SAMM (Software Assurance Maturity Model)", en: "A framework helping organizations assess, plan, and mature their software security practices across governance, design, implementation, verification, and operations.", ar: "إطار يساعد المؤسسات على قياس وتطوير نضج ممارسات أمن البرمجيات عبر مراحل العمل." },
+    { id: 86, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "SAST (Static Application Security Testing)", en: "Analyzing source code, bytecode, or binaries without executing the program to spot security flaws early during development.", ar: "فحص الكود المصدري أو الثنائي دون تشغيله لاكتشاف الثغرات البرمجية مبكراً أثناء التطوير." },
+    { id: 87, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "DAST (Dynamic Application Security Testing)", en: "Testing a running application externally through its HTTP/API interfaces to identify runtime vulnerabilities and misconfigurations.", ar: "اختبار التطبيق وهو قيد التشغيل عبر واجهاته لاكتشاف الثغرات والإعدادات الخاطئة في بيئة التشغيل." },
+    { id: 88, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "SCA (Software Composition Analysis)", en: "Identifying open-source and third-party libraries and dependencies to detect known vulnerabilities and license risks.", ar: "فحص المكتبات والتبعيات الخارجية لاكتشاف الثغرات المعروفة فيها وتحديثها." },
+    { id: 89, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "IAST (Interactive Application Security Testing)", en: "Combining static and dynamic instrumentation inside a running test environment to observe data flow and detect flaws accurately.", ar: "مراقبة التطبيق أثناء الاختبار من الداخل لمتابعة مسار البيانات واكتشاف الثغرات بدقة أعلى." },
+    { id: 90, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Penetration Testing (اختبار الاختراق)", en: "Authorized, structured security testing simulating realistic attack techniques to uncover vulnerabilities and evaluate defense effectiveness.", ar: "اختبار أمني منضبط ومصرّح به لاكتشاف الثغرات وتقييم قوة الحماية ومعالجتها." },
+    { id: 91, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Code Review (مراجعة الكود)", en: "Human or peer inspection of code changes to catch logic flaws, insecure patterns, and missing authorization or validation checks.", ar: "مراجعة الكود قبل دمجه لاكتشاف الأخطاء المنطقية والثغرات ونقص التحقق من الصلاحيات." },
+    { id: 92, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "WAF (Web Application Firewall)", en: "A control inspecting HTTP/HTTPS traffic to detect and block common web attacks and anomalies alongside proper code fixes.", ar: "جدار ناري لتطبيقات الويب يراقب ويحجب هجمات الويب الشائعة؛ ويكون أكثر فاعلية مع إصلاح الكود نفسه." },
+    { id: 93, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Bot Mitigation & Abuse Prevention", en: "Distinguishing legitimate users from automated bots scraping, credential stuffing, or abusing accounts and workflows.", ar: "التمييز بين المستخدم الحقيقي والروبوتات الآلية لمنع التخمين أو جمع البيانات أو إساءة الاستخدام." },
+    { id: 94, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Incident Response for Applications", en: "Detecting, containing, eradicating, and recovering from application incidents—such as revoking exposed keys/tokens and patching flaws.", ar: "احتواء حادث التطبيق وإزالة أثره كإبطال الرموز المتسربة وسد الثغرة واستعادة الخدمة بأمان." },
+    { id: 95, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Rollback & Safe Deployment (Canary / Blue-Green)", en: "Releasing updates gradually or into isolated environments so buggy or risky releases can be rolled back quickly with minimal impact.", ar: "نشر التحديثات تدريجياً أو عبر بيئات متوازية لتسهيل التراجع السريع عند ظهور مشكلة." },
+    { id: 96, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Error Handling & Fail-Closed Design", en: "Designing security checks to default to denying access (fail-closed) when an error or uncertainty occurs rather than granting access (fail-open).", ar: "جعل الضوابط الأمنية ترفض الوصول عند حدوث خطأ أو خلل (Fail-Closed) بدلاً من السماح بالخطأ." },
+    { id: 97, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "API Authentication & Authorization Hygiene", en: "Enforcing strong authentication and per-endpoint/per-object authorization across every API route, including mobile and internal APIs.", ar: "تطبيق المصادقة وتفويض الصلاحيات على كل مسار وكل سجل في واجهات API دون استثناء." },
+    { id: 98, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Secure File & Download Handling", en: "Validating download paths, setting safe content disposition headers, and preventing unauthorized file access or execution.", ar: "تأمين مسارات التحميل وضبط ترويسات المحتوى لمنع التسريب أو التشغيل غير المقصود." },
+    { id: 99, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Security Champions & Developer Training", en: "Training developers in secure coding and designating security champions within teams to embed security into daily engineering.", ar: "تدريب المطورين على البرمجة الآمنة وتعيين ممثلين للأمان داخل الفرق لتعزيز الجودة الأمنية يومياً." },
+    { id: 100, domain: "SDLC", domainLabel: "الاختبار والرصد والهندسة الآمنة", term: "Continuous Security Improvement", en: "Iteratively updating threat models, test cases, baselines, and controls based on new threats, incidents, and product changes.", ar: "التطوير المستمر للنماذج والاختبارات والضوابط لمواكبة التهديدات الجديدة وتغيرات النظام." }
+  ];
+
+  const STORAGE_KEY = "owasp_appsec_100_mastered";
+  let masteredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  let currentDomain = "all";
+  let currentQuery = "";
+
+  const cardsContainer = document.getElementById("cardsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const visibleCountEl = document.getElementById("visibleCount");
+  const masteredCountEl = document.getElementById("masteredCount");
+  const emptyStateEl = document.getElementById("emptyState");
+
+  function saveMastered() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...masteredSet]));
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+  }
+
+  function toggleMastered(id) {
+    if (masteredSet.has(id)) {
+      masteredSet.delete(id);
+    } else {
+      masteredSet.add(id);
+    }
+    saveMastered();
+    renderCards();
+  }
+
+  function renderCards() {
+    const q = currentQuery.trim().toLowerCase();
+    const filtered = owaspTerms.filter(item => {
+      const matchDomain = currentDomain === "all" || item.domain === currentDomain;
+      const matchSearch =
+        !q ||
+        item.term.toLowerCase().includes(q) ||
+        item.en.toLowerCase().includes(q) ||
+        item.ar.toLowerCase().includes(q) ||
+        String(item.id) === q;
+      return matchDomain && matchSearch;
+    });
+
+    visibleCountEl.textContent = `المعروض: ${filtered.length}`;
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+
+    if (filtered.length === 0) {
+      cardsContainer.innerHTML = "";
+      emptyStateEl.style.display = "block";
+      return;
+    }
+
+    emptyStateEl.style.display = "none";
+    cardsContainer.innerHTML = filtered
+      .map(item => {
+        const isDone = masteredSet.has(item.id);
+        return `
+          <article class="card ${isDone ? "mastered" : ""}">
+            <div class="card-header">
+              <div class="term-title">
+                <span class="term-num">#${item.id}</span>
+                <span class="term-name">${item.term}</span>
+              </div>
+              <div class="card-actions">
+                <span class="domain-tag">${item.domainLabel}</span>
+                <button class="master-btn ${isDone ? "done" : ""}" onclick="toggleMastered(${item.id})">
+                  ${isDone ? "✓ تم الحفظ" : "تحديد كـ مُتقَن"}
+                </button>
+              </div>
+            </div>
+            <div class="en-box">${item.en}</div>
+            <div class="ar-box"><strong>التفسير والمعالجة:</strong> ${item.ar}</div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  searchInput.addEventListener("input", e => {
+    currentQuery = e.target.value;
+    renderCards();
+  });
+
+  document.getElementById("filterButtons").addEventListener("click", e => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+    currentDomain = e.target.dataset.domain;
+    renderCards();
+  });
+
+  renderCards();
+</script>
+</body>
+</html>
