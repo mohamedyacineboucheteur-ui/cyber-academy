@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مرجع 100 تعريف — أمن المركبات والأنظمة المدمجة | DZ Cyber Academy</title>
+  <style>
+    :root {
+      --bg: #070d19;
+      --surface: #0f172a;
+      --card: #162033;
+      --border: #25334d;
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --accent: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --en-bg: #09101f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0c4a6e 0%, #09101f 60%, #064e3b 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 760px;
+      margin: 0 auto 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .stats-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #061826;
+      border-color: var(--primary);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: transform 0.15s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+    }
+
+    .card.mastered {
+      border-right: 5px solid var(--accent);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .term-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      direction: ltr;
+    }
+
+    .term-num {
+      background: var(--primary);
+      color: #061826;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .term-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .domain-tag {
+      font-size: 0.78rem;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .master-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .master-btn.done {
+      background: var(--accent);
+      color: #052e16;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .en-box {
+      direction: ltr;
+      text-align: left;
+      background: var(--en-bg);
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .ar-box {
+      color: #f1f5f9;
+      font-size: 0.97rem;
+      padding-right: 4px;
+    }
+
+    .ar-box strong {
+      color: var(--accent);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Automotive & Embedded Security Fundamentals — 100 Definitions</div>
+  <h1>بنك الـ 100 تعريف لأمن المركبات والأنظمة المدمجة</h1>
+  <p>مفاهيم هندسة أمن المركبات، الشبكات الداخلية والاتصال، الحوكمة والمخاطر، التشفير والتحديثات، والهوية والسحابة والعمليات الدفاعية.</p>
+  <a href="index.html" class="back-link">↩ العودة إلى الصفحة الرئيسية للأكاديمية</a>
+</header>
+
+<div class="container">
+  <section class="controls-panel">
+    <div class="search-row">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ابحث عن مصطلح أو معيار أو مفهوم (مثال: ECU, CAN, ISO 21434, OTA, Zero Trust, IAM)..."
+      />
+      <div class="stats-box">
+        <span id="visibleCount">المعروض: 100</span>
+        <span>|</span>
+        <span id="masteredCount">المُتقَن: 0 / 100</span>
+      </div>
+    </div>
+
+    <div class="filters" id="filterButtons">
+      <button class="filter-btn active" data-domain="all">الكل (100)</button>
+      <button class="filter-btn" data-domain="VEH">بنية المركبة والاتصالات</button>
+      <button class="filter-btn" data-domain="GOV">الحوكمة والمخاطر والامتثال</button>
+      <button class="filter-btn" data-domain="CRY">التشفير والتحديثات والحماية</button>
+      <button class="filter-btn" data-domain="CLD">السحابة والهوية والعمليات</button>
+    </div>
+  </section>
+
+  <main class="cards-grid" id="cardsContainer"></main>
+  <div class="empty-state" id="emptyState">لا توجد نتائج مطابقة لبحثك. جرّب كلمة مفتاحية أخرى.</div>
+
+  <footer>
+    DZ Cyber Academy — مرجع أمن المركبات والأنظمة المدمجة (100 تعريف)
+  </footer>
+</div>
+
+<script>
+  const autoTerms = [
+    // 1 - 15: بنية المركبة والاتصالات (VEH)
+    { id: 1, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Automotive Cybersecurity", en: "Engineering discipline that protects vehicle electronics, software, and lifecycle data from unauthorized access or manipulation.", ar: "حماية الأنظمة الإلكترونية والبرمجيات والبيانات داخل المركبة طوال دورة حياتها لضمان السلامة والسرية والموثوقية." },
+    { id: 2, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "ECU (Electronic Control Unit)", en: "An embedded computing device in a vehicle that controls one or more electrical systems or subsystems.", ar: "وحدة تحكم إلكترونية مدمجة تدير وظائف محددة في المركبة مثل المحرك أو المكابح أو التوجيه؛ وتُحمى بتعزيز البرمجيات وتقييد الوصول." },
+    { id: 3, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "CAN Bus (Controller Area Network)", en: "A serial communication bus standard widely used in vehicles to allow ECUs to exchange messages without a host computer.", ar: "شبكة اتصال داخلية شائعة بين وحدات ECU لتبادل البيانات؛ ونظراً لطبيعتها البثية تتطلب آليات تحقق من المصدر ومنع الرسائل غير المصرح بها." },
+    { id: 4, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "CAN FD (CAN with Flexible Data-rate)", en: "An evolution of the CAN bus supporting higher bit rates and larger payload sizes for modern automotive communications.", ar: "تطوير لمعيار CAN يرفع سرعة النقل وحجم البيانات في الإطار الواحد لدعم الأنظمة الحديثة مع الحاجة لضوابط أمنية مماثلة." },
+    { id: 5, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Gateway ECU", en: "A central automotive security and routing component that regulates traffic and enforces segmentation across vehicle network domains.", ar: "نقطة ربط وتصفية بين شبكات المركبة المختلفة تعزل الأنظمة الحساسة عن الواجهات الخارجية وتمنع الانتشار غير المصرح به." },
+    { id: 6, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Network Segmentation (Vehicle Domains)", en: "Dividing in-vehicle networks into isolated functional zones (such as infotainment, ADAS, and powertrain) to limit blast radius.", ar: "فصل الأنظمة الترفيهية أو الاتصالية عن أنظمة القيادة الحيوية بحيث لا يؤدي اختراق طبقة منخفضة الخطورة إلى التأثير على التحكم الأساسي." },
+    { id: 7, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "ADAS (Advanced Driver Assistance Systems)", en: "Electronic vehicle systems using sensors, cameras, and radar to assist driving and parking functions.", ar: "أنظمة مساعدة السائق المعتمدة على الحساسات والرادارات والكاميرات؛ تتطلب حماية لسلامة البيانات الحسية ومنع التلاعب بها." },
+    { id: 8, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Infotainment System (IVI)", en: "In-vehicle multimedia and connectivity unit linking driver interfaces with external networks, Bluetooth, Wi-Fi, or mobile devices.", ar: "نظام الترفيه والاتصال داخل المركبة؛ يُعد نقطة اتصال خارجية عالية التعرّض تتطلب عزلاً صارماً عن شبكات التحكم الحساسة." },
+    { id: 9, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Telematics Control Unit (TCU)", en: "An embedded connectivity module enabling cellular, GPS, and remote cloud communication for vehicle monitoring and services.", ar: "وحدة الاتصال عن بُعد عبر الشبكات الخلوية والأقمار الصناعية؛ تتطلب تشفير الاتصال والتحقق القوي من الهوية." },
+    { id: 10, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "V2X (Vehicle-to-Everything)", en: "Communication framework enabling vehicles to exchange information with other vehicles (V2V), infrastructure (V2I), pedestrians (V2P), and networks.", ar: "تبادل المعلومات بين المركبة ومحيطها والخدمات الخارجية؛ يعتمد على التحقق من هوية المرسل وحماية الخصوصية." },
+    { id: 11, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "OBD-II (On-Board Diagnostics)", en: "Standardized vehicle diagnostic interface and port used to read fault codes, sensor telemetry, and service data.", ar: "منفذ الفحص والتشخيص القياسي في المركبة؛ يجب تقييد الوصول إليه ومنع إساءة استخدام أوامر التشخيص الحساسة." },
+    { id: 12, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "UDS (Unified Diagnostic Services — ISO 14229)", en: "Diagnostic communication protocol used over automotive buses or IP to read data, run routines, and update or service ECUs.", ar: "بروتوكول تشخيص وخدمة لوحدات التحكم؛ يُحمى بالتحقق من الصلاحيات وحصر الجلسات التشخيصية في بيئات الصيانة المعتمدة." },
+    { id: 13, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "DoIP (Diagnostics over IP — ISO 13400)", en: "Transporting automotive diagnostic messages over Ethernet and IP networks for high-speed diagnostics and flashing.", ar: "نقل رسائل التشخيص والبرمجة عبر شبكات Ethernet/IP؛ يستفيد من شبكات آمنة ومصادقة قوية." },
+    { id: 14, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "SOME/IP", en: "Service-oriented middleware protocol designed for automotive Ethernet communication between applications and ECUs.", ar: "بروتوكول تواصل خدمي عبر إيثرنت السيارات يربط الخدمات والوحدات البرمجية ويتطلب ضبط صلاحيات الوصول." },
+    { id: 15, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "AUTOSAR", en: "Standardized automotive software architecture separating application software from underlying ECU hardware and basic services.", ar: "معمارية برمجية قياسية للسيارات تفصل التطبيقات عن العتاد وتوفر طبقات أمن وتشفير منظمة." },
+
+    // 16 - 30: الحوكمة والمخاطر والامتثال (GOV)
+    { id: 16, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "ISO/SAE 21434", en: "International automotive cybersecurity engineering standard governing risk management, design, production, and lifecycle operations.", ar: "المعيار القياسي لهندسة الأمن السيبراني في المركبات الذي ينظم إدارة المخاطر والتصميم والتشغيل طوال عمر المركبة." },
+    { id: 17, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "ISO 26262 (Functional Safety)", en: "Standard addressing functional safety risks caused by electrical/electronic system malfunctions in road vehicles.", ar: "معيار السلامة الوظيفية الذي يركز على منع الأعطال الخطيرة للأنظمة الكهربائية والإلكترونية، ويتكامل مع الأمن السيبراني." },
+    { id: 18, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "ASIL (Automotive Safety Integrity Level)", en: "Risk classification scheme (A to D) in functional safety defining safety rigor and mitigation requirements.", ar: "تصنيف لمستوى متطلبات السلامة الوظيفية من A إلى D حيث يمثل D الأعلى صرامة لتقليل مخاطر الأعطال الحرجة." },
+    { id: 19, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "UNECE R155", en: "Regulatory framework requiring a certified Cybersecurity Management System (CSMS) and vehicle-type security evidence.", ar: "لائحة تنظيمية تشترط وجود نظام إدارة أمن سيبراني معتمد لضمان إدارة مخاطر المركبات قبل طرحها." },
+    { id: 20, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "UNECE R156", en: "Regulatory framework governing Software Update Management Systems (SUMS) and secure over-the-air (OTA) updates.", ar: "لائحة تنظم إدارة تحديثات البرمجيات وتوثيقها وتأمينها أثناء التوزيع والتثبيت على المركبة." },
+    { id: 21, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "CSMS (Cybersecurity Management System)", en: "Organizational processes and controls managing vehicle cybersecurity risks across development, production, and post-production.", ar: "منظومة إدارية وتشغيلية متكاملة لمتابعة وتقييم ومعالجة المخاطر السيبرانية للمركبة عبر مراحلها كافة." },
+    { id: 22, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "TARA (Threat Analysis and Risk Assessment)", en: "Structured method in automotive security to identify assets, threat scenarios, attack feasibility, and risk treatments.", ar: "منهجية تحليل التهديدات وتقييم المخاطر لتحديد الأصول الحساسة ودرجة جدوى الهجوم وأثره لتحديد ضوابط المعالجة." },
+    { id: 23, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Attack Tree", en: "Hierarchical diagram modeling how an attacker goal breaks down into sub-goals and feasible attack steps.", ar: "مخطط شجري يجزّئ هدف المهاجم إلى خطوات فرعية لتقييم نقاط الضعف واختيار الضوابط الوقائية المناسبة." },
+    { id: 24, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Attack Feasibility", en: "Assessment of how practical or achievable an attack path is, considering factors such as expertise, time, knowledge, and equipment.", ar: "تقدير مدى سهولة أو إمكانية تنفيذ مسار الهجوم بناءً على الخبرة والوقت والموارد المطلوبة." },
+    { id: 25, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Cybersecurity Goal", en: "High-level security requirement derived from risk assessment to protect a specific asset property (such as integrity or authenticity).", ar: "هدف أمني واضح يُشتق من تقييم المخاطر لحماية خاصية معينة في نظام أو بيانات داخل المركبة." },
+    { id: 26, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "CIA Triad (in Automotive Context)", en: "Confidentiality, integrity, and availability applied to vehicle telemetry, control messages, and critical driving functions.", ar: "حماية سرية البيانات الحساسة، وسلامة أوامر التحكم والرسائل، وتوافر الأنظمة الأساسية عند الحاجة." },
+    { id: 27, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "SBOM (Software Bill of Materials)", en: "Formal inventory of software components, libraries, and dependencies used in a system to track vulnerabilities.", ar: "سجل مكونات وبرمجيات النظام يسهّل رصد الثغرات المكتشفة في المكتبات أو الحزم المستخدمة بسرعة." },
+    { id: 28, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "CVE & CVSS", en: "CVE identifies publicly disclosed vulnerabilities, while CVSS scores technical severity characteristics to help prioritize remediation.", ar: "CVE رمز تعريفي للثغرة المنشورة، وCVSS مقياس يوضح شدتها الفنية للمساعدة في ترتيب أولويات المعالجة." },
+    { id: 29, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Defense in Depth (Layered Vehicle Security)", en: "Combining multiple independent security controls across hardware, network, identity, and operations so a single bypass does not compromise safety.", ar: "تطبيق طبقات حماية متعددة بحيث تبقى الضوابط الأخرى فعالة إذا تم تجاوز ضابط واحد." },
+    { id: 30, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Risk Treatment (Mitigate, Accept, Transfer, Avoid)", en: "Structured decisions for addressing identified risks based on cost, likelihood, and safety/business impact.", ar: "اختيار أسلوب التعامل مع الخطر عبر التخفيف بالضوابط، أو القبول المبرر، أو النقل، أو التجنب." },
+
+    // 31 - 40: التشفير والتحديثات والحماية (CRY)
+    { id: 31, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "HSM (Hardware Security Module)", en: "Tamper-resistant hardware component that securely generates, stores, and executes cryptographic operations and keys.", ar: "وحدة عتادية محصنة لحفظ المفاتيح التشفيرية وتنفيذ العمليات الحساسة بعيداً عن الذاكرة العامة للنظام." },
+    { id: 32, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "SecOC (Secure Onboard Communication)", en: "AUTOSAR mechanism adding cryptographic authentication and freshness values to in-vehicle messages to counter spoofing and replay.", ar: "آلية تضيف توثيقاً تشفيرياً وعداد حداثة للرسائل الداخلية للتحقق من صحتها ومنع انتحالها أو إعادة إرسالها." },
+    { id: 33, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "MAC (Message Authentication Code)", en: "Cryptographic tag computed with a shared secret key to verify message authenticity and integrity.", ar: "وسم تشفيري يعتمد على مفتاح مشترك لإثبات مصدر الرسالة وعدم التلاعب بمحتواها." },
+    { id: 34, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Digital Signature", en: "Asymmetric cryptographic proof verifying origin, integrity, and non-repudiation of software packages or messages.", ar: "توقيع رقمي يعتمد على المفاتيح غير المتماثلة للتحقق من مصدر التحديث أو البيانات وسلامتها." },
+    { id: 35, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Secure Boot (Embedded / ECU)", en: "Boot verification process checking cryptographic signatures of firmware and OS images before execution.", ar: "تحقق تشفيري أثناء الإقلاع يضمن تشغيل البرمجيات الموثوقة فقط ومنع تشغيل كود معدل أو غير مصرح به." },
+    { id: 36, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "OTA (Over-the-Air) Updates & Rollback Protection", en: "Remote delivery of firmware/software updates with signing, encryption, and anti-rollback checks to prevent installing older vulnerable versions.", ar: "تحديث البرمجيات عن بُعد مع التحقق من التوقيع ومنع الرجوع لإصدارات قديمة تحتوي ثغرات معروفة." },
+    { id: 37, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "PKI (Public Key Infrastructure) & Certificate Lifecycle", en: "System of policies, authorities, and certificates managing issuance, validation, and revocation of cryptographic identities.", ar: "منظومة إدارة الشهادات الرقمية والهويات التشفيرية وتجديدها أو إلغائها عند الحاجة." },
+    { id: 38, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Key Management", en: "Lifecycle governance of cryptographic keys—generation, storage, rotation, access control, and destruction.", ar: "إدارة دورة حياة المفاتيح التشفيرية من التوليد والتخزين الآمن إلى التدوير والإتلاف لتقليل مخاطر التسرب." },
+    { id: 39, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Least Privilege & Access Control", en: "Restricting users, services, and interfaces to only the permissions and functions strictly required.", ar: "منح أقل صلاحية لازمة للواجهات والخدمات والحسابات للحد من الأثر عند أي خلل أو اختراق." },
+    { id: 40, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Replay Protection / Freshness Value", en: "Mechanism ensuring previously captured valid messages cannot be retransmitted later to trigger unintended actions.", ar: "آلية تمنع إعادة إرسال رسالة قديمة صحيحة في وقت لاحق لتنفيذ أمر غير مقصود." },
+
+    // 41 - 50: السحابة والهوية والعمليات (CLD)
+    { id: 41, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "In-Vehicle IDS (Intrusion Detection System)", en: "Monitoring mechanism inspecting bus or network traffic for anomalies or policy violations and generating alerts.", ar: "مراقبة حركة البيانات الداخلية لاكتشاف الأنماط الشاذة أو المخالفة وتوليد تنبيهات للفحص والاستجابة." },
+    { id: 42, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "SIEM & Security Telemetry", en: "Centralized collection and correlation of security logs and event telemetry across connected systems for detection and response.", ar: "تجميع السجلات والبيانات القياسية وربطها لتحليل الحوادث واكتشاف الأنشطة المشبوهة بسرعة." },
+    { id: 43, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "IOC (Indicator of Compromise)", en: "Forensic artifact or observable pattern indicating potential unauthorized activity or system compromise.", ar: "مؤشر أو أثر رصدي يدل على احتمال وقوع نشاط غير مصرح به أو اختراق يحتاج للتحقق." },
+    { id: 44, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Fuzz Testing (Fuzzing)", en: "Automated testing feeding malformed, unexpected, or boundary inputs to uncover parsing flaws and stability defects.", ar: "اختبار يمرر مدخلات غير متوقعة أو مشوهة لاكتشاف نقاط الضعف في تحليل الرسائل والبرمجيات قبل الإنتاج." },
+    { id: 45, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "HIL Testing (Hardware-in-the-Loop)", en: "Validation testing connecting a real ECU to simulated signals and environment models to verify behavior safely.", ar: "اختبار وحدة التحكم الفعلية في بيئة محاكاة للتحقق من سلوكها واستجابتها دون مخاطر ميدانية." },
+    { id: 46, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Penetration Testing (Automotive)", en: "Controlled security assessment evaluating how realistic attack paths might affect vehicle interfaces and defenses.", ar: "تقييم أمني منضبط لاختبار فاعلية الحماية على الواجهات والأنظمة ومعالجة الثغرات المكتشفة." },
+    { id: 47, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Incident Response (IR)", en: "Structured workflow to detect, contain, investigate, eradicate, and recover from security incidents while minimizing impact.", ar: "خطوات منظمة لرصد الحادث وعزله وإزالة أثره واستعادة الوضع الطبيعي وتوثيق الدروس المستفادة." },
+    { id: 48, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Containment & Fail-Safe State", en: "Isolating affected components and transitioning systems into a safe state when compromise or fault is suspected.", ar: "عزل الجزء المتأثر وتوجيه النظام نحو حالة آمنة تحافظ على سلامة الركاب وتمنع تفاقم الضرر." },
+    { id: 49, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Vulnerability Management", en: "Continuous cycle of identifying, assessing, prioritizing, and patching software or configuration weaknesses.", ar: "دورة مستمرة لاكتشاف الثغرات وتقييم خطورتها وتطبيق التحديثات أو المعالجات المناسبة." },
+    { id: 50, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "PSIRT (Product Security Incident Response Team)", en: "Dedicated team coordinating vulnerability intake, analysis, advisories, and remediation for products and connected systems.", ar: "فريق متخصص يتولى استقبال بلاغات الثغرات وتحليلها وتنسيق المعالجات والتنبيهات للمنتجات والأنظمة." },
+
+    // 51 - 65: بنية المركبة والاتصالات (VEH)
+    { id: 51, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "LIN Bus (Local Interconnect Network)", en: "Low-cost, single-wire serial bus used for non-critical body electronics such as windows, mirrors, and seat controls.", ar: "شبكة اتصال منخفضة التكلفة للأجزاء البسيطة غير الحرجة مثل النوافذ والمرايا؛ تتطلب عزلاً عن الشبكات الحيوية." },
+    { id: 52, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "FlexRay", en: "Deterministic, high-speed automotive network protocol supporting time-triggered and event-triggered communication for safety-critical systems.", ar: "بروتوكول شبكة عالي السرعة ومنتظم التوقيت للأنظمة الحساسة؛ يدعم الموثوقية والتكرار في المسارات." },
+    { id: 53, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Automotive Ethernet", en: "High-bandwidth switched Ethernet adapted for vehicles to carry large sensor, camera, and diagnostic data streams.", ar: "شبكة إيثرنت عالية السرعة داخل المركبة لنقل بيانات الكاميرات والحساسات والتشخيص؛ تستفيد من تقسيم الشبكات وضوابط الوصول." },
+    { id: 54, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "TCU Cellular & eSIM Security", en: "Securing cellular modems and embedded SIM profiles in telematics units against unauthorized signaling or remote access.", ar: "تأمين مودم الاتصال الخلوي وملفات eSIM لحماية الاتصالات البعيدة من الاستغلال أو التلاعب." },
+    { id: 55, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "GNSS / GPS Spoofing & Jamming", en: "Jamming disrupts satellite navigation signals, while spoofing broadcasts falsified location/time signals to mislead receivers.", ar: "التشويش يحجب إشارة الملاحة، والانتحال يرسل إشارة مضللة؛ يُواجه بالتحقق المتعدد وتوافق الحساسات." },
+    { id: 56, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "TPMS (Tire Pressure Monitoring System)", en: "Wireless sensor system monitoring tire pressure; wireless links require awareness of signal integrity and anomaly handling.", ar: "نظام لاسلكي لمراقبة ضغط الإطارات؛ يُراعى فيه سلامة البيانات وعدم الاعتماد غير الموثق على إشارة واحدة." },
+    { id: 57, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Keyless Entry & Immobilizer (PEPS)", en: "Passive entry and start systems authenticating key fobs before unlocking or enabling ignition.", ar: "أنظمة الدخول والتشغيل دون مفتاح تعتمد على مصادقة قوية لمنع اعتراض أو إطالة إشارة المفتاح." },
+    { id: 58, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "EV Charging & ISO 15118 (Plug & Charge)", en: "Secure communication between electric vehicles and charging stations for authentication, billing, and energy management.", ar: "تأمين الاتصال بين المركبة الكهربائية ومحطة الشحن للتحقق من الهوية وحماية جلسات الشحن والفوترة." },
+    { id: 59, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Sensor Fusion & Perception Integrity", en: "Combining inputs from cameras, radar, and lidar to model surroundings; protecting sensor data integrity prevents perception errors.", ar: "دمج بيانات الحساسات لفهم المحيط؛ حماية سلامة البيانات تقلل أثر التشويش أو التلاعب في حساسات القيادة." },
+    { id: 60, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Diagnostic Firewall / Security Gateway", en: "Access control mechanism filtering diagnostic commands and restricting privileged ECU routines to authorized tools.", ar: "ضبط أوامر التشخيص ومنع الوصول غير المصرح به للوظائف الحساسة أثناء الفحص أو الصيانة." },
+    { id: 61, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Service Mode / Engineering Mode Lockout", en: "Disabling or protecting debug, engineering, and test interfaces before vehicle delivery so unauthorized users cannot abuse them.", ar: "إغلاق أو تقييد أوضاع الفحص والهندسة قبل التسليم لمنع استغلال منافذ الاختبار والتطوير." },
+    { id: 62, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Bus Flooding / Bus-Off Condition", en: "Excessive message traffic or frame errors on a bus degrading communication or pushing a node into error/bus-off state.", ar: "إغراق الناقل بالرسائل أو الأخطاء يعطل التواصل؛ يُواجه بتحديد المعدل والعزل ومراقبة الأداء." },
+    { id: 63, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "Bluetooth & Wi-Fi Exposure in IVI", en: "Wireless interfaces in infotainment systems that must enforce strong pairing, encryption, and least privilege.", ar: "واجهات الاتصال اللاسلكي في الترفيه تتطلب اقتراناً آمناً وتشفير الاتصال وعزلها عن شبكات التحكم." },
+    { id: 64, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "USB & External Media Hardening", en: "Controlling untrusted USB ports and external storage in vehicles to prevent malicious payloads or unauthorized data access.", ar: "تقييد منافذ USB والوسائط الخارجية لمنع تمرير برمجيات ضارة أو الوصول غير المسموح للنظام." },
+    { id: 65, domain: "VEH", domainLabel: "بنية المركبة والاتصالات", term: "V2G / Fleet Telematics Link", en: "Data exchange connecting vehicle fleets with backend cloud platforms for diagnostics, routing, and maintenance.", ar: "ربط المركبات بمنصات الإدارة السحابية للتشخيص والصيانة مع اشتراط التشفير والتحقق من الهوية." },
+
+    // 66 - 78: الحوكمة والمخاطر والامتثال (GOV)
+    { id: 66, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "CAL (Cybersecurity Assurance Level)", en: "Rating in ISO/SAE 21434 reflecting the required rigor of cybersecurity assurance activities based on risk level.", ar: "مستوى يحدد صرامة أنشطة التحقق والتأكيد الأمني بناءً على درجة الخطر المحددة." },
+    { id: 67, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Safety-Security Co-Engineering", en: "Coordinating functional safety and cybersecurity engineering so mitigations for one do not introduce hazards or conflicts in the other.", ar: "تنسيق هندسة السلامة والأمن معاً حتى لا يضعف حل أحدهما الآخر أو يسبب خطراً تشغيلياً." },
+    { id: 68, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "SUMS (Software Update Management System)", en: "Management system ensuring software updates across vehicle types are tracked, verified, safe, and compliant.", ar: "نظام إدارة تحديثات البرمجيات لضمان تتبع النسخ والتحقق منها وسلامة تثبيتها على المركبات." },
+    { id: 69, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Supplier Cybersecurity Assessment (Tier 1/2)", en: "Evaluating and contractually aligning cybersecurity responsibilities and deliverables across OEMs and component suppliers.", ar: "تقييم التزام الموردين بالمعايير الأمنية وتحديد المسؤوليات بوضوح عبر سلسلة التوريد." },
+    { id: 70, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Field Monitoring & Continuous Threat Monitoring", en: "Ongoing collection and analysis of operational signals after deployment to detect emerging threats and vulnerabilities.", ar: "مراقبة مستمرة بعد التشغيل لاكتشاف التهديدات الجديدة أو نقاط الضعف في الميدان مبكراً." },
+    { id: 71, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Threat Modeling (STRIDE / PASTA)", en: "Structured methods to identify threats, attack vectors, and security controls during system design.", ar: "منهجيات لتحديد التهديدات ونقاط الضعف أثناء التصميم ووضع ضوابط الحماية المناسبة." },
+    { id: 72, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Asset Inventory & Data Classification", en: "Cataloging hardware, software, keys, and telemetry assets by sensitivity and safety impact to guide protection.", ar: "حصر الأصول وتصنيف البيانات حسب حساسيتها وأثرها لتحديد مستوى الحماية لكل أصل." },
+    { id: 73, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Privacy & PII Protection in Connected Vehicles", en: "Safeguarding location history, driver profiles, and personal identifiers collected by connected cars and apps.", ar: "حماية بيانات الموقع وسلوك القيادة والمعلومات الشخصية وفق مبادئ الخصوصية وتقليل جمع البيانات." },
+    { id: 74, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Due Care & Due Diligence", en: "Due care is taking reasonable protective actions; due diligence is ongoing verification and auditing that controls remain effective.", ar: "العناية الواجبة هي اتخاذ إجراءات حماية معقولة، وبذل الجهد هو التدقيق والتحقق المستمر من فاعليتها." },
+    { id: 75, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Configuration Baseline & Change Control", en: "Maintaining approved secure configurations and reviewing changes before deployment to prevent unintended vulnerabilities.", ar: "الالتزام بإعدادات قياسية آمنة ومراجعة أي تعديل قبل اعتماده لتفادي الثغرات الناتجة عن التغيير." },
+    { id: 76, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "End-of-Support & Legacy Risk", en: "Risks arising when components or software stop receiving security updates, requiring isolation or risk mitigation.", ar: "مخاطر توقف الدعم والتحديثات للمكونات القديمة؛ تُعالج بالعزل أو الضوابط التعويضية." },
+    { id: 77, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Auditability & Non-Repudiation", en: "Recording verifiable events and cryptographic proofs so critical actions and updates can be traced reliably.", ar: "توثيق الأحداث والأدلة التشفيرية لتتبع العمليات والتحديثات وضمان المساءلة." },
+    { id: 78, domain: "GOV", domainLabel: "الحوكمة والمخاطر والامتثال", term: "Compliance & Regulatory Evidence", en: "Documented artifacts and test results demonstrating adherence to standards and vehicle regulations.", ar: "أدلة ووثائق فنية واختبارية تثبت الالتزام بالمتطلبات التنظيمية والمعايير المعتمدة." },
+
+    // 79 - 89: التشفير والتحديثات والحماية (CRY)
+    { id: 79, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Symmetric vs. Asymmetric Cryptography", en: "Symmetric uses one shared key for fast bulk encryption; asymmetric uses a public/private key pair for signing and key exchange.", ar: "المتماثل يستخدم مفتاحاً مشتركاً سريعاً، وغير المتماثل يستخدم مفتاحاً عاماً وخاصاً للتوقيع وتبادل المفاتيح." },
+    { id: 80, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Cryptographic Hashing", en: "One-way function producing a fixed-size digest to verify integrity of firmware images, configs, or messages.", ar: "دالة في اتجاه واحد تولد بصمة ثابتة للتحقق من سلامة ملف التحديث أو البيانات وعدم تعديلها." },
+    { id: 81, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "TLS (Transport Layer Security)", en: "Protocol encrypting data in transit between vehicles, backends, and cloud services while authenticating endpoints.", ar: "بروتوكول يشفر البيانات أثناء النقل بين المركبة والخدمات السحابية ويتحقق من هوية الطرفين." },
+    { id: 82, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Certificate Pinning & Validation", en: "Checking certificate chains, expiration, revocation, and pinned trust anchors so connections do not accept rogue certificates.", ar: "التحقق الصارم من صلاحية الشهادات وسلسلة الثقة لمنع قبول شهادات مزيفة أو غير موثوقة." },
+    { id: 83, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Root of Trust (Hardware RoT)", en: "Foundational hardware/firmware trust anchor that validates boot stages and protects core cryptographic identities.", ar: "نقطة ثقة عتادية تتحقق من مراحل الإقلاع وتحمي الهويات التشفيرية الأساسية للنظام." },
+    { id: 84, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Secure Flashing / Diagnostic Authentication", en: "Requiring cryptographic challenge-response or signed authorization before writing firmware or altering sensitive ECU parameters.", ar: "اشتراط مصادقة قوية أو تفويض موقع قبل برمجة وحدة التحكم أو تعديل إعداداتها الحساسة." },
+    { id: 85, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "A/B Partitioning & Fail-Safe OTA", en: "Maintaining dual firmware slots so an interrupted or failed update can roll back cleanly without bricking the ECU.", ar: "وجود مساحتين للتحديث يتيح الرجوع الآمن إذا انقطع التحديث أو فشل دون تعطيل وحدة التحكم." },
+    { id: 86, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Memory Protection & ASLR", en: "Runtime defenses such as address space layout randomization and non-executable memory that complicate exploit execution.", ar: "آليات حماية في الذاكرة تجعل استغلال ثغرات الذاكرة أكثر صعوبة أثناء التشغيل." },
+    { id: 87, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Debug Port Lockout (JTAG / SWD)", en: "Disabling, fusing, or authenticating hardware debug interfaces on production boards to block unauthorized extraction or tampering.", ar: "إغلاق أو تأمين منافذ الفحص العتادي في النسخ الإنتاجية لمنع قراءة الذاكرة أو العبث بالنظام." },
+    { id: 88, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Side-Channel Resistance", en: "Designing cryptographic implementations to reduce leakage of secrets through timing, power consumption, or electromagnetic emissions.", ar: "تقليل تسرب الأسرار عبر مؤشرات جانبية كالزمن أو استهلاك الطاقة أثناء العمليات التشفيرية." },
+    { id: 89, domain: "CRY", domainLabel: "التشفير والتحديثات والحماية", term: "Data at Rest Encryption", en: "Encrypting stored logs, credentials, and sensitive configuration data on non-volatile memory or storage.", ar: "تشفير البيانات المخزنة على الذاكرة أو وحدات التخزين لحماية سريتها عند الفقد أو الوصول غير المصرح به." },
+
+    // 90 - 100: السحابة والهوية والعمليات (CLD)
+    { id: 90, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Zero Trust Architecture", en: "Security model assuming no implicit trust; every user, device, and service request is verified explicitly with least privilege.", ar: "عدم منح ثقة تلقائية؛ والتحقق المستمر من الهوية والجهاز والصلاحية في كل طلب." },
+    { id: 91, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "IAM (Identity and Access Management)", en: "Managing identities, authentication, authorization, and access lifecycle across cloud platforms, services, and operators.", ar: "إدارة الهويات والصلاحيات والتحقق من هوية المستخدمين والخدمات وتحديد ما يحق لهم الوصول إليه." },
+    { id: 92, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "MFA (Multi-Factor Authentication)", en: "Requiring two or more distinct verification factors to protect administrative and cloud accounts against credential theft.", ar: "دمج عاملين مختلفين أو أكثر للتحقق من الهوية لتقوية حماية الحسابات حتى عند تسرب كلمة المرور." },
+    { id: 93, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "RBAC (Role-Based Access Control)", en: "Assigning permissions based on job roles rather than ad-hoc individual grants, simplifying governance and least privilege.", ar: "منح الصلاحيات وفق الدور الوظيفي لتنظيم الوصول وتسهيل المراجعة وتطبيق أقل صلاحية." },
+    { id: 94, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Shared Responsibility Model", en: "Clarifies security duties split between cloud providers and customers—such as securing data, identities, and configurations.", ar: "يوضح تقسيم المسؤوليات الأمنية بين مزود السحابة والعميل لحماية البيانات والهويات والإعدادات." },
+    { id: 95, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Cloud Misconfiguration & Secrets Hygiene", en: "Preventing exposed storage, overly broad roles, or hardcoded keys in cloud backends and CI/CD pipelines.", ar: "تجنب الإعدادات السحابية الخاطئة والصلاحيات المفرطة وحفظ الأسرار والمفاتيح بعيداً عن الكود." },
+    { id: 96, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "CI/CD & Build Pipeline Integrity", en: "Protecting source code, build servers, and signing keys so released vehicle software matches vetted changes.", ar: "حماية بيئة البناء ومفاتيح التوقيع لضمان أن البرمجيات المنتجة لم تتعرض لتعديل ضار." },
+    { id: 97, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Log Correlation & Anomaly Detection", en: "Combining telemetry from vehicles, backends, and network gateways to spot unusual patterns and potential intrusions.", ar: "ربط السجلات من المركبات والأنظمة الخلفية لاكتشاف السلوك غير المعتاد أو محاولات الاختراق مبكراً." },
+    { id: 98, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Time Synchronization (NTP)", en: "Keeping clocks synchronized across connected systems and logs so incident timelines can be reconstructed accurately.", ar: "توحيد التوقيت عبر الأنظمة والسجلات لترتيب تسلسل الأحداث بدقة أثناء التحقيق." },
+    { id: 99, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Disaster Recovery & Business Continuity (RTO / RPO)", en: "Planning service restoration (RTO) and acceptable data loss limits (RPO) so critical backend and fleet operations recover reliably.", ar: "تحديد أقصى وقت توقف مقبول (RTO) وأقصى فقد بيانات مقبول (RPO) لضمان استمرارية الخدمات واستعادتها." },
+    { id: 100, domain: "CLD", domainLabel: "السحابة والهوية والعمليات", term: "Post-Incident Review & Continuous Improvement", en: "Analyzing root causes and response effectiveness after an event to strengthen defenses, playbooks, and engineering controls.", ar: "تحليل الأسباب الجذرية وفاعلية الاستجابة بعد الحادث لتطوير الضوابط والخطط ومنع تكرار المشكلة." }
+  ];
+
+  const STORAGE_KEY = "automotive_sec_100_mastered";
+  let masteredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  let currentDomain = "all";
+  let currentQuery = "";
+
+  const cardsContainer = document.getElementById("cardsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const visibleCountEl = document.getElementById("visibleCount");
+  const masteredCountEl = document.getElementById("masteredCount");
+  const emptyStateEl = document.getElementById("emptyState");
+
+  function saveMastered() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...masteredSet]));
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+  }
+
+  function toggleMastered(id) {
+    if (masteredSet.has(id)) {
+      masteredSet.delete(id);
+    } else {
+      masteredSet.add(id);
+    }
+    saveMastered();
+    renderCards();
+  }
+
+  function renderCards() {
+    const q = currentQuery.trim().toLowerCase();
+    const filtered = autoTerms.filter(item => {
+      const matchDomain = currentDomain === "all" || item.domain === currentDomain;
+      const matchSearch =
+        !q ||
+        item.term.toLowerCase().includes(q) ||
+        item.en.toLowerCase().includes(q) ||
+        item.ar.toLowerCase().includes(q) ||
+        String(item.id) === q;
+      return matchDomain && matchSearch;
+    });
+
+    visibleCountEl.textContent = `المعروض: ${filtered.length}`;
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+
+    if (filtered.length === 0) {
+      cardsContainer.innerHTML = "";
+      emptyStateEl.style.display = "block";
+      return;
+    }
+
+    emptyStateEl.style.display = "none";
+    cardsContainer.innerHTML = filtered
+      .map(item => {
+        const isDone = masteredSet.has(item.id);
+        return `
+          <article class="card ${isDone ? "mastered" : ""}">
+            <div class="card-header">
+              <div class="term-title">
+                <span class="term-num">#${item.id}</span>
+                <span class="term-name">${item.term}</span>
+              </div>
+              <div class="card-actions">
+                <span class="domain-tag">${item.domainLabel}</span>
+                <button class="master-btn ${isDone ? "done" : ""}" onclick="toggleMastered(${item.id})">
+                  ${isDone ? "✓ تم الحفظ" : "تحديد كـ مُتقَن"}
+                </button>
+              </div>
+            </div>
+            <div class="en-box">${item.en}</div>
+            <div class="ar-box"><strong>التفسير:</strong> ${item.ar}</div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  searchInput.addEventListener("input", e => {
+    currentQuery = e.target.value;
+    renderCards();
+  });
+
+  document.getElementById("filterButtons").addEventListener("click", e => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+    currentDomain = e.target.dataset.domain;
+    renderCards();
+  });
+
+  renderCards();
+</script>
+</body>
+</html>
