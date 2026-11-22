@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-   <title>DZ Cyber Academy | أكاديمية الأمن السيبراني التطبيقي</title>
-<meta name="description" content="مدرسة رقمية تطبيقية لتأهيل طلبة الجامعات والمهتمين بالأمن السيبراني في الجزائر عبر مختبرات عملية وحصص مباشرة.">
-<meta property="og:title" content="DZ Cyber Academy | أكاديمية الأمن السيبراني التطبيقي">
-<meta property="og:description" content="انتقل من النظري الجامعي إلى الممارسة الميدانية في الأمن السيبراني. سجل الآن مجاناً.">
-<meta property="og:type" content="website"> 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DZ Cyber Academy | أكاديمية الأمن السيبراني التطبيقي</title>
+    <meta name="description" content="مدرسة رقمية تطبيقية لتأهيل طلبة الجامعات والمهتمين بالأمن السيبراني في الجزائر عبر مختبرات عملية وحصص مباشرة.">
+    <meta property="og:title" content="DZ Cyber Academy | أكاديمية الأمن السيبراني التطبيقي">
+    <meta property="og:description" content="انتقل من النظري الجامعي إلى الممارسة الميدانية في الأمن السيبراني. سجل الآن مجاناً.">
+    <meta property="og:type" content="website">
     <style>
         :root {
             --bg-dark: #0a0f1c;
@@ -236,11 +238,13 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            transition: transform 0.25s, border-color 0.25s, background-color 0.25s;
         }
 
         .module-info h3 {
             font-size: 1.2rem;
             margin-bottom: 0.3rem;
+            color: var(--text-main);
         }
 
         .module-info p {
@@ -255,6 +259,24 @@
             border-radius: 6px;
             font-size: 0.85rem;
             font-weight: 600;
+            text-decoration: none;
+        }
+
+        .module-link-card {
+            text-decoration: none;
+            color: inherit;
+            border-right-color: var(--primary);
+        }
+
+        .module-link-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 240, 255, 0.5);
+            background-color: var(--bg-card-hover);
+        }
+
+        .module-link-card .module-tag {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--secondary);
         }
 
         /* Instructor Box */
@@ -446,6 +468,13 @@
                 </div>
                 <span class="module-tag">ورشة خاصة</span>
             </div>
+            <a href="isc2-cc-100.html" class="module-item module-link-card">
+                <div class="module-info">
+                    <h3>مرجع الأمن السيبراني • بنك الـ 100 تعريف الأساسي (ISC2 CC)</h3>
+                    <p>مكتبة تفاعلية تضم 100 مصطلح وتعريف رسمي بالإنجليزية مع التفسير المنطقي والعملي بالعربية، مزودة ببحث فوري وتصنيف حسب مجالات الاختبار.</p>
+                </div>
+                <span class="module-tag">فتح المرجع التفاعلي الآن ◀</span>
+            </a>
         </div>
     </section>
 
