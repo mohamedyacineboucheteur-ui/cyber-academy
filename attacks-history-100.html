@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مرجع 100 أسلوب اختراق في 30 سنة (1996–2026) | DZ Cyber Academy</title>
+  <style>
+    :root {
+      --bg: #070c17;
+      --surface: #0f172a;
+      --card: #162033;
+      --border: #25334d;
+      --primary: #f97316;
+      --primary-dark: #ea580c;
+      --accent: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --en-bg: #09101f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #431407 0%, #09101f 55%, #064e3b 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(249, 115, 22, 0.16);
+      color: #fdba74;
+      border: 1px solid var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 780px;
+      margin: 0 auto 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      border-color: var(--primary);
+      color: #fdba74;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .stats-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: #fdba74;
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #1c0a02;
+      border-color: var(--primary);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: transform 0.15s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+    }
+
+    .card.mastered {
+      border-right: 5px solid var(--accent);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .term-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      direction: ltr;
+    }
+
+    .term-num {
+      background: var(--primary);
+      color: #1c0a02;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .term-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fdba74;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .domain-tag {
+      font-size: 0.78rem;
+      background: rgba(249, 115, 22, 0.14);
+      color: #fdba74;
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .master-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .master-btn.done {
+      background: var(--accent);
+      color: #052e16;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .en-box {
+      direction: ltr;
+      text-align: left;
+      background: var(--en-bg);
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .ar-box {
+      color: #f1f5f9;
+      font-size: 0.97rem;
+      padding-right: 4px;
+    }
+
+    .ar-box strong {
+      color: var(--accent);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">30 Years of Cyberattacks (1996–2026) — 100 Techniques</div>
+  <h1>بنك الـ 100 أسلوب اختراق في أشهر الهجمات العالمية (30 سنة)</h1>
+  <p>توثيق لأبرز الأساليب الهجومية ونماذج الحوادث التاريخية والحديثة مع التفسير التقني والدفاعي باللغة العربية.</p>
+  <a href="index.html" class="back-link">↩ العودة إلى الصفحة الرئيسية للأكاديمية</a>
+</header>
+
+<div class="container">
+  <section class="controls-panel">
+    <div class="search-row">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ابحث عن أسلوب أو هجوم أو ثغرة (مثال: Supply Chain, Ransomware, Zero-Day, Phishing, SQLi, DDoS)..."
+      />
+      <div class="stats-box">
+        <span id="visibleCount">المعروض: 100</span>
+        <span>|</span>
+        <span id="masteredCount">المُتقَن: 0 / 100</span>
+      </div>
+    </div>
+
+    <div class="filters" id="filterButtons">
+      <button class="filter-btn active" data-domain="all">الكل (100)</button>
+      <button class="filter-btn" data-domain="INIT">الوصول الأولي والهندسة</button>
+      <button class="filter-btn" data-domain="EXP">الثغرات والبرمجيات والانتشار</button>
+      <button class="filter-btn" data-domain="SUP">سلاسل الإمداد والهوية والسحابة</button>
+      <button class="filter-btn" data-domain="IMP">التدمير والفدية والإغراق والتجسس</button>
+    </div>
+  </section>
+
+  <main class="cards-grid" id="cardsContainer"></main>
+  <div class="empty-state" id="emptyState">لا توجد نتائج مطابقة لبحثك. جرّب كلمة مفتاحية أخرى.</div>
+
+  <footer>
+    DZ Cyber Academy — مرجع الـ 100 أسلوب اختراق خلال 30 عاماً
+  </footer>
+</div>
+
+<script>
+  const attackMethods = [
+    // 1 - 25: الوصول الأولي والهندسة (INIT)
+    { id: 1, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Social Engineering Lures", en: "Manipulating trust, urgency, or curiosity in messages or files to trick users into executing code or sharing secrets.", ar: "استغلال العاطفة أو الاستعجال لدفع الضحية لفتح ملف أو رابط ضار؛ يُواجه بالتدريب والمصادقة القوية." },
+    { id: 2, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Mass Email Worms (ILOVEYOU / Melissa)", en: "Self-propagating scripts or macro payloads spread via email attachments and address books to infect millions of hosts rapidly.", ar: "انتشار سريع عبر المرفقات ودفاتر العناوين كما ظهر في حوادث مبكرة مثل ILOVEYOU وMelissa؛ يُواجه بحظر المرفقات الخطرة وتقليل الصلاحيات." },
+    { id: 3, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Spear Phishing Campaigns", en: "Targeted decoy messages tailored to specific roles or organizations to gain initial access into enterprise networks.", ar: "رسائل تصيد موجهة لجهة أو دور محدد لفتح موطئ قدم داخل الشبكة؛ يتطلب تدقيق المرسل وفحص الروابط." },
+    { id: 4, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Whaling & Executive Impersonation", en: "Targeting senior executives with high-privilege access or approval authority to bypass routine checks.", ar: "استهداف أصحاب الصلاحيات أو القرارات الحساسة؛ يُعالج بضوابط تحقق إضافية للطلبات المالية أو الإدارية." },
+    { id: 5, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Business Email Compromise (BEC)", en: "Abusing compromised or lookalike corporate email accounts to redirect payments or extract confidential business records.", ar: "استغلال حسابات البريد أو انتحالها لتوجيه التحويلات أو تسريب البيانات؛ يُخفّف بتوثيق البريد وحماية الهوية." },
+    { id: 6, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Third-Party Vendor Compromise", en: "Entering a target organization through a less-protected supplier, contractor, or service provider network (as seen in retail breaches).", ar: "التسلل عبر مورد أو شريك خارجي يملك ربطاً أو وصولاً جزئياً كما برز في اختراقات التجزئة؛ يُعالج بتقييم الموردين وعزل الشبكات." },
+    { id: 7, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Credential Stuffing", en: "Replaying leaked username-password pairs from prior breaches across other services to take over accounts reusing passwords.", ar: "إعادة تجربة بيانات مسربة من تسريبات سابقة؛ يُمنع بمنع تكرار كلمات المرور وتفعيل MFA." },
+    { id: 8, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Password Spraying", en: "Testing a few common passwords against many accounts over time to avoid per-account lockout thresholds.", ar: "تجربة كلمات شائعة عبر حسابات متعددة لتفادي القفل؛ يُكشف بمراقبة أنماط الدخول ويُضعف بـ MFA." },
+    { id: 9, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Brute-Force Guessing", en: "Systematically trying candidate passwords or keys against exposed login endpoints or weak authentication controls.", ar: "تخمين كلمات المرور أو المفاتيح؛ يُواجه بقوة كلمات المرور، تقييد المحاولات، والمصادقة متعددة العوامل." },
+    { id: 10, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Adversary-in-the-Middle (AiTM) Phishing", en: "Proxying authentication flows in real time to capture active session cookies or tokens even when MFA is prompted.", ar: "اعتراض جلسة تسجيل الدخول لانتزاع رمز الجلسة؛ يُواجه بآليات مصادقة مقاومة للتصيد وسياسات الوصول المشروط." },
+    { id: 11, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "OAuth Consent Abuse", en: "Tricking users into authorizing malicious third-party apps to read mailboxes, files, or cloud resources via consent dialogs.", ar: "خداع المستخدم لمنح تطبيق ضار صلاحيات واسعة عبر نافذة الموافقة؛ يُعالج بتقييد موافقات التطبيقات." },
+    { id: 12, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Watering Hole Attacks", en: "Compromising or injecting malicious content into websites frequently visited by a target group rather than attacking them directly.", ar: "استهداف مواقع يرتادها جمهور محدد لاصطياد زوارها؛ يُخفّف بتحديث المتصفحات والإضافات وتقليل صلاحيات التشغيل." },
+    { id: 13, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Malvertising & Zero-Click Ad Delivery", en: "Abusing ad networks or targeted online ads to deliver exploits or spyware with minimal or no user interaction.", ar: "إساءة استخدام الإعلانات الرقمية لتمرير برمجيات تجسس أو استغلال؛ يُحدّ منها التحديث السريع وحجب المحتوى الضار." },
+    { id: 14, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Exposed Edge & VPN Appliance Exploitation", en: "Targeting internet-facing VPNs, gateways, or SSO appliances with unpatched flaws to gain direct perimeter foothold.", ar: "استغلال أجهزة الحافة والـ VPN المكشوفة على الإنترنت؛ يتطلب سرعة التحديث ومراقبة السجلات وحصر الوصول." },
+    { id: 15, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Default & Weak Credentials Abuse", en: "Accessing devices, routers, cameras, or IoT gear that still use factory defaults or easily guessed passwords.", ar: "استغلال الإعدادات الافتراضية وكلمات المرور الضعيفة؛ يُعالج بتغيير الافتراضي فوراً وإغلاق الخدمات غير الضرورية." },
+    { id: 16, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Removable Media & Air-Gap Bridges", en: "Using USB drives or portable devices to cross air-gapped or isolated networks and deliver payloads.", ar: "نقل البرمجيات عبر وسائط التخزين أو الأجهزة المحمولة؛ يُواجه بتقييد المنافذ وفحص الوسائط." },
+    { id: 17, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Pretexting & Vishing / Smishing", en: "Fabricating believable scenarios over phone or SMS to convince targets to disclose codes or reset credentials.", ar: "انتحال صفة أو سيناريو مقنع هاتفياً أو عبر الرسائل؛ يُواجه بالتحقق من الهوية عبر قناة مستقلة." },
+    { id: 18, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Rogue & Unpatched Public Services", en: "Scanning the internet for exposed databases, management ports, or misconfigured services left reachable externally.", ar: "مسح الخدمات المكشوفة خطأً على الإنترنت؛ يُعالج بتقليص سطح الهجوم وعدم تعريض منافذ الإدارة مباشرة." },
+    { id: 19, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Session Hijacking & Cookie Theft", en: "Stealing session identifiers from unencrypted traffic or vulnerable browsers to impersonate an active user.", ar: "انتحال الجلسة عبر سرقة معرف الجلسة؛ يُقاوم بـ HTTPS الدائم وتأمين الكوكيز وانتهاء الجلسات." },
+    { id: 20, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Insider Privilege Misuse", en: "Abusing legitimate internal credentials or access rights to extract data or sabotage systems.", ar: "إساءة استخدام صلاحية داخلية؛ يُحدّ منها مبدأ أقل صلاحية، فصل المهام، ومراقبة السجلات." },
+    { id: 21, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Reconnaissance & OSINT Enumeration", en: "Gathering public intelligence, subdomains, exposed assets, and employee details to map attack paths.", ar: "جمع المعلومات والاستطلاع قبل الهجوم؛ يُخفّف بتقليل كشف البيانات غير الضرورية ومراقبة الفحص." },
+    { id: 22, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Web Shell Deployment", en: "Uploading a script to a vulnerable web server to maintain persistent command execution over HTTP/HTTPS.", ar: "زرع واجهة أوامر على خادم ويب؛ يُواجه بإغلاق ثغرات الرفع وحماية مسارات الويب ومراقبة الملفات." },
+    { id: 23, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Subdomain Takeover", en: "Claiming an unused DNS record pointing to a decommissioned cloud or third-party resource to host malicious content.", ar: "الاستيلاء على نطاق فرعي يشير لخدمة غير مستخدمة؛ يُعالج بتنظيف سجلات DNS غير النشطة." },
+    { id: 24, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Phishing via Cloud Collaboration & Links", en: "Hosting lure pages on trusted platforms or using shared links to evade basic reputation filters.", ar: "استخدام روابط موثوقة أو منصات معروفة لتجاوز الفلاتر؛ يتطلب فحص السلوك وفحص الهوية عند الدخول." },
+    { id: 25, domain: "INIT", domainLabel: "الوصول الأولي والهندسة", term: "Physical Access & Tailgating", en: "Following authorized staff or exploiting physical entry gaps to access hardware, terminals, or wiring closets.", ar: "التسلل المادي أو استغلال ثغرات الدخول الجسدي؛ يُعالج بالتحكم المادي في الدخول والتوعية." },
+
+    // 26 - 50: الثغرات والبرمجيات والانتشار (EXP)
+    { id: 26, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Zero-Day Exploitation", en: "Exploiting a vulnerability before a patch exists or before defenders know the flaw is being actively attacked.", ar: "استغلال ثغرة قبل توفر تحديث لها؛ يبرز أهمية الدفاع المتعمق والمراقبة السلوكية والعزل." },
+    { id: 27, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "N-Day Patch Lag Exploitation", en: "Rapidly weaponizing known vulnerabilities after disclosure against organizations slow to apply security updates (as in SQL Slammer and WannaCry).", ar: "استغلال ثغرات معروفة لبطء التحديث كما حدث في SQL Slammer وWannaCry؛ يؤكد ضرورة سرعة إدارة التحديثات." },
+    { id: 28, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Remote Code Execution (RCE)", en: "Triggering arbitrary code execution on a target system over a network or input channel.", ar: "تنفيذ أوامر أو كود عن بُعد؛ من أخطر أنواع الثغرات ويتطلب تحديثاً فورياً وعزلاً للشبكة." },
+    { id: 29, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "SQL Injection (SQLi)", en: "Injecting untrusted input into database queries to read, modify, or extract data (seen in major data breaches).", ar: "حقن أوامر قاعدة البيانات عبر مدخلات غير موثوقة كما في اختراقات بيانات كبرى؛ يُعالج بالاستعلامات المهيأة." },
+    { id: 30, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Log & Library Injection (Log4Shell)", en: "Exploiting logging or widely shared software libraries to execute remote code across many applications at once.", ar: "استغلال ثغرة في مكتبة شائعة مثل Log4Shell؛ يتطلب جرد المكونات وتحديثها بسرعة." },
+    { id: 31, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Cross-Site Scripting (XSS)", en: "Injecting malicious scripts into web content so they execute in victims' browsers and access session data.", ar: "حقن كود يُنفّذ في متصفح المستخدم؛ يُعالج بالتحقق من المدخلات وترميز المخرجات." },
+    { id: 32, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Server-Side Request Forgery (SSRF)", en: "Forcing a server to make unauthorized internal network or cloud metadata requests.", ar: "دفع الخادم لطلب موارد داخلية؛ يُواجه بتقييد الوجهات وحماية خدمات البيانات الوصفية." },
+    { id: 33, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Buffer Overflow & Memory Corruption", en: "Writing beyond allocated memory bounds to alter execution flow or crash processes.", ar: "تجاوز حدود الذاكرة لتغيير مسار التنفيذ؛ يُعالج بالبرمجة الآمنة وتحديث المكونات وحماية الذاكرة." },
+    { id: 34, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Privilege Escalation (Vertical & Horizontal)", en: "Gaining higher administrative rights or accessing another user's scope after initial foothold.", ar: "رفع الصلاحيات للوصول لبيئة أوسع؛ يُحدّ بتقليل الصلاحيات وسد ثغرات النظام." },
+    { id: 35, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Lateral Movement & SMB/RDP Pivoting", en: "Moving across internal hosts using shared network protocols, stolen credentials, or remote desktop access.", ar: "التنقل الداخلي بين الأجهزة؛ يُعالج بتقسيم الشبكة وتقييد الوصول الداخلي وحماية الحسابات." },
+    { id: 36, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Credential Dumping & Kerberos Abuse", en: "Extracting password hashes, tickets, or secrets from memory or directory services to impersonate privileged accounts.", ar: "استخلاص بيانات الاعتماد أو التذاكر؛ يُواجه بحماية الذاكرة وتقليل الصلاحيات ومراقبة المصادقة." },
+    { id: 37, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Living-off-the-Land (LotL) Binaries", en: "Using built-in administrative tools and scripting engines instead of custom malware to blend in with normal activity.", ar: "استخدام أدوات النظام المدمجة لتقليل الاكتشاف؛ يتطلب مراقبة سلوك الأوامر والسجلات." },
+    { id: 38, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Fileless & In-Memory Execution", en: "Running malicious code directly in memory or scripts without leaving standard executable files on disk.", ar: "التنفيذ في الذاكرة دون ملفات تقليدية على القرص؛ يُرصد بالمراقبة السلوكية وتحليل الذاكرة." },
+    { id: 39, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Trojanized Software & Backdoors", en: "Embedding covert access mechanisms inside legitimate tools or installers to return later.", ar: "زرع باب خلفي داخل برنامج؛ يُعالج بالتحقق من السلامة والتوقيع الرقمي." },
+    { id: 40, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Self-Propagating Worms & Exploits", en: "Spreading automatically across vulnerable hosts without human clicks (as seen in Code Red, Slammer, and WannaCry).", ar: "الانتشار التلقائي عبر الشبكة كما في Code Red وSlammer وWannaCry؛ يُحدّ بإغلاق المنافذ غير اللازمة والتحديث." },
+    { id: 41, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Rootkits & Bootkits", en: "Hiding malware at deep OS or boot levels to evade detection and persist across reboots.", ar: "التخفي العميق في الإقلاع أو النواة؛ يُقاوم بالإقلاع الآمن وسلامة النظام." },
+    { id: 42, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Command-and-Control (C2) Beaconing", en: "Periodic outbound check-ins from infected hosts to attacker infrastructure to receive tasks or exfiltrate data.", ar: "اتصال دوري بأوامر التحكم؛ يُرصد بتحليل حركة الخروج والشذوذ الشبكي." },
+    { id: 43, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "DNS Tunneling & Covert Channels", en: "Hiding C2 traffic or stolen data inside legitimate-looking protocol fields such as DNS queries.", ar: "نقل بيانات سرية عبر قنوات تبدو طبيعية كـ DNS؛ يُواجه بمراقبة أنماط الاستعلام وتقييد الخروج." },
+    { id: 44, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Obfuscation, Packing & Encryption", en: "Encoding, packing, or encrypting payloads to hinder static signature detection and reverse engineering.", ar: "إخفاء وتمويه الكود لتجاوز الفحص الثابت؛ يعزز أهمية التحليل الديناميكي والسلوكي." },
+    { id: 45, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Scheduled Tasks, Services & Registry Persistence", en: "Registering startup tasks, services, or autoruns so malicious code launches automatically after reboot.", ar: "تثبيت الاستمرارية عبر المهام أو الخدمات؛ يُعالج بمراقبة التغييرات في نقاط التشغيل التلقائي." },
+    { id: 46, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Stuxnet-Style ICS / PLC Manipulation", en: "Targeting industrial control logic and programmable controllers to alter physical machinery behavior stealthily.", ar: "استهداف أنظمة التحكم الصناعية كما في Stuxnet؛ يتطلب عزل شبكات التشغيل والتحقق من سلامة أوامر التحكم." },
+    { id: 47, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "OT / SCADA Network Pivoting", en: "Crossing from enterprise IT networks into operational technology (OT) control networks (as in power grid attacks).", ar: "الانتقال من شبكة المعلومات إلى شبكة التشغيل الصناعية كما في هجمات الشبكات الكهربائية؛ يتطلب عزلاً صارماً ومراقبة متخصصة." },
+    { id: 48, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Man-in-the-Middle & Traffic Interception", en: "Intercepting or altering communications across weak links or misvalidated TLS sessions.", ar: "اعتراض البيانات أثناء النقل؛ يُقاوم بالتشفير القوي والتحقق الصحيح من الشهادات." },
+    { id: 49, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Path Traversal & Arbitrary File Access", en: "Manipulating file paths to read or overwrite sensitive files outside intended directories.", ar: "الوصول لملفات خارج المسار المسموح؛ يُعالج بالتحقق من المسارات وتقييد الصلاحيات." },
+    { id: 50, domain: "EXP", domainLabel: "الثغرات والبرمجيات والانتشار", term: "Insecure Deserialization", en: "Abusing untrusted serialized objects during parsing to alter application state or execute code.", ar: "استغلال فك تسلسل بيانات غير موثوقة؛ يُعالج بتجنب فك تسلسل بيانات خارجية غير محمية." },
+
+    // 51 - 75: سلاسل الإمداد والهوية والسحابة (SUP)
+    { id: 51, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Software Update Supply Chain Compromise", en: "Injecting malicious code into a trusted software vendor's build or update pipeline to reach many customers (as in SolarWinds).", ar: "اختراق سلسلة تحديث البرمجيات كما في SolarWinds للوصول لجهات متعددة عبر تحديث موثوق؛ يتطلب تأمين بيئات البناء ومراقبة السلوك." },
+    { id: 52, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "IT Management & RMM Tool Compromise", en: "Abusing remote monitoring/management or backup software trusted across client networks to deploy payloads at scale.", ar: "استغلال أدوات الإدارة أو النسخ الاحتياطي الموثوقة لنشر الضرر واسعاً؛ يُعالج بعزلها وحماية حساباتها ومراقبتها." },
+    { id: 53, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Open-Source & Package Registry Poisoning", en: "Publishing malicious packages or compromised releases in public repositories or container registries.", ar: "نشر حزم أو إصدارات ضارة في مستودعات البرمجيات؛ يُعالج بتثبيت الإصدارات الموثوقة وفحص التبعيات." },
+    { id: 54, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Hardcoded Secrets & Token Harvesting", en: "Finding API keys, access tokens, or credentials in code, configs, or logs to access cloud and internal systems.", ar: "العثور على مفاتيح أو رموز مخزنة في الكود أو السجلات؛ يُعالج بإدارة الأسرار وتدوير المفاتيح." },
+    { id: 55, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Cloud Storage & Bucket Misconfiguration", en: "Exposing sensitive backups, snapshots, or files due to overly permissive cloud access policies.", ar: "انكشاف التخزين السحابي بسبب صلاحيات مفتوحة؛ يُعالج بالمراجعة المستمرة وضبط الصلاحيات الافتراضية." },
+    { id: 56, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Over-Privileged Cloud IAM Roles", en: "Abusing broad cloud roles or service accounts to pivot across accounts, data stores, or compute resources.", ar: "استغلال أدوار سحابية بصلاحيات واسعة؛ يُعالج بأقل صلاحية ومراجعة الأدوار دورياً." },
+    { id: 57, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Cloud Metadata Service Abuse", en: "Leveraging SSRF or compromised workloads to query instance metadata and obtain temporary credentials.", ar: "الوصول لبيانات التهيئة الوصفية للحصول على صلاحيات مؤقتة؛ يُواجه بحماية نقطة البيانات وتقييد الطلبات." },
+    { id: 58, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Federated & SSO Bypass Flaws", en: "Exploiting single sign-on or authentication bypass flaws to gain unauthorized access across connected services.", ar: "استغلال ثغرات في تسجيل الدخول الموحد؛ يتطلب تحديثاً سريعاً ومراقبة أنماط المصادقة." },
+    { id: 59, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "API Scraping & Data Harvesting", en: "Automating requests against public or weakly protected endpoints to extract large volumes of user or business data.", ar: "جمع البيانات آلياً عبر واجهات أو نقاط وصول ضعيفة الحماية كما حدث في تسريبات بيانات؛ يُعالج بتقييد المعدل والمصادقة." },
+    { id: 60, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Shadow IT & Unmonitored SaaS", en: "Using unsanctioned apps or cloud services outside security visibility, creating unmanaged data stores.", ar: "استخدام تطبيقات خارج الرقابة يزيد المخاطر؛ يُعالج باكتشاف الخدمات غير المعتمدة وتوجيهها لبدائل آمنة." },
+    { id: 61, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Container & Orchestration Escape", en: "Breaking out of containerized workloads to reach host OS resources or neighboring clusters.", ar: "تجاوز عزل الحاويات؛ يُعالج بتحديث الصور، تقليل صلاحيات الحاوية، وعزل المضيف." },
+    { id: 62, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "CI/CD Pipeline Poisoning", en: "Tampering with build scripts, runners, or deployment workflows to slip malicious changes into production.", ar: "التلاعب بخطوط البناء والنشر؛ يُعالج بحماية المستودعات والاعتمادات ومراجعة التغييرات." },
+    { id: 63, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Weak MFA & Legacy Auth Fallback", en: "Bypassing modern protection by using legacy authentication protocols or easily phishable second factors.", ar: "الالتفاف عبر بروتوكولات مصادقة قديمة أو عوامل ضعيفة؛ يُعالج بتعطيل المصادقة القديمة وتقوية MFA." },
+    { id: 64, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Dormant & Orphaned Accounts Takeover", en: "Compromising unused, former-employee, or forgotten accounts that still retain access.", ar: "اختراق حسابات مهملة أو قديمة؛ يُعالج بمراجعة الحسابات وتعطيل غير النشطة فوراً." },
+    { id: 65, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Data Oversharing & Link Exposure", en: "Leaving sensitive files accessible through overly broad sharing links or unreviewed permissions.", ar: "اتساع نطاق مشاركة الملفات الحساسة؛ يُعالج بتصنيف البيانات ومراجعة أذونات المشاركة." },
+    { id: 66, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "DNS Hijacking & Cache Poisoning", en: "Redirecting domain resolution to malicious servers or intercepting traffic intended for legitimate destinations.", ar: "تضليل توجيه النطاقات؛ يُواجه بتأمين DNS والتحقق من صحة الاستجابات." },
+    { id: 67, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "BGP Route Hijacking & Traffic Rerouting", en: "Announcing unauthorized IP prefixes to steer internet traffic through unintended paths.", ar: "اختطاف مسارات التوجيه؛ يُحدّ منها التحقق من صحة الإعلانات والتنسيق مع مزودي الخدمة." },
+    { id: 68, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Public Cloud Snapshot & Backup Theft", en: "Accessing unencrypted or poorly protected storage snapshots containing sensitive enterprise data.", ar: "الوصول لنسخ أو لقطات سحابية غير مشفرة؛ يُعالج بتشفير التخزين وتقييد الوصول." },
+    { id: 69, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "AI-Assisted Phishing & Deepfake Lures", en: "Using generative AI to craft highly convincing lures, voice/video impersonation, or scalable reconnaissance.", ar: "توظيف الذكاء الاصطناعي لصياغة خدع أكثر إقناعاً كما برز في التهديدات الحديثة؛ يتطلب تحققاً صارماً خارج الرسالة." },
+    { id: 70, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Automated Vulnerability Scanning & Exploitation", en: "Using automated tooling to rapidly discover exposed flaws and attempt mass exploitation across targets.", ar: "الأتمتة السريعة للفحص والاستغلال؛ تتطلب تقليص المكشوف وسرعة سد الثغرات." },
+    { id: 71, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Cross-Account & Cross-Tenant Pivoting", en: "Abusing trust relationships or shared configurations to move from one environment or tenant to another.", ar: "الانتقال عبر علاقات ثقة أو بيئات مرتبطة؛ يُعالج بتدقيق الثقة وحصر الصلاحيات." },
+    { id: 72, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Weak Cryptographic & Key Practices", en: "Relying on outdated algorithms, weak keys, or improper certificate validation that exposes data.", ar: "ضعف التشفير أو إدارة المفاتيح؛ يُعالج بالمعايير الحديثة وتدوير المفاتيح والتحقق السليم." },
+    { id: 73, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Unmonitored Remote Access Gateways", en: "Leaving remote support or access portals without strong authentication or logging.", ar: "بوابات وصول عن بُعد بلا حماية كافية؛ تُعالج بـ MFA والسجلات وتقييد المصادر." },
+    { id: 74, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Browser Extension & Plugin Abuse", en: "Compromising or abusing extensions with broad page or data access permissions.", ar: "إساءة استخدام إضافات المتصفح؛ يُعالج بتقليل الإضافات وحصر أذوناتها." },
+    { id: 75, domain: "SUP", domainLabel: "سلاسل الإمداد والهوية والسحابة", term: "Misconfigured Web & App Servers", en: "Leaving debug modes, directory listings, or unnecessary HTTP methods enabled in production.", ar: "إبقاء أوضاع التطوير أو إعدادات غير آمنة في الإنتاج؛ يُعالج بالتقسيم والمعايير الآمنة." },
+
+    // 76 - 100: التدمير والفدية والإغراق والتجسس (IMP)
+    { id: 76, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Ransomware Encryption & Extortion", en: "Encrypting critical files and systems to halt operations and demand ransom payments.", ar: "تشفير البيانات لابتزاز الضحية وتعطيل العمل؛ يُواجه بالنسخ الاحتياطية المعزولة والعزل السريع." },
+    { id: 77, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Double & Triple Extortion", en: "Stealing data before encryption, threatening public leaks, or pressuring partners/customers to force payment.", ar: "الجمع بين سرقة البيانات والتشفير والضغط الإعلامي أو على الشركاء؛ يتطلب منع التسريب وحماية البيانات." },
+    { id: 78, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Wiper Malware (NotPetya / Shamoon)", en: "Destructive malware designed to overwrite disk sectors, master boot records, or files irreversibly rather than recover them.", ar: "برمجيات تدميرية تهدف لمحو البيانات وتعطيل الأنظمة كما في NotPetya وShamoon؛ تبرز أهمية النسخ المعزولة وعزل الشبكة." },
+    { id: 79, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Critical Infrastructure & Pipeline Disruption", en: "Disrupting fuel, energy, healthcare, or transport IT/OT systems to cause wide operational impact.", ar: "تعطيل الخدمات الحيوية كالطاقة والصحة والنقل؛ يتطلب خطط استمرارية وعزل الشبكات واستجابة سريعة." },
+    { id: 80, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "IoT Botnets (Mirai-Style)", en: "Enlisting large numbers of vulnerable connected devices into a botnet to launch massive distributed attacks.", ar: "تجنيد أجهزة إنترنت الأشياء الضعيفة لتنفيذ هجمات واسعة كما في Mirai؛ يُعالج بتغيير كلمات المرور الافتراضية وتحديث الأجهزة." },
+    { id: 81, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Volumetric & Application-Layer DDoS", en: "Flooding targets with high-bandwidth traffic or expensive application requests to exhaust availability.", ar: "إغراق الخدمة لإسقاط التوافر؛ يُواجه بحماية الحافة وتوزيع الحمل وتحديد المعدل." },
+    { id: 82, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "State Espionage & Long-Term Intrusion", en: "Covert, sustained access aimed at intelligence collection, intellectual property theft, or strategic positioning.", ar: "تجسس طويل الأمد لجمع المعلومات أو الملكية الفكرية؛ يتطلب مراقبة مستمرة وحماية الأصول الحساسة." },
+    { id: 83, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Mass Data Breach & PII Exfiltration", en: "Extracting large databases of personal, financial, or health records for sale, extortion, or misuse.", ar: "سرقة قواعد بيانات ضخمة للبيانات الشخصية أو المالية؛ يُعالج بتقليل البيانات المخزنة وتشفيرها وضبط الوصول." },
+    { id: 84, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Hack-and-Leak Operations", en: "Stealing sensitive correspondence, documents, or source code and leaking them publicly for political or reputational impact.", ar: "سرقة وتسريب الوثائق أو البيانات للتأثير الإعلامي أو السياسي كما في حوادث معروفة؛ يتطلب حماية البيانات والحوكمة." },
+    { id: 85, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Financial & Banking Fraud Schemes", en: "Manipulating payment channels, wire transfers, or banking systems to siphon funds.", ar: "استغلال القنوات المالية لتحويل الأموال؛ يُعالج بضوابط الموافقة، فصل المهام، والمراقبة الفورية." },
+    { id: 86, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Cryptojacking", en: "Secretly using victims' CPU or GPU compute resources to mine cryptocurrency, degrading performance and raising power costs.", ar: "استغلال موارد المعالج أو كرت الشاشة للتعدين سراً؛ يُرصد بمراقبة استهلاك الموارد والعمليات." },
+    { id: 87, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Defacement & Media/Service Disruption", en: "Altering public web pages or disrupting broadcast/online channels to broadcast messages or cause downtime.", ar: "تغيير واجهات المواقع أو تعطيل قنوات النشر؛ يُعالج بتحصين الخوادم وحماية الحسابات الإدارية." },
+    { id: 88, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Backup Sabotage & Shadow Copy Deletion", en: "Deleting backups, shadow copies, or recovery tools before encrypting systems so victims cannot restore easily.", ar: "استهداف النسخ الاحتياطية وأدوات الاستعادة قبل التشفير؛ يؤكد ضرورة النسخ غير القابلة للتعديل والمعزولة." },
+    { id: 89, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Log Tampering & Defense Evasion", en: "Clearing logs, disabling security agents, or tampering with telemetry to hide attacker tracks during an intrusion.", ar: "مسح السجلات أو تعطيل الحماية لإخفاء الأثر؛ يُعالج بإرسال السجلات مركزياً وحماية وكلاء الأمن." },
+    { id: 90, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Mercenary Spyware & Mobile Exploitation", en: "Targeted surveillance tools exploiting mobile OS or messaging flaws to monitor communications and location.", ar: "برمجيات مراقبة موجهة للأجهزة المحمولة؛ يُحدّ منها التحديث المستمر وتقليل التطبيقات غير الموثوقة." },
+    { id: 91, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Satellite & Telecom Link Disruption", en: "Disrupting satellite modems or telecommunications links to degrade connectivity across wide areas.", ar: "تعطيل روابط الأقمار الصناعية أو الاتصالات؛ يتطلب مسارات بديلة وخطط استمرارية." },
+    { id: 92, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Healthcare & Hospital System Disruption", en: "Halting clinical systems, lab testing, or patient records, creating severe operational and safety risks.", ar: "تعطيل الأنظمة الطبية؛ يبرز خطورة الهجمات على القطاعات الحيوية وأهمية جاهزية الاستعادة." },
+    { id: 93, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Source Code & Intellectual Property Theft", en: "Exfiltrating proprietary code, designs, or trade secrets to gain competitive or strategic advantage.", ar: "سرقة الكود المصدري والملكية الفكرية؛ يُعالج بتقييد الوصول للمستودعات ومراقبة التحميل." },
+    { id: 94, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Ransomware-as-a-Service (RaaS) Affiliates", en: "Dividing roles between ransomware developers and specialized initial-access/intrusion affiliates to scale attacks.", ar: "توزيع الأدوار بين مطوري الفدية ومنفذي الاختراق لزيادة الانتشار؛ يتطلب دفاعاً شاملاً عبر كامل مسار الهجوم." },
+    { id: 95, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Staged & Delayed Payload Execution", en: "Holding back destructive or encrypting payloads until lateral spread or specific conditions are met.", ar: "تأجيل تنفيذ الضرر لحين الانتشار؛ يبرز أهمية الاكتشاف المبكر وقطع المسار قبل الوصول للذروة." },
+    { id: 96, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Identity & Directory Takeover", en: "Compromising central identity or directory infrastructure to control broad organizational accounts and policies.", ar: "السيطرة على منظومة الهوية المركزية؛ من أخطر السيناريوهات ويتطلب حماية صارمة للحسابات الإدارية." },
+    { id: 97, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Sim Swapping & Telecom Account Takeover", en: "Redirecting phone numbers or mobile authentication to intercept SMS verification codes.", ar: "تحويل رقم الهاتف لاعتراض رموز التحقق؛ يبرز أهمية استخدام تطبيقات مصادقة أو مفاتيح أقوى من SMS." },
+    { id: 98, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Firmware & BIOS/UEFI Persistence", en: "Modifying low-level firmware so malicious code survives OS reinstalls and disk wipes.", ar: "التثبيت في البرمجيات الثابتة؛ يُقاوم بـ Secure Boot وحماية تحديثات العتاد." },
+    { id: 99, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Multi-Stage Hybrid & Cyber-Physical Attacks", en: "Combining digital intrusion, disruption, or information operations with real-world or operational impact.", ar: "الجمع بين الهجمات الرقمية والأثر التشغيلي أو المادي؛ يتطلب تنسيقاً عالياً بين الأمن والحوكمة والاستجابة." },
+    { id: 100, domain: "IMP", domainLabel: "التدمير والفدية والإغراق والتجسس", term: "Continuous Adaptation & Evasion", en: "Attackers continuously evolving lures, infrastructure, and techniques as defenses mature—requiring ongoing monitoring and adaptation.", ar: "التطور المستمر لأساليب الهجوم يتطلب تحديثاً دائماً للضوابط والرصد والاستجابة الاستباقية." }
+  ];
+
+  const STORAGE_KEY = "attacks_history_100_mastered";
+  let masteredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  let currentDomain = "all";
+  let currentQuery = "";
+
+  const cardsContainer = document.getElementById("cardsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const visibleCountEl = document.getElementById("visibleCount");
+  const masteredCountEl = document.getElementById("masteredCount");
+  const emptyStateEl = document.getElementById("emptyState");
+
+  function saveMastered() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...masteredSet]));
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+  }
+
+  function toggleMastered(id) {
+    if (masteredSet.has(id)) {
+      masteredSet.delete(id);
+    } else {
+      masteredSet.add(id);
+    }
+    saveMastered();
+    renderCards();
+  }
+
+  function renderCards() {
+    const q = currentQuery.trim().toLowerCase();
+    const filtered = attackMethods.filter(item => {
+      const matchDomain = currentDomain === "all" || item.domain === currentDomain;
+      const matchSearch =
+        !q ||
+        item.term.toLowerCase().includes(q) ||
+        item.en.toLowerCase().includes(q) ||
+        item.ar.toLowerCase().includes(q) ||
+        String(item.id) === q;
+      return matchDomain && matchSearch;
+    });
+
+    visibleCountEl.textContent = `المعروض: ${filtered.length}`;
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+
+    if (filtered.length === 0) {
+      cardsContainer.innerHTML = "";
+      emptyStateEl.style.display = "block";
+      return;
+    }
+
+    emptyStateEl.style.display = "none";
+    cardsContainer.innerHTML = filtered
+      .map(item => {
+        const isDone = masteredSet.has(item.id);
+        return `
+          <article class="card ${isDone ? "mastered" : ""}">
+            <div class="card-header">
+              <div class="term-title">
+                <span class="term-num">#${item.id}</span>
+                <span class="term-name">${item.term}</span>
+              </div>
+              <div class="card-actions">
+                <span class="domain-tag">${item.domainLabel}</span>
+                <button class="master-btn ${isDone ? "done" : ""}" onclick="toggleMastered(${item.id})">
+                  ${isDone ? "✓ تم الحفظ" : "تحديد كـ مُتقَن"}
+                </button>
+              </div>
+            </div>
+            <div class="en-box">${item.en}</div>
+            <div class="ar-box"><strong>التفسير والدفاع:</strong> ${item.ar}</div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  searchInput.addEventListener("input", e => {
+    currentQuery = e.target.value;
+    renderCards();
+  });
+
+  document.getElementById("filterButtons").addEventListener("click", e => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+    currentDomain = e.target.dataset.domain;
+    renderCards();
+  });
+
+  renderCards();
+</script>
+</body>
+</html>
