@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بنك 100 تعريف OPSWAT ICIP (حماية البنية التحتية الحيوية) | DZ Cyber Academy</title>
+  <style>
+    :root {
+      --bg: #070d19;
+      --surface: #0f172a;
+      --card: #162033;
+      --border: #25334d;
+      --primary: #38bdf8;
+      --accent: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --code-bg: #09101f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0c4a6e 0%, #09101f 60%, #064e3b 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 780px;
+      margin: 0 auto 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .stats-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #061826;
+      border-color: var(--primary);
+    }
+
+    .terms-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .term-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: border-color 0.2s;
+    }
+
+    .term-card:hover {
+      border-color: var(--primary);
+    }
+
+    .term-card.mastered {
+      border-right: 5px solid var(--accent);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .term-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .term-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .term-num {
+      background: var(--primary);
+      color: #061826;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      direction: ltr;
+    }
+
+    .term-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .badges-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cat-tag {
+      font-size: 0.78rem;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .en-pill {
+      font-size: 0.78rem;
+      background: rgba(16, 185, 129, 0.12);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 2px 9px;
+      border-radius: 6px;
+      direction: ltr;
+    }
+
+    .master-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+
+    .master-btn.active {
+      background: var(--accent);
+      color: #052e16;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .def-box {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      font-size: 0.94rem;
+    }
+
+    .def-box strong {
+      color: var(--primary);
+    }
+
+    .app-box {
+      font-size: 0.94rem;
+    }
+
+    .app-box strong {
+      color: var(--accent);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">OPSWAT ICIP — Critical Infrastructure Protection (100 Definitions)</div>
+  <h1>بنك الـ 100 تعريف لمفاهيم OPSWAT ICIP في حماية البنية التحتية الحيوية</h1>
+  <p>مرجع تفاعلي يضم 100 تعريف ومفهوم أساسي في حماية البنى التحتية الحيوية (CIP) والتقنيات التشغيلية (OT) وأمن الملفات والوصول والامتثال.</p>
+  <a href="index.html" class="back-link">↩ العودة إلى الصفحة الرئيسية للأكاديمية</a>
+</header>
+
+<div class="container">
+  <section class="controls-panel">
+    <div class="search-row">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ابحث عن مصطلح، تعريف، أو مجال (مثال: CIP, OT, SCADA, CDR, Zero Trust, Purdue)..."
+      />
+      <div class="stats-box">
+        <span id="visibleCount">المعروض: 100</span>
+        <span>|</span>
+        <span id="masteredCount">المُتقَن: 0 / 100</span>
+      </div>
+    </div>
+
+    <div class="filters" id="filterButtons">
+      <button class="filter-btn active" data-cat="all">الكل (100)</button>
+      <button class="filter-btn" data-cat="CIP">البنية الحيوية والـ OT (1–25)</button>
+      <button class="filter-btn" data-cat="SEC">أمن الملفات والتهديدات (26–50)</button>
+      <button class="filter-btn" data-cat="ACC">الوصول والامتثال والثقة (51–75)</button>
+      <button class="filter-btn" data-cat="OPS">العمليات والاستجابة والمرونة (76–100)</button>
+    </div>
+  </section>
+
+  <main class="terms-grid" id="termsContainer"></main>
+  <div class="empty-state" id="emptyState">لا توجد تعريفات مطابقة للبحث أو التصنيف الحالي.</div>
+
+  <footer>
+    DZ Cyber Academy — مرجع OPSWAT ICIP لحماية البنية التحتية الحيوية
+  </footer>
+</div>
+
+<script>
+  const icipTerms = [
+    // 1 - 25: البنية الحيوية والـ OT (CIP)
+    { id: 1, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "البنية التحتية الحيوية (CIP)", en: "Critical Infrastructure Protection", def: "المنظومات والمنشآت التي يترتب على تعطلها أو اختراقها أثر بالغ على الأمن والسلامة والاقتصاد والخدمات الأساسية.", app: "تأمين قطاعات الطاقة والمياه والنقل والاتصالات والصحة والغذاء." },
+    { id: 2, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "التقنيات التشغيلية (OT)", en: "Operational Technology", def: "الأجهزة والبرمجيات الصناعية التي تراقب وتتحكم في العمليات الفيزيائية والمعدات الميدانية.", app: "حماية خطوط الإنتاج والمحطات الصناعية من التأثيرات السيبرانية." },
+    { id: 3, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "أنظمة التحكم الإشرافي وتحصيل البيانات (SCADA)", en: "Supervisory Control and Data Acquisition", def: "منظومة تجمع البيانات عن بُعد وتتحكم في العمليات الموزعة عبر مواقع متعددة.", app: "مراقبة شبكات الكهرباء والمياه والغاز وتأمين قنوات التحكم." },
+    { id: 4, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "أنظمة التحكم الموزعة (DCS)", en: "Distributed Control Systems", def: "معمارية تحكم توزع المعالجة والرقابة عبر وحدات تحكم متعددة داخل منشأة صناعية.", app: "إدارة العمليات المستمرة في المصانع والمحطات مع عزل النطاقات الحساسة." },
+    { id: 5, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "وحدات التحكم المنطقية القابلة للبرمجة (PLC)", en: "Programmable Logic Controllers", def: "حواسيب صناعية متينة تنفذ منطق التحكم الآلي للمدخلات والمخرجات الفيزيائية.", app: "منع التعديل غير المصرح به لمنطق التشغيل وضبط الوصول إلى وحدات PLC." },
+    { id: 6, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "وحدات الطرفية البعيدة (RTU)", en: "Remote Terminal Units", def: "أجهزة ميدانية تجمع إشارات المستشعرات وتنفذ الأوامر وترسل البيانات إلى مركز SCADA.", app: "تأمين الاتصالات الميدانية والتحقق من هوية نقاط الربط البعيدة." },
+    { id: 7, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "واجهة الإنسان والآلة (HMI)", en: "Human-Machine Interface", def: "الشاشات واللوحات التي يعرض المشغل من خلالها حالة النظام الصناعي ويتدخل للتحكم.", app: "تقييد الوصول إلى محطات HMI ومراقبة أوامر التشغيل الصادرة منها." },
+    { id: 8, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "نموذج بوردو الصناعي (Purdue Model)", en: "Purdue Enterprise Reference Architecture", def: "نموذج طبقي يرتب أنظمة المصنع والمنشأة من الحساسات والمشغلات وصولاً إلى تخطيط الأعمال.", app: "تحديد مناطق العزل والحدود بين الطبقات التشغيلية والمؤسسية." },
+    { id: 9, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "المنطقة المنزوعة السلاح الصناعية (Industrial DMZ)", en: "Industrial DMZ (IDMZ)", def: "منطقة عازلة تفصل شبكة تقنية المعلومات (IT) عن شبكة التقنيات التشغيلية (OT).", app: "منع الاتصال المباشر بين الشبكات الإدارية وأنظمة التحكم الصناعي." },
+    { id: 10, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "فجوة الهواء (Air Gap)", en: "Air Gap", def: "فصل شبكات حساسة مادياً عن الشبكات العامة دون اتصال شبكي مباشر.", app: "تأمين نقاط التبادل اليدوي أو الوسائط القابلة للنقل عند غياب الربط الشبكي." },
+    { id: 11, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "نقطة التبادل الآمن للبيانات (Data Diode)", en: "Unidirectional Security Gateway / Data Diode", def: "آلية تسمح بمرور البيانات في اتجاه واحد فقط لمنع عودة الأوامر أو الاختراق للداخل.", app: "نقل السجلات والقياسات من بيئة OT إلى بيئة IT بأمان أحادي الاتجاه." },
+    { id: 12, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "توافقية التوفر والسلامة والسرية (AIC Triad)", en: "Availability, Integrity, Confidentiality in OT", def: "ترتيب الأولويات في البيئات الصناعية حيث يتقدم التوفر والسلامة الفيزيائية غالباً على السرية.", app: "اختيار ضوابط حماية لا تعطل التشغيل المستمر أو تضر بالسلامة." },
+    { id: 13, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "التقارب بين IT و OT", en: "IT/OT Convergence", def: "دمج أنظمة المعلومات المؤسسية مع أنظمة التحكم الصناعي لتحسين الرؤية والكفاءة.", app: "إدارة المخاطر المشتركة الناتجة عن اتساع الربط بين العالمين." },
+    { id: 14, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "بروتوكولات التحكم الصناعي (ICS Protocols)", en: "Industrial Control Protocols", def: "بروتوكولات اتصال مصممة للتشغيل الصناعي والقياس والتحكم الميداني.", app: "مراقبة حركة البروتوكولات الصناعية واكتشاف الأوامر أو المسارات غير المعتادة." },
+    { id: 15, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "النظام الفيزيائي السيبراني (CPS)", en: "Cyber-Physical System", def: "منظومة تجمع الحوسبة والشبكات مع العمليات الفيزيائية والميكانيكية والكهربائية.", app: "تقييم الأثر السيبراني على الأمان الفيزيائي للمعدات والمنشآت." },
+    { id: 16, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "أنظمة السلامة الآلية (SIS)", en: "Safety Instrumented Systems", def: "منظومة مستقلة تراقب الحالات الخطرة وتوقف العملية تلقائياً لحماية الأرواح والمعدات.", app: "الحفاظ على استقلالية أنظمة السلامة ومنع إضعافها أو تجاوزها." },
+    { id: 17, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "المستشعرات والمشغلات الميدانية", en: "Sensors and Actuators", def: "عناصر القياس التي ترصد الظواهر الفيزيائية وعناصر التنفيذ التي تحرك الصمامات والمفاتيح.", app: "حماية سلامة القراءات والأوامر الميدانية من التلاعب أو التشويش." },
+    { id: 18, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "مؤرخ البيانات الصناعية (Industrial Historian)", en: "Process Data Historian", def: "قاعدة بيانات تسجل القياسات التاريخية للعمليات الصناعية لتحليل الأداء والاتجاهات.", app: "حماية سجل القياسات وضبط الوصول إليه وفق الصلاحيات." },
+    { id: 19, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "محطة الهندسة (Engineering Workstation)", en: "Engineering Workstation (EWS)", def: "محطة عمل تُستخدم لبرمجة وتهيئة وتحديث أجهزة التحكم الصناعي.", app: "تشديد حماية محطات الهندسة ومنع دخول الملفات أو البرمجيات غير الموثوقة إليها." },
+    { id: 20, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "الأجهزة القديمة أو طويلة العمر (Legacy OT Assets)", en: "Legacy Industrial Assets", def: "معدات صناعية تعمل لسنوات طويلة يصعب تحديثها أو إيقافها بسهولة.", app: "اعتماد العزل الشبكي والرقابة السلوكية لتعويض محدودية التحديث المباشر." },
+    { id: 21, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "الوصول عن بُعد إلى البيئات الصناعية", en: "OT Remote Access", def: "تمكين المهندسين أو الموردين من الوصول إلى الأنظمة الصناعية من خارج الموقع.", app: "إخضاع جلسات الوصول عن بُعد للتحقق الصارم والموافقة والمراقبة." },
+    { id: 22, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "الوسائط القابلة للنقل في البيئات المعزولة", en: "Removable Media in Restricted Zones", def: "أقراص التخزين المحمولة المستخدمة لنقل الملفات أو التحديثات إلى أنظمة مقيدة.", app: "فحص وتطهير الوسائط قبل السماح باستخدامها داخل المنشآت الحساسة." },
+    { id: 23, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "إدارة التغييرات في الأنظمة الصناعية", en: "OT Change Management", def: "إجراء منضبط يسبق أي تعديل في البرمجيات أو الإعدادات أو المنطق التشغيلي.", app: "منع التغييرات العشوائية أو غير المعتمدة التي قد تسبب عطلاً أو ثغرة." },
+    { id: 24, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "تجزئة الشبكات الصناعية (OT Network Segmentation)", en: "OT Network Segmentation", def: "تقسيم الشبكة إلى قطاعات مستقلة لتقليل انتشار أي اختراق أو خلل.", app: "منع انتقال التهديدات بين خطوط الإنتاج أو المناطق المختلفة." },
+    { id: 25, cat: "CIP", catLabel: "البنية الحيوية والـ OT", title: "الرؤية الشاملة للأصول الصناعية (Asset Visibility)", en: "OT Asset Inventory & Visibility", def: "اكتشاف وحصر جميع الأجهزة والخدمات والاتصالات داخل البيئة التشغيلية باستمرار.", app: "إزالة النقاط العمياء ومعرفة ما هو متصل بالشبكة بدقة." },
+
+    // 26 - 50: أمن الملفات والتهديدات (SEC)
+    { id: 26, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "إعادة بناء وتعقيم المحتوى (CDR)", en: "Content Disarm and Reconstruction (CDR)", def: "تقنية تفكيك الملفات وإعادة بنائها بعناصر آمنة لإزالة المحتوى النشط أو المخفي الضار.", app: "تطهير المستندات والملفات القادمة من الخارج قبل دخولها للشبكة أو OT." },
+    { id: 27, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "الفحص متعدد المحركات (Multiscanning)", en: "Multiscanning", def: "فحص الملفات باستخدام عدة محركات مكافحة برمجيات خبيثة متزامنة لرفع نسبة الكشف.", app: "زيادة دقة اكتشاف التهديدات المعروفة والحديثة مقارنة بمحرك واحد." },
+    { id: 28, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "تحليل البرمجيات في بيئة معزولة (Sandboxing)", en: "Malware Sandboxing", def: "تشغيل ملفات أو روابط مشبوهة في بيئة معزولة لمراقبة سلوكها الفعلي.", app: "كشف الأنشطة السلوكية المشبوهة للملفات غير المألوفة." },
+    { id: 29, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "منع فقدان أو تسرب البيانات (DLP)", en: "Data Loss Prevention (DLP)", def: "سياسات وتقنيات تراقب وتمنع خروج البيانات الحساسة عبر قنوات غير مصرح بها.", app: "حماية المعلومات السرية والملكية الفكرية من التسرب عبر الملفات أو النقل." },
+    { id: 30, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "تحليل الملفات الثابت (Static File Analysis)", en: "Static Analysis", def: "فحص بنية الملف وترويساته وخصائصه ومحتواه دون تشغيله فعلياً.", app: "اكتشاف المؤشرات الأولية والتشوهات في الملفات بسرعة وأمان." },
+    { id: 31, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "التحليل السلوكي الديناميكي (Dynamic / Behavioral Analysis)", en: "Behavioral Analysis", def: "مراقبة سلوك العمليات والملفات والشبكة أثناء التشغيل لاكتشاف الأنشطة الضارة.", app: "رصد السلوكيات غير المعتادة حتى عند تغير شكل أو تجزئة الملف." },
+    { id: 32, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "البرمجيات الخبيثة (Malware)", en: "Malware", def: "برامج مصممة لإلحاق الضرر أو التجسس أو السيطرة أو تعطيل الأنظمة والبيانات.", app: "بناء طبقات دفاع متعددة لمنع دخولها وانتشارها وتنفيذها." },
+    { id: 33, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "برامج الفدية (Ransomware)", en: "Ransomware", def: "برمجيات تقيد الوصول إلى البيانات أو تشفرها وتطالب بفدية لإعادتها.", app: "حماية نقاط الدخول والنسخ الاحتياطية وتفعيل الكشف المبكر والاحتواء السريع." },
+    { id: 34, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "التهديدات المستمرة المتقدمة (APT)", en: "Advanced Persistent Threat (APT)", def: "هجمات منظمة وطويلة الأمد تنفذها جهات تمتلك قدرات وموارد متقدمة.", app: "تطبيق الدفاع المتعمق والمراقبة المستمرة لتعطيل مراحل الهجوم." },
+    { id: 35, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "ثغرات يوم الصفر (Zero-Day Vulnerabilities)", en: "Zero-Day Vulnerabilities", def: "نقاط ضعف غير معروفة للمصنع أو لم يتوفر لها تصحيح رسمي بعد وقت الاستغلال.", app: "الاعتماد على الضوابط السلوكية والعزل وتطهير المحتوى لتقليل الأثر." },
+    { id: 36, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "معلومات التهديدات السيبرانية (Threat Intelligence)", en: "Threat Intelligence", def: "بيانات وسياق حول المهاجمين وتكتيكاتهم ومؤشراتهم لمساعدة الدفاع الاستباقي.", app: "تحديث قواعد الحماية والفرز بناءً على التهديدات النشطة ذات الصلة." },
+    { id: 37, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "مؤشرات الاختراق (IoCs)", en: "Indicators of Compromise (IoCs)", def: "آثار أو سمات فنية تدل على احتمال حدوث نشاط خبيث أو اختراق.", app: "البحث عن المؤشرات ومطابقتها عبر السجلات ونقاط النهاية والشبكة." },
+    { id: 38, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "مؤشرات الهجوم (IoAs)", en: "Indicators of Attack (IoAs)", def: "أنماط سلوكية تدل على محاولة هجوم نشطة حتى قبل اكتمال الاختراق.", app: "التدخل المبكر لإيقاف الهجوم أثناء تنفيذه وليس بعد وقوع الضرر." },
+    { id: 39, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "أمن سلسلة الإمداد البرمجية (Software Supply Chain Security)", en: "Software Supply Chain Security", def: "حماية مسار تطوير وتوزيع وبناء وتحديث البرمجيات والمكونات الخارجية.", app: "التحقق من سلامة التحديثات والمكتبات القادمة من أطراف ثالثة." },
+    { id: 40, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "تعطيل الماكرو والمحتوى النشط (Active Content Disarm)", en: "Active Content Removal", def: "إزالة السكريبتات أو وحدات الماكرو أو الروابط المضمنة القابلة للتنفيذ من الملفات.", app: "تقليل احتمالية استغلال المستندات كوسيلة دخول أولية." },
+    { id: 41, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "أمن بوابات نقل الملفات (MFT Security)", en: "Managed File Transfer Security", def: "تأمين عمليات تبادل الملفات الكبيرة أو الحساسة بين الأنظمة والشركاء.", app: "فرض التحقق والفحص والتشفير على كل ملف يُرفع أو يُنزّل." },
+    { id: 42, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "أمن التخزين السحابي والكائنات (Cloud Storage Security)", en: "Cloud Storage Security", def: "حماية حاويات ومستودعات الملفات السحابية من الوصول غير المصرح والملفات الضارة.", app: "فحص الملفات المرفوعة وتقييد الصلاحيات وتفعيل التسجيل والمراقبة." },
+    { id: 43, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "التصيد الإلكتروني (Phishing)", en: "Phishing", def: "محاولات خداع لانتزاع بيانات أو دفع المستخدم لفتح روابط أو مرفقات ضارة.", app: "تأمين البريد والويب وفحص المرفقات والروابط وتوعية المستخدمين." },
+    { id: 44, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "أمن البريد الإلكتروني (Email Security)", en: "Email Security", def: "حماية قنوات البريد من الرسائل الخبيثة والانتحال والتسرب والملفات الضارة.", app: "تطبيق فحص المحتوى والمصادقة البريدية وعزل الرسائل المشبوهة." },
+    { id: 45, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "الحقن والمدخلات غير الموثوقة (Input Injection)", en: "Input Injection", def: "إدخال بيانات تُفسّر كأوامر أو استعلامات أو تعليمات داخل النظام أو التطبيق.", app: "التحقق من المدخلات وفصل البيانات عن الأوامر وتطهير المحتوى." },
+    { id: 46, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "العزل والاحتواء (Isolation & Containment)", en: "Isolation and Containment", def: "فصل أصل أو عملية أو مسار مشتبه به لمنع انتقال الضرر إلى بقية البيئة.", app: "تقييد انتشار التهديد فوراً أثناء التحقق والتحليل." },
+    { id: 47, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "حماية نقاط النهاية (Endpoint Protection)", en: "Endpoint Protection", def: "تأمين محطات العمل والخوادم والأجهزة الطرفية ضد البرمجيات والاستغلال.", app: "مراقبة العمليات والملفات والاتصالات على كل جهاز طرفي." },
+    { id: 48, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "الكشف والاستجابة لنقاط النهاية (EDR)", en: "Endpoint Detection and Response (EDR)", def: "قدرات رصد مستمرة وتحليل سلوكي واستجابة سريعة على أجهزة نقاط النهاية.", app: "تتبع سلسلة الأحداث وعزل الأجهزة المصابة بسرعة." },
+    { id: 49, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "الكشف والاستجابة الممتدة (XDR)", en: "Extended Detection and Response (XDR)", def: "ربط بيانات الرصد عبر نقاط النهاية والشبكة والهوية والسحابة لتحسين الرؤية والاستجابة.", app: "رؤية موحدة تربط الإشارات المتفرقة في هجوم متعدد المراحل." },
+    { id: 50, cat: "SEC", catLabel: "أمن الملفات والتهديدات", title: "الدفاع المتعمق (Defense in Depth)", en: "Defense in Depth", def: "اعتماد طبقات حماية متكاملة ومتعددة بحيث لا يعتمد أمن النظام على ضابط واحد.", app: "توفير خطوط دفاع وقائية وكاشفة واستجابية متتابعة." },
+
+    // 51 - 75: الوصول والامتثال والثقة (ACC)
+    { id: 51, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "الثقة المعدومة (Zero Trust)", en: "Zero Trust Architecture", def: "نموذج أمني يفترض عدم الثقة التلقائية ويتحقق باستمرار من كل هوية وجهاز وجلسة وطلب.", app: "تطبيق التحقق المستمر وأقل صلاحية والتجزئة الدقيقة للوصول." },
+    { id: 52, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "التحقق المستمر من حالة الجهاز (Continuous Device Posture)", en: "Continuous Device Compliance", def: "تقييم حالة أمان الجهاز وتحديثاته وحمايته قبل السماح بالوصول وخلال الجلسة.", app: "منع الأجهزة غير المتوافقة أو المخترقة من الوصول للموارد الحساسة." },
+    { id: 53, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "التحكم بالوصول القائم على السياق (Context-Aware Access)", en: "Context-Aware Access Control", def: "منح أو تقييد الوصول بناءً على الهوية وحالة الجهاز والموقع والوقت والخطورة.", app: "تكييف صلاحية الوصول بحسب المخاطر الفعلية للطلب." },
+    { id: 54, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "مبدأ أقل صلاحية (Least Privilege)", en: "Least Privilege", def: "منح المستخدم أو الحساب أو الخدمة الحد الأدنى من الصلاحيات اللازمة لأداء مهامه فقط.", app: "تقليص الأثر المحتمل لأي حساب مخترق أو خطأ تشغيلي." },
+    { id: 55, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "المصادقة متعددة العوامل (MFA)", en: "Multi-Factor Authentication (MFA)", def: "اشتراط أكثر من عامل تحقق مستقل لإثبات الهوية قبل منح الوصول.", app: "تعزيز حماية الحسابات خاصة الإدارية وذات الوصول عن بُعد." },
+    { id: 56, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "إدارة الوصول المميز (PAM)", en: "Privileged Access Management (PAM)", def: "مراقبة وتقييد وإدارة الحسابات والصلاحيات ذات النفوذ العالي.", app: "حماية مفاتيح التحكم والأنظمة الحساسة من إساءة الاستخدام." },
+    { id: 57, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "الوصول المشروط (Conditional Access)", en: "Conditional Access", def: "تطبيق قواعد وصول تشترط استيفاء شروط محددة للسماح بالدخول إلى مورد معين.", app: "فرض قيود إضافية عند الدخول من شبكات أو أجهزة غير معتادة." },
+    { id: 58, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "إدارة الهوية والوصول (IAM)", en: "Identity and Access Management (IAM)", def: "إدارة الهويات الرقمية وتحديد من يملك صلاحية الوصول إلى ماذا ولماذا.", app: "تنظيم دورة حياة الحسابات والصلاحيات عبر الأنظمة." },
+    { id: 59, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "الوصول إلى التطبيقات الخاصة (Private App Access)", en: "Zero Trust Network / Private Access", def: "تمكين الوصول الآمن إلى التطبيقات الداخلية دون تعريض الشبكة بالكامل.", app: "حماية التطبيقات الداخلية وتقليل سطح الهجوم الشبكي." },
+    { id: 60, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "الوصول الآمن إلى الويب (SWG)", en: "Secure Web Gateway (SWG)", def: "بوابة تراقب وتفلتر حركة الويب الصادرة والواردة لمنع التهديدات والسياسات المخالفة.", app: "حماية المستخدمين والأنظمة أثناء التصفح والتواصل عبر الويب." },
+    { id: 61, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "الامتثال التنظيمي والمعياري (Compliance)", en: "Regulatory and Standards Compliance", def: "الالتزام بالقوانين والتشريعات والأطر المرجعية المعتمدة لحماية الأنظمة والبيانات.", app: "توثيق الضوابط وإثبات الجاهزية أمام الجهات الرقابية والتدقيق." },
+    { id: 62, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "تقييم الثغرات الأمنية (Vulnerability Assessment)", en: "Vulnerability Assessment", def: "اكتشاف وتصنيف نقاط الضعف المعروفة في الأنظمة والبرمجيات والتكوينات.", app: "تحديد أولويات المعالجة وسد الثغرات قبل استغلالها." },
+    { id: 63, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "إدارة الثغرات (Vulnerability Management)", en: "Vulnerability Management", def: "دورة مستمرة لاكتشاف الثغرات وتقييم مخاطرها ومعالجتها والتحقق من إغلاقها.", app: "الحفاظ على بيئة محدثة ومحدودة نقاط الضعف بمرور الوقت." },
+    { id: 64, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "إدارة التصحيحات والتحديثات (Patch Management)", en: "Patch Management", def: "اختبار وتطبيق التحديثات الأمنية على الأنظمة والبرمجيات بشكل منظم.", app: "إغلاق الثغرات المعروفة مع مراعاة استقرار الأنظمة الحساسة." },
+    { id: 65, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "مراقبة انحراف التكوين (Configuration Drift)", en: "Configuration Drift", def: "تغير إعدادات النظام أو الأصل عن الحالة الآمنة المعتمدة بمرور الوقت.", app: "اكتشاف التعديلات غير المعتمدة وإعادة ضبط الإعدادات إلى خط الأساس." },
+    { id: 66, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "خط الأساس الأمني (Security Baseline)", en: "Security Baseline", def: "مجموعة الإعدادات والمعايير الدنيا الآمنة المعتمدة لتشغيل الأنظمة والأجهزة.", app: "توحيد مستوى الحماية عبر الأصول وتسهيل قياس الالتزام." },
+    { id: 67, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "مراقبة سلامة الملفات (FIM)", en: "File Integrity Monitoring (FIM)", def: "مراقبة التغييرات الطارئة على الملفات الحساسة وسجلات النظام والإعدادات.", app: "رصد التعديلات غير المصرّح بها أو المشبوهة بسرعة." },
+    { id: 68, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "التحكم في الأجهزة الطرفية (Device Control)", en: "Device Control", def: "تنظيم أو تقييد استخدام المنافذ والأجهزة الطرفية مثل وحدات التخزين الخارجية.", app: "منع إدخال أو إخراج البيانات والبرمجيات عبر أجهزة غير مصرح بها." },
+    { id: 69, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "تجزئة الشبكات (Network Segmentation)", en: "Network Segmentation", def: "تقسيم الشبكة إلى مناطق معزولة تتحكم في حركة المرور بينها.", app: "الحد من الحركة الجانبية للمهاجم داخل الشبكة." },
+    { id: 70, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "التجزئة الدقيقة (Microsegmentation)", en: "Microsegmentation", def: "فرض سياسات عزل وصول دقيقة على مستوى الأحمال أو الخدمات أو الأجهزة الفردية.", app: "تقييد الاتصال لكل مورد بما يحتاجه فقط." },
+    { id: 71, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "أمن الهوية والوصول للشبكة (NAC)", en: "Network Access Control (NAC)", def: "التحقق من هوية الأجهزة وحالة امتثالها قبل السماح لها بالاتصال بالشبكة.", app: "منع الأجهزة غير الموثوقة أو المخالفة من الانضمام للشبكة." },
+    { id: 72, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "تشفير البيانات أثناء النقل (Encryption in Transit)", en: "Encryption in Transit", def: "حماية البيانات أثناء انتقالها عبر الشبكات لمنع التنصت أو التلاعب.", app: "استخدام بروتوكولات وإعدادات تشفير قوية في الاتصالات." },
+    { id: 73, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "تشفير البيانات أثناء التخزين (Encryption at Rest)", en: "Encryption at Rest", def: "تشفير البيانات المحفوظة على الأقراص أو قواعد البيانات أو التخزين.", app: "حماية البيانات المخزنة في حال الوصول الفيزيائي أو التسرب." },
+    { id: 74, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "إدارة المفاتيح التشفيرية (Key Management)", en: "Cryptographic Key Management", def: "توليد وتخزين وتدوير وإبطال المفاتيح المستخدمة في التشفير والتحقق بأمان.", app: "الحفاظ على قوة التشفير ومنع تسرب أو إساءة استخدام المفاتيح." },
+    { id: 75, cat: "ACC", catLabel: "الوصول والامتثال والثقة", title: "الحوكمة وإدارة المخاطر والامتثال (GRC)", en: "Governance, Risk, and Compliance (GRC)", def: "إطار يربط الحوكمة والسياسات وإدارة المخاطر والامتثال بأهداف المؤسسة.", app: "مواءمة الاستثمارات والضوابط الأمنية مع المخاطر والالتزامات." },
+
+    // 76 - 100: العمليات والاستجابة والمرونة (OPS)
+    { id: 76, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "مركز عمليات الأمن السيبراني (SOC)", en: "Security Operations Center (SOC)", def: "فريق وعمليات ومنصات لمراقبة ورصد وتحليل والاستجابة للتهديدات السيبرانية.", app: "الكشف المبكر عن الأنشطة المشبوهة والتعامل المنظم مع التنبيهات والحوادث." },
+    { id: 77, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "إدارة المعلومات والأحداث الأمنية (SIEM)", en: "Security Information and Event Management (SIEM)", def: "تجميع وتحليل وربط السجلات والأحداث الأمنية من مصادر متعددة للكشف عن التهديدات.", app: "بناء قواعد التنبيه والتحقيق في الجداول الزمنية للأحداث." },
+    { id: 78, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "الأتمتة والتنسيق والاستجابة الأمنية (SOAR)", en: "Security Orchestration, Automation, and Response (SOAR)", def: "أتمتة المهام المتكررة وتنسيق الإجراءات بين الأدوات لتسريع الاستجابة للحوادث.", app: "تقليص زمن الفرز والاحتواء في العمليات اليومية." },
+    { id: 79, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "فرز التنبيهات (Alert Triage)", en: "Alert Triage", def: "تقييم وتصنيف التنبيهات الأمنية لتحديد حقيقتها وخطورتها وأولوية التعامل معها.", app: "التركيز على التهديدات الفعلية وتقليل الإرهاق من التنبيهات." },
+    { id: 80, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "الإنذار الكاذب (False Positive)", en: "False Positive", def: "تنبيه يظهر بوجود نشاط ضار بينما النشاط في الواقع طبيعي أو مشروع.", app: "ضبط قواعد الكشف لتحسين الدقة وتقليل إشغال المحللين." },
+    { id: 81, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "الإغفال الكاذب (False Negative)", en: "False Negative", def: "عدم إطلاق تنبيه عند وقوع نشاط ضار أو اختراق فعلي.", app: "تحسين التغطية والسجلات والكشف السلوكي لتقليل النقاط العمياء." },
+    { id: 82, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "استقصاء التهديدات الاستباقي (Threat Hunting)", en: "Threat Hunting", def: "بحث استباقي منظم عن تهديدات أو أنشطة خبيثة قد تكون تجاوزت الضوابط التلقائية.", app: "اكتشاف التهديدات المتقدمة أو الكامنة مبكراً." },
+    { id: 83, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "إدارة الحوادث الأمنية (Incident Management)", en: "Incident Management", def: "دورة منظمة للتحضير والاكتشاف والاحتواء والاستئصال والتعافي والتعلم من الحوادث.", app: "تقليل الأثر التشغيلي والمالي وإعادة الأنظمة بأمان." },
+    { id: 84, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "أدلة وإجراءات التشغيل القياسية (Playbooks & Runbooks)", en: "Playbooks and Runbooks", def: "خطوات عملية موثقة تحدد كيفية التعامل مع سيناريوهات أو مهام محددة.", app: "توحيد جودة الاستجابة وسرعتها بين أعضاء الفريق." },
+    { id: 85, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "التصعيد الأمني (Incident Escalation)", en: "Incident Escalation", def: "رفع الحادث إلى مستوى أعلى من التخصص أو الإدارة عند تجاوزه حدود الفرز الأولي.", app: "ضمان تدخل أصحاب القرار والخبراء في الحوادث الحرجة." },
+    { id: 86, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "التحليل الجنائي الرقمي (Digital Forensics)", en: "Digital Forensics", def: "جمع وحفظ وتحليل الأدلة الرقمية وفق منهجية دقيقة لفهم ملابسات الحادث.", app: "تحديد الجذر الحقيقي للاختراق ودعم الإجراءات الفنية أو القانونية." },
+    { id: 87, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "المرونة السيبرانية (Cyber Resilience)", en: "Cyber Resilience", def: "قدرة المنظومة على الاستمرار في أداء وظائفها الحيوية والتعافي أثناء وبعد الهجوم.", app: "ضمان صمود الخدمات الحيوية رغم الضغوط أو الحوادث." },
+    { id: 88, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "استمرارية الأعمال (Business Continuity)", en: "Business Continuity (BC)", def: "القدرة على الحفاظ على العمليات الأساسية مستمرة أثناء الاضطرابات أو الطوارئ.", app: "تأمين البدائل والخطط التشغيلية للأنشطة الحرجة." },
+    { id: 89, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "التعافي من الكوارث (Disaster Recovery)", en: "Disaster Recovery (DR)", def: "الخطط والإجراءات لاستعادة الأنظمة والبيانات والخدمات بعد حادث أو عطل كبير.", app: "إعادة التشغيل ضمن أهداف زمنية محددة وموثوقة." },
+    { id: 90, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "هدف وقت الاسترداد (RTO)", en: "Recovery Time Objective (RTO)", def: "المدة الزمنية القصوى المقبولة لتوقف خدمة أو نظام قبل استعادته للتشغيل.", app: "تحديد سرعة الاستجابة والتعافي المطلوبة لكل نظام." },
+    { id: 91, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "هدف نقطة الاسترداد (RPO)", en: "Recovery Point Objective (RPO)", def: "أقصى فترة زمنية يمكن قبول فقدان بياناتها عند حدوث تعطل أو اختراق.", app: "ضبط وتيرة النسخ الاحتياطي وحماية البيانات." },
+    { id: 92, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "النسخ الاحتياطي غير القابل للتعديل (Immutable Backup)", en: "Immutable Backup", def: "نسخ احتياطية لا يمكن حذفها أو تعديلها أو تشفيرها قبل انتهاء مدة الاحتفاظ المحددة.", app: "حماية خط الدفاع الأخير ضد برامج الفدية أو التخريب." },
+    { id: 93, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "مراقبة السجلات والقياس عن بُعد (Logging & Telemetry)", en: "Logging and Telemetry", def: "جمع البيانات والسجلات من الأنظمة والتطبيقات والشبكات لدعم الرؤية والتحليل.", app: "توفير الأدلة اللازمة للكشف والتحقيق والامتثال." },
+    { id: 94, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "مزامنة الوقت الموثوقة (NTP Time Synchronization)", en: "Time Synchronization", def: "توحيد الساعات الزمنية عبر الأنظمة والسجلات لضمان دقة ترتيب الأحداث.", app: "ربط الأحداث بدقة عبر الأجهزة والمنصات أثناء التحقيق." },
+    { id: 95, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "إدارة المخاطر السيبرانية (Cyber Risk Management)", en: "Cyber Risk Management", def: "تحديد وتقييم ومعالجة ومراقبة المخاطر المرتبطة بالتهديدات ونقاط الضعف والأصول.", app: "اتخاذ قرارات حماية مبنية على الأثر والاحتمالية." },
+    { id: 96, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "تقييم المخاطر (Risk Assessment)", en: "Risk Assessment", def: "تحليل التهديدات ونقاط الضعف والأثر لتقدير مستوى المخاطر على الأصول.", app: "تحديد أين تتركز المخاطر الأعلى وما الضوابط الأكثر إلحاحاً." },
+    { id: 97, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "التدريبات والمحاكاة والتمارين (Tabletop & Simulation Exercises)", en: "Security Exercises and Simulations", def: "اختبار الجاهزية والخطط والفرق عبر سيناريوهات محاكاة قبل وقوع الحوادث الحقيقية.", app: "كشف الثغرات الإجرائية ورفع كفاءة التنسيق والسرعة." },
+    { id: 98, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "الوعي والتدريب الأمني (Security Awareness)", en: "Security Awareness Training", def: "تأهيل الموظفين والمشغلين للتعرف على المخاطر واتباع السلوكيات الآمنة.", app: "تقليل الأخطاء البشرية التي تُستغل غالباً كنقطة دخول." },
+    { id: 99, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "مراجعة ما بعد الحادث (Post-Incident Review / Lessons Learned)", en: "Post-Incident Review", def: "تحليل شامل لما جرى أثناء الحادث لاستخلاص الدروس وتحسين الضوابط والعمليات.", app: "منع تكرار الأسباب الجذرية وتعزيز الجاهزية المستقبلية." },
+    { id: 100, cat: "OPS", catLabel: "العمليات والاستجابة والمرونة", title: "التحسين المستمر (Continuous Improvement)", en: "Continuous Security Improvement", def: "مراجعة وتطوير السياسات والضوابط والأدوات باستمرار لمواكبة التغيرات والتهديدات.", app: "الحفاظ على فعالية منظومة حماية البنية التحتية الحيوية بمرور الوقت." }
+  ];
+
+  const STORAGE_KEY = "opswat_icip_100_defs_mastered";
+  let masteredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  let currentCat = "all";
+  let currentQuery = "";
+
+  const container = document.getElementById("termsContainer");
+  const searchInput = document.getElementById("searchInput");
+  const visibleCountEl = document.getElementById("visibleCount");
+  const masteredCountEl = document.getElementById("masteredCount");
+  const emptyStateEl = document.getElementById("emptyState");
+
+  function saveMastered() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...masteredSet]));
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+  }
+
+  function toggleMastered(id) {
+    if (masteredSet.has(id)) {
+      masteredSet.delete(id);
+    } else {
+      masteredSet.add(id);
+    }
+    saveMastered();
+    renderTerms();
+  }
+
+  function renderTerms() {
+    const q = currentQuery.trim().toLowerCase();
+    const filtered = icipTerms.filter(t => {
+      const matchCat = currentCat === "all" || t.cat === currentCat;
+      const matchSearch =
+        !q ||
+        t.title.toLowerCase().includes(q) ||
+        t.en.toLowerCase().includes(q) ||
+        t.def.toLowerCase().includes(q) ||
+        t.app.toLowerCase().includes(q) ||
+        String(t.id) === q;
+      return matchCat && matchSearch;
+    });
+
+    visibleCountEl.textContent = `المعروض: ${filtered.length}`;
+    masteredCountEl.textContent = `المُتقَن: ${masteredSet.size} / 100`;
+
+    if (filtered.length === 0) {
+      container.innerHTML = "";
+      emptyStateEl.style.display = "block";
+      return;
+    }
+
+    emptyStateEl.style.display = "none";
+    container.innerHTML = filtered
+      .map(t => {
+        const isDone = masteredSet.has(t.id);
+        return `
+          <article class="term-card ${isDone ? "mastered" : ""}">
+            <div class="term-header">
+              <div class="term-title-wrap">
+                <span class="term-num">#${String(t.id).padStart(3, "0")}</span>
+                <h2 class="term-title">${t.title}</h2>
+              </div>
+              <div class="badges-wrap">
+                <span class="en-pill">${t.en}</span>
+                <span class="cat-tag">${t.catLabel}</span>
+                <button class="master-btn ${isDone ? "active" : ""}" onclick="toggleMastered(${t.id})">
+                  ${isDone ? "✓ مُتقَن" : "تحديد كـ مُتقَن"}
+                </button>
+              </div>
+            </div>
+            <div class="def-box"><strong>التعريف:</strong> ${t.def}</div>
+            <div class="app-box"><strong>التطبيق في حماية البنية الحيوية:</strong> ${t.app}</div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  searchInput.addEventListener("input", e => {
+    currentQuery = e.target.value;
+    renderTerms();
+  });
+
+  document.getElementById("filterButtons").addEventListener("click", e => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    e.target.classList.add("active");
+    currentCat = e.target.dataset.cat;
+    renderTerms();
+  });
+
+  renderTerms();
+</script>
+</body>
+</html>
